@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Rekam Medis</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none">
+    <ion-item lines="none" style="--background: inherit;">
+      <ion-icon name='person' slot="start" style="width: 50px; height: 50px;">
+      </ion-icon>
+      <ion-label>
+        <h3 style="font-weight: bold;">Santi Trinitasjati</h3>
+        <h5>Kelas 6C / Gasal 2020-2021</h5>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-segment [(ngModel)]="tabActive">
+    <ion-segment-button value="pemeriksaan">
+      <ion-label>Pemeriksaan</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="kejadian">
+      <ion-label>Kejadian</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container *ngIf="tabActive === 'pemeriksaan'">
+    <ion-list>
+      <ion-item>
+        <ion-label>Periode Ajaran</ion-label>
+        <ion-select value="2">
+          <ion-select-option value="1">Genap 2019/2020</ion-select-option>
+          <ion-select-option value="2">Gasal 2020/2021</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <section>
+        <ul>
+          <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
+            11 Mei 2020
+          </div>
+          <li style="font-weight: bold;">Pemeriksaan Umum </li>
+          <p style="font-size: 14px;">Tinggi Badan : 150 cm </p>
+          <p style="font-size: 14px;">Berat Badan : 50 kg</p>
+
+
+          <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
+            10 Mei 2020
+          </div>
+          <li style="font-weight: bold;">Pemeriksaan Screening</li>
+          <p style="font-size: 14px;">Gigi dan THT Sehat, Mata diketahui -1.50 kanan </p>
+          <p style="font-size: 14px;">Catatan : Saran menggunakan kacamata</p>
+        </ul>
+      </section>
+
+      <ion-grid>
+        <ion-row >
+          <ion-col class="ion-text-center"> 
+            <form>
+              <ion-button (click)="confirmpemeriksaan()" fill="outline" shape="round" >
+                Konfirmasi
+              </ion-button>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+  </ng-container>
+
+  <ng-container *ngIf="tabActive === 'kejadian'">
+    <ion-list>
+      <ion-item>
+        <ion-label>Periode Ajaran</ion-label>
+        <ion-select value="2">
+          <ion-select-option value="1">Genap 2019/2020</ion-select-option>
+          <ion-select-option value="2">Gasal 2020/2021</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <section>
+        <ul>
+          <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
+            7 Mei 2020
+          </div>
+          <li style="font-weight: bold;">Sakit Kepala </li>
+          <p style="font-size: 14px;">Penanganan : Tidur di UKS </p>
+          <p style="font-size: 14px;">Jam Penanganan : 10.00 AM</p>
+          <p style="font-size: 14px;">Ditangani oleh : Petugas UKS</p>
+          <p style="font-size: 14px;">Catatan : -</p>
+
+
+          <!-- <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
+            1 Mei 2020
+          </div>
+          <li style="font-weight: bold;">Kecelakaan Olahraga</li>
+          <p style="font-size: 14px;">Penanganan : Pengobatan</p>
+          <p style="font-size: 14px;">Jam Penanganan : 10.00 AM</p>
+          <p style="font-size: 14px;">Ditangani oleh : Petugas UKS</p>
+          <p style="font-size: 14px;">Catatan : -</p> -->
+
+        </ul>
+      </section>
+      <ion-grid>
+        <ion-row >
+          <ion-col class="ion-text-center"> 
+            <form>
+              <ion-button (click)="confirmkejadian()" fill="outline" shape="round" >
+                Konfirmasi
+              </ion-button>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+   
+  </ng-container>
+</ion-content>

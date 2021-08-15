@@ -1,0 +1,27 @@
+<ion-toolbar color="primary">
+  <ion-title>Login</ion-title>
+</ion-toolbar>
+
+<ion-content>
+  <div class="logo">
+    <img src="./assets/logos/logouks.png" class="center">
+  </div>
+  <h2 class="ion-text-center">UKS Report Apps</h2>
+  <ion-card color="light" class="auth-card ion-margin">
+    <form>
+    <ion-item lines="none" color="light">
+      <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" color="light" class="ion-no-inner-padding-end">
+      <ion-label position="stacked">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="login()" class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit">
+      Log In
+    </ion-button>
+  </form>
+  </ion-card>
+  
+</ion-content>
