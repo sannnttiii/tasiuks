@@ -32,6 +32,18 @@ const routes: Routes = [
     path: 'rekammedis',
     loadChildren: () => import('./rekammedis/rekammedis.module').then( m => m.RekammedisPageModule)
   },
+  {
+    path: 'confirmperizinanortu',
+    loadChildren: () => import('./confirmperizinanortu/confirmperizinanortu.module').then( m => m.ConfirmperizinanortuPageModule)
+  },
+  {
+    path: 'formconfirm',
+    loadChildren: () => import('./formconfirm/formconfirm.module').then( m => m.FormconfirmPageModule)
+  },
+  {
+    path: 'editprofile',
+    loadChildren: () => import('./editprofile/editprofile.module').then( m => m.EditprofilePageModule)
+  },
   
 
 ];

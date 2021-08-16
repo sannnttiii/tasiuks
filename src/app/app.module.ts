@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {Routes,RouterModule} from '@angular/router';
 import { RouteReuseStrategy} from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {IonicStorageModule} from '@ionic/storage';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -31,10 +31,11 @@ const appRoutes:Routes=[
   declarations: [AppComponent, 
     LoginComponent],
   entryComponents: [],
-  imports: [HttpClientModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule, RouterModule.forRoot(appRoutes),
+  imports: [
+  HttpClientModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule, RouterModule.forRoot(appRoutes),
   AngularFireModule.initializeApp(environment.firebaseConfig), 
   IonicStorageModule.forRoot(), 
-  FormsModule,
+  FormsModule, ReactiveFormsModule,
   AngularFireAuthModule,
   AngularFirestoreModule,
   AngularFireDatabaseModule, AngularFireStorageModule,

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Perizinan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card >
+    <ion-card-header>
+      <ion-card-subtitle>Pelayanan Kesehatan</ion-card-subtitle>
+      <ion-card-title>Imunisasi</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+     Tanggal : 13 Mei 2020<br>
+     Pelaksana : SDN Kendangsari IV & Puskesmas
+     <ion-grid>
+        <ion-row >
+          <ion-col class="ion-text-center"> 
+            <form>
+              <ion-button routerLink="/homeortu/formconfirm" fill="outline" shape="round" >
+                Konfirmasi
+              </ion-button>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card >
+    <ion-card-header>
+      <ion-card-subtitle>Pelayanan Kesehatan</ion-card-subtitle>
+      <ion-card-title>Dokter Kecil</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+     Tanggal : 15 Mei 2020<br>
+     Pelaksana : SDN Kendangsari IV 
+     <ion-grid>
+        <ion-row >
+          <ion-col class="ion-text-center"> 
+            <form>
+              <ion-button (click)="confirm()" fill="outline" shape="round" >
+                Konfirmasi
+              </ion-button>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

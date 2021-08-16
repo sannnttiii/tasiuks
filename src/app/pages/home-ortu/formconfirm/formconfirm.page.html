@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Konfirmasi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header style="padding-bottom: 0px;">
+      <ion-card-title style="color: black;">Form Konfirmasi</ion-card-title>
+      <ion-card-subtitle style="color: black;">Dengan ini saya selaku wali murid dari
+        Santi
+        Trinitasjati </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <form>
+        <ion-list>
+          <ion-radio-group value="ya">
+            <ion-item>
+              <ion-radio value="ya" (click)='viewAlasanFalse()'></ion-radio> &nbsp;
+              <ion-label style="font-size: 14px;">Mengizinkan</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-radio value="tidak" (click)='viewAlasanTrue()'></ion-radio>&nbsp;
+              <ion-label style="font-size: 14px;">Tidak Mengizinkan</ion-label>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <ion-card-subtitle style="color: black;">Mengikuti kegiatan UKS Imunisasi yang
+          akan diselenggarakan pada tanggal 13 Mei 2020</ion-card-subtitle>
+        <ion-card [hidden]="!diizinkan" style="background-color: whitesmoke;">
+          <ion-card-header>
+            <ion-card-subtitle style="color: black; text-align: center;">Mohon beri alasan dan bukti yang mendukung.
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-item>
+            <ion-label position="stacked">Alasan</ion-label>
+            <ion-input type="text" [(ngModel)]="alasan" name="alasan"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Bukti seperti surat dokter</ion-label>
+            <ion-input type="file" accept="image/*" [(ngModel)]="image" name="image" (change)="changeListener($event)">
+            </ion-input>
+          </ion-item>
+        </ion-card>
+        <ion-button expand="block" (click)="save()" class="ion-margin-start ion-margin-end ion-margin-bottom"
+          type="submit" shape="round">
+          Simpan
+        </ion-button>
+      </form>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

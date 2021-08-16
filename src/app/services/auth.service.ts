@@ -18,16 +18,17 @@ import { Storage } from '@ionic/storage';
 export class AuthService {
   user$: Observable<User>;
   user: User;
-  roleLogin:any;
-  roleUser:string;
-  tokenUser:string;
+  roleLogin: any;
+  roleUser: string;
+  tokenUser: string;
+  tokentes: string;
   constructor(
     private afs: AngularFirestore,
     private afauth: AngularFireAuth,
     private router: Router,
     private loadingCtrl: LoadingController,
     private toastr: ToastController,
-    private http:HttpClient,
+    private http: HttpClient,
     private storage: Storage,
   ) {
     this.user$ = this.afauth.authState
@@ -43,101 +44,98 @@ export class AuthService {
       )
   }
 
-  signindb(email,password):Observable<any>
-  {
+  signindb(email, password): Observable<any> {
     let body = new HttpParams();
-    body = body.set('email',email);
-    body = body.set('password',password);
-    return this.http.post("http://localhost/tasiuks/api/login.php",body);
-  }
-  
-  updateUid(email):Observable<any>
-  {
-    let body = new HttpParams();
-    body = body.set('uid',this.tokenUser);
     body = body.set('email', email);
-    body = body.set('role',this.roleUser);
-    return this.http.post("http://localhost/tasiuks/api/updateloginuid.php",body);
+    body = body.set('password', password);
+    return this.http.post("http://localhost/tasiuks/api/login.php", body);
   }
 
-  setRole(role:string){
+  updateUid(email): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('uid', this.tokenUser);
+    body = body.set('email', email);
+    body = body.set('role', this.roleUser);
+    return this.http.post("http://localhost/tasiuks/api/updateloginuid.php", body);
+  }
+
+  setRole(role: string) {
     this.storage.ready().then(() => {
       this.storage.set('role', role);
-      console.log('set Role ' , role);
+      console.log('set Role ', role);
     });
   }
-  role(role:string)
-  {
-    this.roleUser=role;
+  role(role: string) {
+    this.roleUser = role;
   }
-  getRole(){
+  getRole() {
     return this.storage.get('role');
   }
 
   async signIn(email, password) {
     const loading = await this.loadingCtrl.create({
-      message : 'Authenticating..',
-      spinner:'crescent',
-      showBackdrop:true
+      message: 'Authenticating..',
+      spinner: 'crescent',
+      showBackdrop: true
     });
     loading.present();
-    this.afauth.setPersistence(firebase.default.auth.Auth.Persistence.LOCAL).then(()=>{
-      this.afauth.signInWithEmailAndPassword(email,password).then(async (data)=>{
-        if(!data.user.emailVerified)
-        {
+    this.afauth.setPersistence(firebase.default.auth.Auth.Persistence.LOCAL).then(() => {
+      this.afauth.signInWithEmailAndPassword(email, password).then(async (data) => {
+        if (!data.user.emailVerified) {
           loading.dismiss();
-          this.toast('Harap verifikasi email anda!','warning');
+          this.toast('Harap verifikasi email anda!', 'warning');
           this.afauth.signOut();
-        }else{
+        } else {
           console.log(this.roleUser)
           loading.dismiss();
-          this.tokenUser= await  data.user.uid;
+          //ini uid
+          this.tokenUser = await data.user.uid;
+          //ini token 
+          // this.tokentes = await data.user.getIdToken();
+          // console.log('lallal ' + this.tokentes)
           console.log('token : ' + this.tokenUser);
-          if(this.roleUser=='petugas')
-          {
-          this.router.navigate(['/homepetugas/dashboard']);
+          if (this.roleUser == 'petugas') {
+            this.router.navigate(['/homepetugas/dashboard']);
           }
-          else if(this.roleUser=='ortu'){
+          else if (this.roleUser == 'ortu') {
             this.router.navigate(['/homeortu/dashboard']);
           }
-          else{
+          else {
             console.log(this.roleLogin)
           }
         }
       })
-      .catch(error=>{
-        loading.dismiss();
-        this.toast(error.message,'danger');
-      })
+        .catch(error => {
+          loading.dismiss();
+          this.toast(error.message, 'danger');
+        })
     })
-    .catch(error=>{
-      loading.dismiss();
-      this.toast(error.message,'danger');
-    });
+      .catch(error => {
+        loading.dismiss();
+        this.toast(error.message, 'danger');
+      });
   }//end sign in
 
-  async signOut()
-  {
+  async signOut() {
     const loading = await this.loadingCtrl.create({
-      spinner:'crescent',
-      showBackdrop:true
+      spinner: 'crescent',
+      showBackdrop: true
     });
     loading.present();
 
     this.afauth.signOut()
-    .then(()=>{
-      loading.dismiss();
-      this.router.navigate(['/login']);
-    })
+      .then(() => {
+        loading.dismiss();
+        this.router.navigate(['/login']);
+      })
   }//end signout
 
-  async toast(msg, status)
-  {
+  async toast(msg, status) {
     const toast = await this.toastr.create({
-      message:msg,
+      message: msg,
       color: status,
-      position : 'bottom',
-      duration:2000
+      position: 'bottom',
+      duration: 2000
     });
     toast.present();
   }

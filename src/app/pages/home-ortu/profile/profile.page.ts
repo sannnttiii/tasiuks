@@ -9,13 +9,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ProfilePage implements OnInit {
 
   constructor(
-    private as:AuthService,
+    private as: AuthService,
   ) { }
 
   ngOnInit() {
   }
-  logout()
-  {
+
+  logout() {
     this.as.signOut();
   }
 }
