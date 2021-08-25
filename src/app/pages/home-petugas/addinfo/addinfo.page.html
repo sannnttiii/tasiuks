@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Tambah Informasi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header style="padding-bottom: 0px;">
+      <ion-card-title style="color: black;">Informasi Baru</ion-card-title>
+      <ion-card-subtitle style="color: black;">Harap mengisi data dengan sebenar-benarnya. </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <form>
+        <ion-item>
+          <ion-label position="stacked">Judul</ion-label>
+          <ion-input type="text" [(ngModel)]="judul" name="judul"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Keterangan</ion-label>
+          <ion-input type="text" [(ngModel)]="keterangan" name="keterangan"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Poster</ion-label>
+          <ion-input type="file" accept="image/*" [(ngModel)]="image" name="image" (change)="changeListener($event)">
+          </ion-input>
+        </ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button expand="block" fill="outline" routerLink="/homepetugas/profile"
+                class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit" shape="round">
+                Batal
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="block" (click)="save()" class="ion-margin-start ion-margin-end ion-margin-bottom"
+                type="submit" shape="round">
+                Simpan
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

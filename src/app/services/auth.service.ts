@@ -5,20 +5,27 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import * as firebase from 'firebase';
 import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 
+export interface Message {
+  createdAt: firebase.default.firestore.Timestamp;
+  id: string;
+  from: string;
+  msg: string;
+  fromName: string;
+  myMsg: boolean;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user$: Observable<User>;
-  user: User;
-  roleLogin: any;
+  user: User = null;
   roleUser: string;
   tokenUser: string;
   tokentes: string;
@@ -94,6 +101,7 @@ export class AuthService {
           // this.tokentes = await data.user.getIdToken();
           // console.log('lallal ' + this.tokentes)
           console.log('token : ' + this.tokenUser);
+
           if (this.roleUser == 'petugas') {
             this.router.navigate(['/homepetugas/dashboard']);
           }
@@ -101,7 +109,7 @@ export class AuthService {
             this.router.navigate(['/homeortu/dashboard']);
           }
           else {
-            console.log(this.roleLogin)
+            console.log(this.roleUser)
           }
         }
       })
@@ -139,6 +147,46 @@ export class AuthService {
     });
     toast.present();
   }
+
+  addChatMessage(msg) {
+    return this.afs.collection('messages').add({
+      msg,
+      from: this.tokenUser,
+      createdAt: firebase.default.firestore.FieldValue.serverTimestamp()
+    })
+  }
+
+  getUsers() {
+    return this.afs.collection('user').valueChanges({ idField: 'userToken' }) as unknown as Observable<User[]>;
+  }
+
+  getUserForMsg(msgFromId, users: User[]): string {
+    for (let usr of users) {
+      if (usr.userToken == msgFromId) {
+        return usr.userName;
+      }
+    }
+    return 'Deleted';
+  }
+
+  getChatMessages() {
+    let users = [];
+    return this.getUsers().pipe(
+      switchMap(res => {
+        users = res;
+        console.log('all users:', users)
+        return this.afs.collection('messages', ref => ref.orderBy('createdAt')).valueChanges({ idField: 'userToken' }) as unknown as Observable<Message[]>
+      }),
+      map(messages => {
+        for (let m of messages) {
+          m.fromName = this.getUserForMsg(m.from, users);
+          m.myMsg = this.tokenUser === m.from;
+        }
+        console.log('all messages : ', messages);
+        return messages;
+      })
+    )
+  }//end get messages
 }
 
 

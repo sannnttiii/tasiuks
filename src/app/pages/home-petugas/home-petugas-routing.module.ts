@@ -26,6 +26,46 @@ const routes: Routes = [
       },
     ]
   },
+  {
+    path: 'editprofile',
+    loadChildren: () => import('./editprofile/editprofile.module').then(m => m.EditprofilePageModule)
+  },
+  {
+    path: 'detailchat',
+    loadChildren: () => import('./detailchat/detailchat.module').then(m => m.DetailchatPageModule)
+  },
+  {
+    path: 'contact',
+    loadChildren: () => import('./contact/contact.module').then(m => m.ContactPageModule)
+  },
+  {
+    path: 'emergencycall',
+    loadChildren: () => import('./emergencycall/emergencycall.module').then(m => m.EmergencycallPageModule)
+  },
+  {
+    path: 'confirmperizinanpetugas',
+    loadChildren: () => import('./confirmperizinanpetugas/confirmperizinanpetugas.module').then( m => m.ConfirmperizinanpetugasPageModule)
+  },
+  {
+    path: 'detailconfirm',
+    loadChildren: () => import('./detailconfirm/detailconfirm.module').then( m => m.DetailconfirmPageModule)
+  },
+  {
+    path: 'confirmpemeriksaan',
+    loadChildren: () => import('./confirmpemeriksaan/confirmpemeriksaan.module').then( m => m.ConfirmpemeriksaanPageModule)
+  },
+  {
+    path: 'detailconfirmrm',
+    loadChildren: () => import('./detailconfirmrm/detailconfirmrm.module').then( m => m.DetailconfirmrmPageModule)
+  },
+  {
+    path: 'detailconfirmkej',
+    loadChildren: () => import('./detailconfirmkej/detailconfirmkej.module').then( m => m.DetailconfirmkejPageModule)
+  },
+  {
+    path: 'addinfo',
+    loadChildren: () => import('./addinfo/addinfo.module').then( m => m.AddinfoPageModule)
+  },
 
 
 ];

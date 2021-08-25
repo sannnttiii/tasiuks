@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Detail Pemeriksaan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-list lines="none">
+    <ion-item lines="none" style="--background: inherit;">
+      <ion-label>
+        <h1 style="font-weight: bold;">Imunisasi</h1>
+        <h5>Kelas : 1A, 1B, 2A, 2B / Gasal 2020-2021</h5>
+      </ion-label>
+    </ion-item>
+  </ion-list> -->
+
+  <ion-segment [(ngModel)]="tabActive">
+    <ion-segment-button value="terima">
+      <ion-label>Terima</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="belum">
+      <ion-label>Belum</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container *ngIf="tabActive === 'terima'">
+    <ion-list>
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-label>1A</ion-label>
+        </ion-item-divider>
+
+        <ion-item routerLink="/homepetugas/detailchat">
+          <ion-label>Adam 1A - Hendra Bella</ion-label>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>Alan 1A - Aldo Finna</ion-label>
+        </ion-item>
+
+        <ion-item-divider>
+          <ion-label>1B</ion-label>
+        </ion-item-divider>
+
+        <ion-item lines="none">
+          <ion-label>Brianna 1B - Brian Anna</ion-label>
+        </ion-item>
+
+        <ion-item-divider>
+          <ion-label>2A</ion-label>
+        </ion-item-divider>
+
+        <ion-item lines="none">
+          <ion-label>Carla 2A - Carlos Angel</ion-label>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+  </ng-container>
+
+  <ng-container *ngIf="tabActive === 'belum'">
+    <ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <form>
+              <ion-button (click)="confirmkejadian()" fill="outline" shape="round">
+                Kirim Pengingat
+              </ion-button>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-label>1B</ion-label>
+        </ion-item-divider>
+
+        <ion-item routerLink="/homepetugas/detailchat">
+          <ion-label>Aldi 1B - Anton Linda</ion-label>
+        </ion-item>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-label>2A</ion-label>
+        </ion-item-divider>
+
+        <ion-item routerLink="/homepetugas/detailchat">
+          <ion-label>Sofi 2A - Sofyan Fifi</ion-label>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+  </ng-container>
+</ion-content>

@@ -1,9 +1,49 @@
 <ion-header>
   <ion-toolbar color="primary">
-  <ion-title>Dashboard</ion-title>
-</ion-toolbar>
+    <ion-title>Beranda</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+  <ion-grid>
+    <div id='container'>
+      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'
+        routerLink="/homepetugas/confirmperizinanpetugas">
+        <ion-item-option color="transparancy" style="color: black;">
+          <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Perizinan
+        </ion-item-option>
+        <h5 style="color: black; text-align:center;"><b>10 </b></h5>
+        <p style="text-align: center;">Butuh Konfirmasi</p>
+      </ion-card>
+      <!-- background-color:rgb(208, 255, 232); ' -->
+      <ion-card full no-margin style='padding: 5%; background-color:lightyellow '>
+        <div style="padding-top: 5px;" class="ion-text-center">
+          <ion-icon class="icon" name="calendar" width="100%"></ion-icon>
+        </div>
+        <ion-card-content>
+          <h5 style="text-align: center;">Kegiatan UKS</h5>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'
+        routerLink='/homepetugas/confirmpemeriksaan'>
+        <ion-item-option color="transparancy" style="color: black;">
+          <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Pemeriksaan
+        </ion-item-option>
+        <h5 style="color: black; text-align:center;"><b> 5 </b></h5>
+        <p style="text-align: center;">Butuh Konfirmasi</p>
+      </ion-card>
+
+      <ion-card full no-margin style='padding: 5%; background-color:lightpink' routerLink='/homepetugas/emergencycall'>
+        <div style="padding-top: 5px;" class="ion-text-center">
+          <ion-icon class="icon" name="call"></ion-icon>
+        </div>
+        <ion-card-content>
+          <h5 style="text-align: center;"> Panggilan Darurat</h5>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-grid>
+
+
 </ion-content>
