@@ -31,7 +31,7 @@ const routes: Routes = [
     loadChildren: () => import('./editprofile/editprofile.module').then(m => m.EditprofilePageModule)
   },
   {
-    path: 'detailchat',
+    path: 'detailchat/:ortutokendb/:ortuid',
     loadChildren: () => import('./detailchat/detailchat.module').then(m => m.DetailchatPageModule)
   },
   {
@@ -44,27 +44,27 @@ const routes: Routes = [
   },
   {
     path: 'confirmperizinanpetugas',
-    loadChildren: () => import('./confirmperizinanpetugas/confirmperizinanpetugas.module').then( m => m.ConfirmperizinanpetugasPageModule)
+    loadChildren: () => import('./confirmperizinanpetugas/confirmperizinanpetugas.module').then(m => m.ConfirmperizinanpetugasPageModule)
   },
   {
     path: 'detailconfirm',
-    loadChildren: () => import('./detailconfirm/detailconfirm.module').then( m => m.DetailconfirmPageModule)
+    loadChildren: () => import('./detailconfirm/detailconfirm.module').then(m => m.DetailconfirmPageModule)
   },
   {
     path: 'confirmpemeriksaan',
-    loadChildren: () => import('./confirmpemeriksaan/confirmpemeriksaan.module').then( m => m.ConfirmpemeriksaanPageModule)
+    loadChildren: () => import('./confirmpemeriksaan/confirmpemeriksaan.module').then(m => m.ConfirmpemeriksaanPageModule)
   },
   {
     path: 'detailconfirmrm',
-    loadChildren: () => import('./detailconfirmrm/detailconfirmrm.module').then( m => m.DetailconfirmrmPageModule)
+    loadChildren: () => import('./detailconfirmrm/detailconfirmrm.module').then(m => m.DetailconfirmrmPageModule)
   },
   {
     path: 'detailconfirmkej',
-    loadChildren: () => import('./detailconfirmkej/detailconfirmkej.module').then( m => m.DetailconfirmkejPageModule)
+    loadChildren: () => import('./detailconfirmkej/detailconfirmkej.module').then(m => m.DetailconfirmkejPageModule)
   },
   {
     path: 'addinfo',
-    loadChildren: () => import('./addinfo/addinfo.module').then( m => m.AddinfoPageModule)
+    loadChildren: () => import('./addinfo/addinfo.module').then(m => m.AddinfoPageModule)
   },
 
 

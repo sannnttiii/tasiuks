@@ -40,7 +40,7 @@ export class FormconfirmPage implements OnInit {
     else if (this.file && this.alasan) {
       const formData = new FormData();
       formData.append('image', this.file);
-      this.http.post("http://localhost/tasiuks/api/perizinanortu.php", formData).subscribe((response: any) => {
+      this.http.post("http://localhost/tasiuks/api/updateperizinanortu.php", formData).subscribe((response: any) => {
         console.log(response);
         if (response['status']) {
           this.toast(response['pesan'], 'success');

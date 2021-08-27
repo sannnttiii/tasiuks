@@ -12,7 +12,15 @@
 <ion-content>
   <ion-grid class="message">
     <ion-row style="padding-bottom: 5px;" *ngFor="let m of messages | async">
-      <ion-col size='9' [offset]="m.myMsg ? 3 : 0" [ngClass]="{ 'my-msg' : m.myMsg, 'other-msg': !m.myMsg}">
+      <ion-col size='9' [offset]="m.myMsg ? 3 : 0" [ngClass]="{ 'my-msg' : m.myMsg }" *ngIf="m.from == userToken">
+        <b>{{m.fromName}}</b><br>
+        <span>{{m.msg}}</span>
+        <div style="color:grey; font-size: small;" class="ion-text-right">
+          {{m.createdAt?.toMillis() | date:'dd/MM/yyyy H:mm'}}
+        </div>
+      </ion-col>
+
+      <ion-col size='9' [offset]="m.myMsg ? 3 : 0" [ngClass]="{ 'other-msg' : m.msgForMe }" *ngIf="m.to == userToken">
         <b>{{m.fromName}}</b><br>
         <span>{{m.msg}}</span>
         <div style="color:grey; font-size: small;" class="ion-text-right">

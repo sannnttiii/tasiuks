@@ -15,7 +15,6 @@ export class ChatPage implements OnInit {
 
   messages: Observable<Message[]>
   newMsg = '';
-
   constructor(private as: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -23,54 +22,43 @@ export class ChatPage implements OnInit {
       this.content.scrollToBottom(200);
     })
     this.messages = this.as.getChatMessages();
+    this.getIdPetugasAktif()
+  }
+
+  userToken = this.as.tokenUser;
+  ortuIdDb = this.as.ortuIdDb;
+  // petugasIdDb = 0;
+  petugasToken = '';
+  msg = ''
+  getIdPetugasAktif() {
+    this.as.getPetugasAktif().subscribe(
+      (data) => {
+        this.as.petugasIdDb = data[0]['id'];
+        this.petugasToken = data[0]['usertoken'];
+        console.log('petugas aktif' + this.petugasToken);
+      }
+    )
   }
 
   sendMessage() {
-    this.as.addChatMessage(this.newMsg).then(() => {
+    this.as.addChatMessage(this.newMsg, this.petugasToken).then(() => {
       this.newMsg = '';
       this.content.scrollToBottom();
     })
+    this.sendMessageDb(this.newMsg)
   }
-  // messages = [
-  //   {
-  //     user: 'Susi petugas UKS',
-  //     createdAt: 1554090856000,
-  //     msg: 'Halo pak Budi/bu Susan'
-  //   },
-  //   {
-  //     user: 'Santi 6C - Budi Susan',
-  //     createdAt: 1554090956000,
-  //     msg: 'Halo bu Susi'
-  //   },
-  //   {
-  //     user: 'Susi petugas UKS',
-  //     createdAt: 1554091056000,
-  //     msg: 'Ini anaknya abis vaksin'
-  //   },
-  //   {
-  //     user: 'Susi petugas UKS',
-  //     createdAt: 1554091056000,
-  //     msg: 'Lah kok nangis'
-  //   },
-  //   {
-  //     user: 'Susi petugas UKS',
-  //     createdAt: 1554091056000,
-  //     msg: 'Dikasih susu diem'
-  //   }
-  // ];
 
-  // currentUser = 'Santi 6C - Budi Susan';
+  sendMessageDb(msg) {
+    this.as.sendChatDb(this.ortuIdDb, this.as.petugasIdDb, msg, 0).subscribe(
+      (data) => {
+        if (data["status"]) {
+          console.log("Berhasil add chat to DB")
+        }
+        else {
+          console.log("Gagal add chat to DB")
+        }
+      }
+    )
+  }
 
-  // sendMessage() {
-  //   this.messages.push({
-  //     user: 'Santi 6C - Budi Susan',
-  //     createdAt: new Date().getTime(),
-  //     msg: this.newMsg
-  //   })
-  //   this.newMsg = '';
-  //   setTimeout(() => {
-  //     this.content.scrollToBottom(200);
-  //   })
-
-  // }
 }

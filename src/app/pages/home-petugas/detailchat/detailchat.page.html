@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Santi 6C - Budi Susan</ion-title>
+    <ion-title>Pesan</ion-title>
     <ion-buttons slot="end">
       <ion-button>
         <ion-icon slot="icon-only" name="call"></ion-icon>
@@ -10,24 +10,24 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row *ngFor="let m of messages">
-      <ion-col size='9' *ngIf="currentUser!== m.user" class="message other-msg">
-        <b>{{m.user}}</b><br>
+  <ion-grid class="message">
+    <ion-row style="padding-bottom: 5px;" *ngFor="let m of messages | async">
+      <ion-col size='9' [offset]="m.myMsg ? 3 : 0" [ngClass]="{ 'my-msg' : !m.toOrtu }" *ngIf="m.to == ortuToken">
+        <b>{{m.fromName}}</b><br>
         <span>{{m.msg}}</span>
         <div style="color:grey; font-size: small;" class="ion-text-right">
-          {{m.createdAt | date:'short'}}
+          {{m.createdAt?.toMillis() | date:'dd/MM/yyyy H:mm'}}
         </div>
       </ion-col>
 
-      <ion-col offset='3' size='9' *ngIf="currentUser=== m.user" class="message my-msg">
-        <b>{{m.user}}</b><br>
+      <ion-col size='9' [offset]="m.myMsg ? 3 : 0" [ngClass]="{ 'other-msg' : !m.fromOrtu }"
+        *ngIf="m.from == ortuToken">
+        <b>{{m.fromName}}</b><br>
         <span>{{m.msg}}</span>
-        <div style="color: grey; font-size: small; " class="ion-text-right">
-          {{m.createdAt | date:'short'}}
+        <div style="color:grey; font-size: small;" class="ion-text-right">
+          {{m.createdAt?.toMillis() | date:'dd/MM/yyyy H:mm'}}
         </div>
       </ion-col>
-
     </ion-row>
   </ion-grid>
 </ion-content>
@@ -37,9 +37,9 @@
     <ion-row class="ion-align-items-center ion-no-padding">
       <ion-col size="9">
         <textarea [(ngModel)]="newMsg" class="msg-input">
-
         </textarea>
       </ion-col>
+
       <ion-col size="3">
         <ion-button expand="block" fill="clear" color="primary" [disabled]="newMsg ===''" class="msg-btn"
           (click)="sendMessage()">

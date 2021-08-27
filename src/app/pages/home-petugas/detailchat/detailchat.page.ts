@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { AuthService, Message } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-detailchat',
@@ -8,57 +11,43 @@ import { IonContent } from '@ionic/angular';
 })
 export class DetailchatPage implements OnInit {
 
-  constructor() {
+  @ViewChild(IonContent) content: IonContent;
+
+  messages: Observable<Message[]>
+  newMsg = '';
+  ortuToken = '';
+  constructor(private as: AuthService, private router: Router, public route: ActivatedRoute,) { }
+  petugasUid = this.as.tokenUser;
+  ngOnInit() {
     setTimeout(() => {
       this.content.scrollToBottom(200);
     })
+    this.messages = this.as.getChatMessages();
+    this.as.ortuIdDb = this.route.snapshot.params['ortuid'];
+    this.ortuToken = this.route.snapshot.params['ortutokendb'];
+    console.log(this.as.ortuIdDb + this.as.petugasIdDb)
   }
-
-  ngOnInit() {
-  }
-  messages = [
-    {
-      user: 'Susi',
-      createdAt: 1554090856000,
-      msg: 'Halo pak Budi/bu Susan'
-    },
-    {
-      user: 'Santi 6C - Budi Susan',
-      createdAt: 1554090956000,
-      msg: 'Halo bu Susi'
-    },
-    {
-      user: 'Susi',
-      createdAt: 1554091056000,
-      msg: 'Ini anaknya abis vaksin'
-    },
-    {
-      user: 'Susi',
-      createdAt: 1554091056000,
-      msg: 'Lah kok nangis'
-    },
-    {
-      user: 'Susi',
-      createdAt: 1554091056000,
-      msg: 'Dikasih susu diem'
-    }
-  ];
-
-  currentUser = 'Susi';
-  newMsg = '';
-  @ViewChild(IonContent) content: IonContent
-
 
   sendMessage() {
-    this.messages.push({
-      user: 'Susi',
-      createdAt: new Date().getTime(),
-      msg: this.newMsg
+    this.as.addChatMessage(this.newMsg, this.ortuToken).then(() => {
+      this.newMsg = '';
+      this.content.scrollToBottom();
     })
-    this.newMsg = '';
-    setTimeout(() => {
-      this.content.scrollToBottom(200);
-    })
-
+    this.sendMessageDb(this.newMsg)
   }
+
+  sendMessageDb(msg) {
+    this.as.sendChatDb(this.as.ortuIdDb, this.as.petugasIdDb, msg, 1).subscribe(
+      (data) => {
+        if (data["status"]) {
+          console.log("Berhasil add chat to DB")
+        }
+        else {
+          console.log(data['pesan'])
+        }
+      }
+    )
+  }
+
+
 }

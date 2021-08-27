@@ -18,6 +18,12 @@ export interface Message {
   msg: string;
   fromName: string;
   myMsg: boolean;
+  msgForMe: boolean;
+  to: string;
+  //untuk chat perortu
+  fromOrtu: boolean;
+  toOrtu: boolean;
+
 }
 
 @Injectable({
@@ -28,7 +34,10 @@ export class AuthService {
   user: User = null;
   roleUser: string;
   tokenUser: string;
-  tokentes: string;
+  ortuIdDb: number;
+  petugasIdDb: number;
+  // ambil token per ortu buat chat petugas uks
+  tokenOrtuDb: string;
   constructor(
     private afs: AngularFirestore,
     private afauth: AngularFireAuth,
@@ -57,15 +66,31 @@ export class AuthService {
     body = body.set('password', password);
     return this.http.post("http://localhost/tasiuks/api/login.php", body);
   }
-
-  updateUid(email): Observable<any> {
+  //update uidfirebase ke db
+  updateUid(email, token): Observable<any> {
     let body = new HttpParams();
-    body = body.set('uid', this.tokenUser);
+    body = body.set('uid', token);
     body = body.set('email', email);
     body = body.set('role', this.roleUser);
     return this.http.post("http://localhost/tasiuks/api/updateloginuid.php", body);
   }
+  //kirim chat ke db 
+  sendChatDb(ortuid, petugasid, msg, pengirim): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    body = body.set('petugasid', petugasid);
+    body = body.set('msg', msg);
+    body = body.set('pengirim', pengirim)
+    return this.http.post("http://localhost/tasiuks/api/insertchat.php", body);
+  }
+  //ambil petugas status aktif
+  getPetugasAktif(): Observable<any> {
+    return this.http.get("http://localhost/tasiuks/api/getPetugasAktif.php");
+  }
 
+  getListChat(): Observable<any> {
+    return this.http.get("http://localhost/tasiuks/api/getlistchat.php");
+  }
   setRole(role: string) {
     this.storage.ready().then(() => {
       this.storage.set('role', role);
@@ -88,29 +113,18 @@ export class AuthService {
     loading.present();
     this.afauth.setPersistence(firebase.default.auth.Auth.Persistence.LOCAL).then(() => {
       this.afauth.signInWithEmailAndPassword(email, password).then(async (data) => {
-        if (!data.user.emailVerified) {
-          loading.dismiss();
-          this.toast('Harap verifikasi email anda!', 'warning');
-          this.afauth.signOut();
-        } else {
-          console.log(this.roleUser)
-          loading.dismiss();
+        if (data.user.emailVerified) {
           //ini uid
           this.tokenUser = await data.user.uid;
+          console.log('token : ' + this.tokenUser);
+          loading.dismiss();
           //ini token 
           // this.tokentes = await data.user.getIdToken();
           // console.log('lallal ' + this.tokentes)
-          console.log('token : ' + this.tokenUser);
-
-          if (this.roleUser == 'petugas') {
-            this.router.navigate(['/homepetugas/dashboard']);
-          }
-          else if (this.roleUser == 'ortu') {
-            this.router.navigate(['/homeortu/dashboard']);
-          }
-          else {
-            console.log(this.roleUser)
-          }
+        } else {
+          loading.dismiss();
+          this.toast('Harap verifikasi email anda!', 'warning');
+          this.afauth.signOut();
         }
       })
         .catch(error => {
@@ -148,11 +162,12 @@ export class AuthService {
     toast.present();
   }
 
-  addChatMessage(msg) {
+  addChatMessage(msg, kirimkeuid) {
     return this.afs.collection('messages').add({
       msg,
       from: this.tokenUser,
-      createdAt: firebase.default.firestore.FieldValue.serverTimestamp()
+      createdAt: firebase.default.firestore.FieldValue.serverTimestamp(),
+      to: kirimkeuid
     })
   }
 
@@ -169,6 +184,9 @@ export class AuthService {
     return 'Deleted';
   }
 
+
+  mess = []
+  index = 0
   getChatMessages() {
     let users = [];
     return this.getUsers().pipe(
@@ -179,14 +197,32 @@ export class AuthService {
       }),
       map(messages => {
         for (let m of messages) {
-          m.fromName = this.getUserForMsg(m.from, users);
-          m.myMsg = this.tokenUser === m.from;
+          //munculin chat dia sbagai pengirim dan dia sebagai penerima
+          if (m.from === this.tokenUser || m.to === this.tokenUser) {
+            m.fromName = this.getUserForMsg(m.from, users);
+            m.myMsg = this.tokenUser === m.from;
+            m.msgForMe = this.tokenUser === m.to;
+            m.toOrtu = m.to == this.tokenOrtuDb;
+            m.fromOrtu = m.from == this.tokenOrtuDb;
+            this.index = this.index + 1
+            // this.mess = Array.from(messages)
+            // m.muncul = true;
+            // this.mess.push.apply('a', [m.from, m.to, m.msg, m.createdAt]);
+            // console.log('mess' + this.mess.toString());
+          }
+          else {
+            messages.splice(this.index, 1);
+            this.index = this.index + 1
+          }
+
         }
         console.log('all messages : ', messages);
         return messages;
       })
     )
   }//end get messages
+
+
 }
 
 

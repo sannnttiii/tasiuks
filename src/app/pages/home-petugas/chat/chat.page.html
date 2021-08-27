@@ -5,23 +5,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item routerLink="/homepetugas/detailchat">
+  <ion-list *ngFor="let c of chats" class="ion-no-padding">
+    <ion-item routerLink="/homepetugas/detailchat/{{c.usertoken}}/{{c.ortuid}}">
       <ion-icon name='person' slot="start" style="width: 30px; height: 30px;">
       </ion-icon>
       <ion-label>
-        <h2>Santi 6C - Budi Susan</h2>
-        <p>Begitu bu</p>
+        <h2><b>{{c.namasiswa}}</b></h2>
+        <span>{{c.pesan}}</span>
       </ion-label>
     </ion-item>
-    <ion-item>
-      <ion-icon name='person' slot="start" style="width: 30px; height: 30px;">
-      </ion-icon>
-      <ion-label>
-        <h2>Joshua 6B - Hendra Lina</h2>
-        <p>Baik bu</p>
-      </ion-label>
-    </ion-item>
+
   </ion-list>
   <ion-fab routerLink="/homepetugas/contact" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
