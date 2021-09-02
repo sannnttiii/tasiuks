@@ -72,9 +72,20 @@ export class LoginComponent implements OnInit {
     })
     toast.present();
   }
-  toggleShow() {
-    // this.showPassword = !this.showPassword;
+
+
+  ngOnInit() {
+    //untuk redirect jika user sudah login
+    this.storage.ready().then(() => {
+      this.as.getRole().then((result) => {
+        if (result == 'ortu') {
+          this.router.navigate(['/homeortu/dashboard']);
+        }
+        else if (result == 'petugas') {
+          this.router.navigate(['/homepetugas/dashboard']);
+        }
+      }, (error) => { });
+    });
   }
-  ngOnInit() { }
 
 }
