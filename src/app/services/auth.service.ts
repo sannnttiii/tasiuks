@@ -91,6 +91,15 @@ export class AuthService {
   getListChat(): Observable<any> {
     return this.http.get("http://localhost/tasiuks/api/getlistchat.php");
   }
+
+  getListContact(): Observable<any> {
+    return this.http.get("http://localhost/tasiuks/api/getlistcontact.php");
+  }
+
+  getListKelas(): Observable<any> {
+    return this.http.get("http://localhost/tasiuks/api/getlistkelas.php");
+  }
+
   setRole(role: string) {
     this.storage.ready().then(() => {
       this.storage.set('role', role);

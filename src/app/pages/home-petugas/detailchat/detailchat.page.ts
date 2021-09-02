@@ -19,13 +19,14 @@ export class DetailchatPage implements OnInit {
   constructor(private as: AuthService, private router: Router, public route: ActivatedRoute,) { }
   petugasUid = this.as.tokenUser;
   ngOnInit() {
-    setTimeout(() => {
-      this.content.scrollToBottom(200);
-    })
     this.messages = this.as.getChatMessages();
     this.as.ortuIdDb = this.route.snapshot.params['ortuid'];
     this.ortuToken = this.route.snapshot.params['ortutokendb'];
     console.log(this.as.ortuIdDb + this.as.petugasIdDb)
+
+    setTimeout(() => {
+      this.content.scrollToBottom(200);
+    })
   }
 
   sendMessage() {

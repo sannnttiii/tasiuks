@@ -18,11 +18,12 @@ export class ChatPage implements OnInit {
   constructor(private as: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.messages = this.as.getChatMessages();
+    this.getIdPetugasAktif()
     setTimeout(() => {
       this.content.scrollToBottom(200);
     })
-    this.messages = this.as.getChatMessages();
-    this.getIdPetugasAktif()
+
   }
 
   userToken = this.as.tokenUser;

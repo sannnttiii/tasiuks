@@ -5,36 +5,36 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar></ion-searchbar>
-  <ion-list>
-    <ion-item-group>
-      <ion-item-divider>
-        <ion-label>1A</ion-label>
-      </ion-item-divider>
+  <ion-searchbar type="text" debounce="500" (ionChange)="getItems($event)" placeholder="Cari nama siswa">
+  </ion-searchbar>
+  <div *ngIf="items==''">
+    <ion-list>
+      <ion-item-group *ngFor="let k of kelaskontak">
+        <ion-item-divider>
+          <ion-label>{{k.kelas}}</ion-label>
+        </ion-item-divider>
+        <div *ngFor="let c of contact;">
+          <ion-item *ngIf="(c.kelas==k.kelas)" routerLink="/homepetugas/detailchat//{{c.ortutoken}}/{{c.ortuid}}">
+            <ion-label>{{c.namasiswa}}</ion-label>
+          </ion-item>
+        </div>
 
-      <ion-item routerLink="/homepetugas/detailchat">
-        <ion-label>Adam 1A - Hendra Bella</ion-label>
-      </ion-item>
+      </ion-item-group>
+    </ion-list>
+  </div>
+  <div *ngIf="items!=''">
+    <ion-list>
+      <ion-item-group *ngFor="let k of kelaskontak">
+        <ion-item-divider>
+          <ion-label>{{k.kelas}}</ion-label>
+        </ion-item-divider>
+        <div *ngFor="let i of items;">
+          <ion-item *ngIf="(i.kelas==k.kelas)" routerLink="/homepetugas/detailchat/{{i.ortutoken}}/{{i.ortuid}}">
+            <ion-label>{{i.namasiswa}}</ion-label>
+          </ion-item>
+        </div>
 
-      <ion-item lines="none">
-        <ion-label>Alan 1A - Aldo Finna</ion-label>
-      </ion-item>
-
-      <ion-item-divider>
-        <ion-label>1B</ion-label>
-      </ion-item-divider>
-
-      <ion-item lines="none">
-        <ion-label>Brianna 1B - Brian Anna</ion-label>
-      </ion-item>
-
-      <ion-item-divider>
-        <ion-label>2A</ion-label>
-      </ion-item-divider>
-
-      <ion-item lines="none">
-        <ion-label>Carla 2A - Carlos Angel</ion-label>
-      </ion-item>
-    </ion-item-group>
-  </ion-list>
+      </ion-item-group>
+    </ion-list>
+  </div>
 </ion-content>
