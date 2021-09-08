@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {Routes,RouterModule} from '@angular/router';
-import { RouteReuseStrategy} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {IonicStorageModule} from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import {AngularFireModule} from '@angular/fire';
-import {environment} from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -23,23 +23,23 @@ import { AuthGuard } from './guards/auth.guard';
 
 import { HttpClientModule } from '@angular/common/http';
 
-const appRoutes:Routes=[
-  {path:'login',component:LoginComponent},
+const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
-  declarations: [AppComponent, 
+  declarations: [AppComponent,
     LoginComponent],
   entryComponents: [],
   imports: [
-  HttpClientModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule, RouterModule.forRoot(appRoutes),
-  AngularFireModule.initializeApp(environment.firebaseConfig), 
-  IonicStorageModule.forRoot(), 
-  FormsModule, ReactiveFormsModule,
-  AngularFireAuthModule,
-  AngularFirestoreModule,
-  AngularFireDatabaseModule, AngularFireStorageModule,
-  
+    HttpClientModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    IonicStorageModule.forRoot(),
+    FormsModule, ReactiveFormsModule,
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireDatabaseModule, AngularFireStorageModule,
+
   ],
   providers: [
     AuthService,
@@ -47,4 +47,4 @@ const appRoutes:Routes=[
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

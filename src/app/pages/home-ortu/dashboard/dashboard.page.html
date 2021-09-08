@@ -7,7 +7,8 @@
 <ion-content>
   <ion-grid>
     <div id='container'>
-      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);' routerLink="/homeortu/confirmperizinanortu">
+      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'
+        routerLink="/homeortu/confirmperizinanortu">
         <ion-item-option color="transparancy" style="color: black;">
           <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Perizinan
         </ion-item-option>
@@ -24,7 +25,8 @@
         <p style="text-align: center;">Akan datang</p>
       </ion-card> -->
 
-      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);' routerLink='/homeortu/rekammedis'>
+      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'
+        routerLink='/homeortu/rekammedis'>
         <ion-item-option color="transparancy" style="color: black;">
           <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Pemeriksaan
         </ion-item-option>
@@ -34,11 +36,11 @@
     </div>
   </ion-grid>
 
-  <ion-card>
+  <ion-card *ngFor="let s of siswas">
     <ion-item>
       <ion-icon name="person" slot="start"></ion-icon>
-      <ion-label>Santi Trinitasjati </ion-label>
-      <ion-button fill="outline" slot="end" routerLink='/homeortu/rekammedis'>Lihat</ion-button>
+      <ion-label>{{s.nama}} </ion-label>
+      <ion-button fill="outline" slot="end" routerLink="/homeortu/rekammedis/{{s.idsiswa}}">Lihat</ion-button>
     </ion-item>
 
     <ion-card-content>

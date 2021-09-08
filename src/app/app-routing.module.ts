@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { redirectUnauthorizedTo, canActivate } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
   // {
@@ -14,21 +15,22 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthPageModule)
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthPageModule)
   },
   {
     path: 'regis',
-    loadChildren: () => import('./pages/regis/regis.module').then( m => m.RegisPageModule)
+    loadChildren: () => import('./pages/regis/regis.module').then(m => m.RegisPageModule)
   },
   {
     path: 'homepetugas',
-    loadChildren: () => import('./pages/home-petugas/home-petugas.module').then( m => m.HomePetugasPageModule),
-    // canActivate:[AuthGuard]
+    loadChildren: () => import('./pages/home-petugas/home-petugas.module').then(m => m.HomePetugasPageModule),
+    // canActivate: [AuthGuard]
+
   },
   {
     path: 'homeortu',
-    loadChildren: () => import('./pages/home-ortu/home-ortu.module').then( m => m.HomeOrtuPageModule),
-    // canActivate:[AuthGuard]
+    loadChildren: () => import('./pages/home-ortu/home-ortu.module').then(m => m.HomeOrtuPageModule),
+    // canActivate: [AuthGuard]
   },
 ];
 

@@ -9,42 +9,42 @@ const routes: Routes = [
     component: HomeOrtuPage,
     children: [
       {
-        path: 'dashboard',
+        path: 'dashboard/:idortu',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
 
       },
-     
+
       {
         path: 'information',
-        loadChildren: () => import('./information/information.module').then( m => m.InformationPageModule)
+        loadChildren: () => import('./information/information.module').then(m => m.InformationPageModule)
       },
       {
         path: 'profile',
-        loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule)
       },
     ]
   },
   {
     path: 'chat',
-    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+    loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule)
   },
   {
-    path: 'rekammedis',
-    loadChildren: () => import('./rekammedis/rekammedis.module').then( m => m.RekammedisPageModule)
+    path: 'rekammedis/:idsiswa',
+    loadChildren: () => import('./rekammedis/rekammedis.module').then(m => m.RekammedisPageModule)
   },
   {
     path: 'confirmperizinanortu',
-    loadChildren: () => import('./confirmperizinanortu/confirmperizinanortu.module').then( m => m.ConfirmperizinanortuPageModule)
+    loadChildren: () => import('./confirmperizinanortu/confirmperizinanortu.module').then(m => m.ConfirmperizinanortuPageModule)
   },
   {
     path: 'formconfirm',
-    loadChildren: () => import('./formconfirm/formconfirm.module').then( m => m.FormconfirmPageModule)
+    loadChildren: () => import('./formconfirm/formconfirm.module').then(m => m.FormconfirmPageModule)
   },
   {
     path: 'editprofile',
-    loadChildren: () => import('./editprofile/editprofile.module').then( m => m.EditprofilePageModule)
+    loadChildren: () => import('./editprofile/editprofile.module').then(m => m.EditprofilePageModule)
   },
-  
+
 
 ];
 

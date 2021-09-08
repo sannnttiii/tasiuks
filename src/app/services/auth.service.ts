@@ -88,6 +88,7 @@ export class AuthService {
     return this.http.get("http://localhost/tasiuks/api/getPetugasAktif.php");
   }
 
+  //PETUGAS SERVICE
   getListChat(): Observable<any> {
     return this.http.get("http://localhost/tasiuks/api/getlistchat.php");
   }
@@ -100,18 +101,50 @@ export class AuthService {
     return this.http.get("http://localhost/tasiuks/api/getlistkelas.php");
   }
 
-  setRole(role: string) {
-    this.storage.ready().then(() => {
-      this.storage.set('role', role);
-      console.log('set Role ', role);
-    });
+
+
+  //ORTU SERVICE
+  //rekam medis
+  listSiswa(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://localhost/tasiuks/api/getlistsiswa.php", body);
   }
-  role(role: string) {
-    this.roleUser = role;
+
+  listRekamMedis(siswaid: number, periodeid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('siswaid', siswaid);
+    body = body.set('periodeid', periodeid);
+    return this.http.post("http://localhost/tasiuks/api/getrekammedis.php", body);
   }
-  getRole() {
-    return this.storage.get('role');
+
+  listDetailSiswa(siswaid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('siswaid', siswaid);
+    return this.http.post("http://localhost/tasiuks/api/getdetailsiswa.php", body);
   }
+  listPeriodeSiswa(siswaid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('siswaid', siswaid);
+    return this.http.post("http://localhost/tasiuks/api/getlistperiode.php", body);
+  }
+  updatePemeriksaan(idlaporan: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('id', idlaporan);
+    return this.http.post("http://localhost/tasiuks/api/updateconfirmpemeriksaan.php", body);
+  }
+  listKejadian(siswaid: number, periodeid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('siswaid', siswaid);
+    body = body.set('periodeid', periodeid);
+    return this.http.post("http://localhost/tasiuks/api/getlistkejadian.php", body)
+  }
+  updateKejadian(idlaporan: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('id', idlaporan);
+    return this.http.post("http://localhost/tasiuks/api/updateconfirmkejadian.php", body);
+  }
+
 
   async signIn(email, password) {
     const loading = await this.loadingCtrl.create({
@@ -153,12 +186,14 @@ export class AuthService {
       showBackdrop: true
     });
     loading.present();
+    this.setRole('');
+    this.setOrtuId(0);
 
     this.afauth.signOut()
       .then(() => {
-        loading.dismiss();
-        this.setRole('');
         this.router.navigate(['/login']);
+        this.toast('Berhasil Keluar Aplikasi', 'success')
+        loading.dismiss();
       })
   }//end signout
 
@@ -194,7 +229,30 @@ export class AuthService {
     return 'Deleted';
   }
 
-
+  setRole(role: string) {
+    this.storage.ready().then(() => {
+      this.storage.set('role', role);
+      console.log('set Role ', role);
+    });
+  }
+  role(role: string) {
+    this.roleUser = role;
+  }
+  getRole() {
+    return this.storage.get('role');
+  }
+  setOrtuId(ortuid: number) {
+    this.storage.ready().then(() => {
+      this.storage.set('ortuid', ortuid);
+      console.log('set Ortu id ', ortuid);
+    });
+  }
+  ortuId(ortuid: number) {
+    this.ortuIdDb = ortuid;
+  }
+  getOrtuId() {
+    return this.storage.get('ortuid');
+  }
   mess = []
   index = 0
   getChatMessages() {

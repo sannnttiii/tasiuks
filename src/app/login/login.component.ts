@@ -29,6 +29,9 @@ export class LoginComponent implements OnInit {
             this.as.setRole(data['role']);
             this.as.role(data['role']);
 
+            this.as.ortuId(data['data']);
+            this.as.setOrtuId(this.as.ortuIdDb);
+
             this.storage.ready().then(() => {
               //signin firebase
               this.as.signIn(this.email, this.password);
@@ -39,9 +42,11 @@ export class LoginComponent implements OnInit {
             })
 
             if (data['role'] == 'ortu') {
-              this.as.ortuIdDb = data['data']
-              this.router.navigate(['/homeortu/dashboard']);
+              this.as.ortuId(data['data']);
+              this.as.setOrtuId(this.as.ortuIdDb);
+              this.router.navigate(['/homeortu/dashboard/' + this.as.ortuIdDb]);
               // console.log("ortuid " + this.as.ortuIdDb);
+
             }
             else if (data['role'] == 'petugas') {
               this.as.petugasIdDb = data['data']
@@ -79,7 +84,10 @@ export class LoginComponent implements OnInit {
     this.storage.ready().then(() => {
       this.as.getRole().then((result) => {
         if (result == 'ortu') {
-          this.router.navigate(['/homeortu/dashboard']);
+          this.as.getOrtuId().then((result) => {
+            this.router.navigate(['/homeortu/dashboard/' + result]);
+          })
+
         }
         else if (result == 'petugas') {
           this.router.navigate(['/homepetugas/dashboard']);

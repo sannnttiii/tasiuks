@@ -22,8 +22,6 @@ export class ProfilePage implements OnInit {
 
   logout() {
     this.as.signOut();
-    this.toast('Berhasil Keluar Aplikasi', 'success')
-    this.router.navigate(['/login']);
 
   }
 

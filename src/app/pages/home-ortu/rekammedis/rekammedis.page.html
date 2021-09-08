@@ -5,13 +5,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-list lines="none">
+  <ion-list lines="none" *ngFor="let s of siswa">
     <ion-item lines="none" style="--background: inherit;">
       <ion-icon name='person' slot="start" style="width: 50px; height: 50px;">
       </ion-icon>
       <ion-label>
-        <h3 style="font-weight: bold;">Santi Trinitasjati</h3>
-        <h5>Kelas 6C / Gasal 2020-2021</h5>
+        <h3 style="font-weight: bold;">{{s.nama}}</h3>
+        <h5>Kelas {{s.kelas}} / {{s.periode}}</h5>
       </ion-label>
     </ion-item>
   </ion-list>
@@ -29,36 +29,40 @@
     <ion-list>
       <ion-item>
         <ion-label>Periode Ajaran</ion-label>
-        <ion-select value="2">
-          <ion-select-option value="1">Genap 2019/2020</ion-select-option>
-          <ion-select-option value="2">Gasal 2020/2021</ion-select-option>
+        <ion-select [(ngModel)]="cbperiode" (ionChange)="cbChanged()" placeholder="Pilih periode">
+          <ion-select-option *ngFor="let p of periodes" value="{{p.id}}">{{p.periode}}</ion-select-option>
         </ion-select>
       </ion-item>
 
       <section>
-        <ul>
-          <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
-            11 Mei 2020
+        <ul *ngFor="let r of pemeriksaans">
+          <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right"
+            *ngIf="(r.tinggi !=null && r.berat !=null)">
+            {{r.tanggal | date:'dd/MM/yyyy'}}
           </div>
-          <li style="font-weight: bold;">Pemeriksaan Umum </li>
-          <p style="font-size: 14px;">Tinggi Badan : 150 cm </p>
-          <p style="font-size: 14px;">Berat Badan : 50 kg</p>
+          <div *ngIf="(r.tinggi !=null && r.berat !=null)">
+            <li style="font-weight: bold;">Pemeriksaan Umum </li>
+            <p style="font-size: 14px;">Tinggi Badan : {{r.tinggi}}</p>
+            <p style="font-size: 14px;">Berat Badan : {{r.berat}}</p>
+          </div>
 
 
-          <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
-            10 Mei 2020
+          <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right" *ngIf="(r.hasil !=null)">
+            {{r.tanggal | date:'dd/MM/yyyy'}}
           </div>
-          <li style="font-weight: bold;">Pemeriksaan Screening</li>
-          <p style="font-size: 14px;">Gigi dan THT Sehat, Mata diketahui -1.50 kanan </p>
-          <p style="font-size: 14px;">Catatan : Saran menggunakan kacamata</p>
+          <div *ngIf="(r.hasil !=null)">
+            <li style="font-weight: bold;">Pemeriksaan Screening</li>
+            <p style="font-size: 14px;">{{r.hasil}} </p>
+            <label style="font-size: 14px;">Catatan : {{r.catatan}}</label>
+          </div>
         </ul>
       </section>
 
       <ion-grid>
-        <ion-row >
-          <ion-col class="ion-text-center"> 
-            <form>
-              <ion-button (click)="confirmpemeriksaan()" fill="outline" shape="round" >
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <form *ngFor="let r of pemeriksaans">
+              <ion-button *ngIf="(r.confirm == 0)" (click)="confirmpemeriksaan(r.id)" fill="outline" shape="round">
                 Konfirmasi
               </ion-button>
             </form>
@@ -72,47 +76,39 @@
     <ion-list>
       <ion-item>
         <ion-label>Periode Ajaran</ion-label>
-        <ion-select value="2">
-          <ion-select-option value="1">Genap 2019/2020</ion-select-option>
-          <ion-select-option value="2">Gasal 2020/2021</ion-select-option>
+        <ion-select [(ngModel)]="cbperiode" (ionChange)="cbChanged2()" placeholder="Pilih periode">
+          <ion-select-option *ngFor="let p of periodes" value="{{p.id}}">{{p.periode}}</ion-select-option>
         </ion-select>
       </ion-item>
 
       <section>
-        <ul>
+        <ul *ngFor="let k of kejadians">
           <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
-            7 Mei 2020
+            {{k.tanggal | date:'dd/MM/yyyy'}}
           </div>
-          <li style="font-weight: bold;">Sakit Kepala </li>
-          <p style="font-size: 14px;">Penanganan : Tidur di UKS </p>
-          <p style="font-size: 14px;">Jam Penanganan : 10.00 AM</p>
-          <p style="font-size: 14px;">Ditangani oleh : Petugas UKS</p>
-          <p style="font-size: 14px;">Catatan : -</p>
+          <div *ngIf="(k.kejadian !=null)">
+            <li style="font-weight: bold;">{{k.kejadian}} </li>
+            <p style="font-size: 14px;">Penanganan : {{k.penanganan}} </p>
+            <p style="font-size: 14px;">Jam Penanganan : {{k.jam | date:'H:mm'}}</p>
+            <p style="font-size: 14px;">Ditangani oleh : {{k.ditangani}}</p>
+            <p style="font-size: 14px;">Catatan : {{k.catatan}}</p>
 
-
-          <!-- <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
-            1 Mei 2020
+            <ion-grid>
+              <ion-row>
+                <ion-col class="ion-text-center">
+                  <form *ngFor="let k of kejadians">
+                    <ion-button *ngIf="(k.confirm == 0)" (click)="confirmkejadian(k.id)" fill="outline" shape="round">
+                      Konfirmasi
+                    </ion-button>
+                  </form>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </div>
-          <li style="font-weight: bold;">Kecelakaan Olahraga</li>
-          <p style="font-size: 14px;">Penanganan : Pengobatan</p>
-          <p style="font-size: 14px;">Jam Penanganan : 10.00 AM</p>
-          <p style="font-size: 14px;">Ditangani oleh : Petugas UKS</p>
-          <p style="font-size: 14px;">Catatan : -</p> -->
-
         </ul>
       </section>
-      <ion-grid>
-        <ion-row >
-          <ion-col class="ion-text-center"> 
-            <form>
-              <ion-button (click)="confirmkejadian()" fill="outline" shape="round" >
-                Konfirmasi
-              </ion-button>
-            </form>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+
     </ion-list>
-   
+
   </ng-container>
 </ion-content>
