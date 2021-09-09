@@ -17,4 +17,4 @@ import { HomeOrtuPage } from './home-ortu.page';
   ],
   declarations: [HomeOrtuPage]
 })
-export class HomeOrtuPageModule {}
+export class HomeOrtuPageModule { }

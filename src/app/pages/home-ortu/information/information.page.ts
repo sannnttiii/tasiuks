@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-information',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InformationPage implements OnInit {
 
-  constructor() { }
-
+  constructor(public route: ActivatedRoute, private as: AuthService) { }
+  ortuid = this.as.ortuIdDb;
   ngOnInit() {
+    this.listInformasi(this.ortuid);
+  }
+
+  infos = []
+
+  listInformasi(ortuid) {
+    this.as.listInformasi(ortuid).subscribe(
+      (data) => {
+        if (data['status']) {
+          this.infos = data['pesan'];
+        }
+        else {
+          console.log(data['pesan']);
+        }
+      }
+    )
   }
 
 }

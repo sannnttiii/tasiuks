@@ -12,6 +12,8 @@ export class DashboardPage implements OnInit {
   constructor(private as: AuthService, public route: ActivatedRoute) { }
 
   ortuid = this.route.snapshot.params['idortu']
+  // ortuid = this.as.ortuIdDb
+
   ngOnInit() {
     this.listSiswa(this.ortuid)
   }
