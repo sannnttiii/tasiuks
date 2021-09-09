@@ -151,6 +151,12 @@ export class AuthService {
     return this.http.post("http://localhost/tasiuks/api/getinformasi.php", body);
   }
 
+  listDetailOrtu(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://localhost/tasiuks/api/getdetailortu.php", body);
+  }
+
 
   async signIn(email, password) {
     const loading = await this.loadingCtrl.create({
@@ -193,7 +199,7 @@ export class AuthService {
     });
     loading.present();
     this.setRole('');
-    this.setOrtuId(0);
+    // this.setOrtuId(0);
 
     this.afauth.signOut()
       .then(() => {

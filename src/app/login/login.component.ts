@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
             if (data['role'] == 'ortu') {
               this.as.ortuId(data['data']);
               this.as.setOrtuId(this.as.ortuIdDb);
-              this.router.navigate(['/homeortu/dashboard/' + this.as.ortuIdDb]);
+              // this.router.navigate(['/homeortu/dashboard/' + this.as.ortuIdDb]);
+              this.router.navigate(['/homeortu/dashboard/']);
               // console.log("ortuid " + this.as.ortuIdDb);
 
             }
@@ -85,7 +86,10 @@ export class LoginComponent implements OnInit {
       this.as.getRole().then((result) => {
         if (result == 'ortu') {
           this.as.getOrtuId().then((result) => {
-            this.router.navigate(['/homeortu/dashboard/' + result]);
+            this.as.ortuIdDb = result;
+            // this.router.navigate(['/homeortu/dashboard/' + result]);
+            this.router.navigate(['/homeortu/dashboard/']);
+
           })
 
         }

@@ -8,11 +8,11 @@ const routes: Routes = [
     path: '',
     component: HomeOrtuPage,
     children: [
-      {
-        path: 'dashboard/:idortu',
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
+      // {
+      //   path: 'dashboard/:idortu',
+      //   loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
 
-      },
+      // },
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)

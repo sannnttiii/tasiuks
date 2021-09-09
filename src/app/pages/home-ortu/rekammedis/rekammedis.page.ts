@@ -83,7 +83,9 @@ export class RekammedisPage implements OnInit {
       (data) => {
         if (data['status']) {
           this.toast(data['pesan'], 'success');
-          this.router.navigate(['/homeortu/dashboard/' + this.as.ortuIdDb])
+          // this.router.navigate(['/homeortu/dashboard/' + this.as.ortuIdDb])
+          this.router.navigate(['/homeortu/dashboard/'])
+
         }
         else {
           this.toast(data['pesan'], 'danger');
@@ -97,7 +99,9 @@ export class RekammedisPage implements OnInit {
       (data) => {
         if (data['status']) {
           this.toast(data['pesan'], 'success');
-          this.router.navigate(['/homeortu/dashboard/' + this.as.ortuIdDb])
+          // this.router.navigate(['/homeortu/dashboard/' + this.as.ortuIdDb])
+          this.router.navigate(['/homeortu/dashboard/'])
+
         }
         else {
           this.toast(data['pesan'], 'danger');
