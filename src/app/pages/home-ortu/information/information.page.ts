@@ -18,7 +18,7 @@ export class InformationPage implements OnInit {
   infos = []
 
   listInformasi(ortuid) {
-    this.as.listInformasi(ortuid).subscribe(
+    this.as.listInformasiOrtu(ortuid).subscribe(
       (data) => {
         if (data['status']) {
           this.infos = data['pesan'];

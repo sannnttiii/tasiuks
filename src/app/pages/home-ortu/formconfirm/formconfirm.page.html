@@ -26,8 +26,9 @@
             </ion-item>
           </ion-radio-group>
         </ion-list>
-        <ion-card-subtitle style="color: black;">Mengikuti kegiatan UKS Imunisasi yang
-          akan diselenggarakan pada tanggal 13 Mei 2020</ion-card-subtitle>
+        <ion-card-subtitle style="color: black; text-align: justify;">Mengikuti kegiatan
+          {{namakegiatan}} yang
+          akan diselenggarakan pada tanggal {{tanggalkegiatan | date:'dd MMMM yyyy'}}</ion-card-subtitle>
         <ion-card [hidden]="!diizinkan" style="background-color: whitesmoke;">
           <ion-card-header>
             <ion-card-subtitle style="color: black; text-align: center;">Mohon beri alasan dan bukti yang mendukung.

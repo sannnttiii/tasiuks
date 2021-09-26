@@ -25,10 +25,35 @@
           <ion-input type="file" accept="image/*" [(ngModel)]="image" name="image" (change)="changeListener($event)">
           </ion-input>
         </ion-item>
+        <ion-list>
+          <ion-label>Untuk siswa</ion-label>
+          <ion-radio-group value="1">
+            <ion-item>
+              <ion-radio value="1" (click)='viewKelasFalse()'></ion-radio> &nbsp;
+              <ion-label style="font-size: 14px;">Semua</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-radio value="0" (click)='viewKelasTrue()'></ion-radio>&nbsp;
+              <ion-label style="font-size: 14px;">Tertentu</ion-label>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <ion-card [hidden]="semua" style="background-color: whitesmoke;">
+          <ion-card-header>
+            <ion-card-subtitle style="color: black; text-align: center;">Kelas
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-list *ngFor="let item of kelas;">
+            <ion-checkbox checked="false" (ionChange)="addArray(item.id)"></ion-checkbox>
+            <ion-label> {{item.kelas}}</ion-label>
+          </ion-list>
+        </ion-card>
+
         <ion-grid>
           <ion-row>
             <ion-col size="6">
-              <ion-button expand="block" fill="outline" routerLink="/homepetugas/profile"
+              <ion-button expand="block" fill="outline" routerLink="/homepetugas/information"
                 class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit" shape="round">
                 Batal
               </ion-button>

@@ -23,7 +23,7 @@ export class FormconfirmPage implements OnInit {
 
   ngOnInit() {
     this.listSiswa(this.ortuid);
-
+    this.detailkegiatan(this.kegiatanid);
   }
 
   siswas = []
@@ -61,6 +61,21 @@ export class FormconfirmPage implements OnInit {
         }
         else {
           console.log(data['pesan'])
+        }
+      }
+    )
+  }
+  namakegiatan = ''
+  tanggalkegiatan = ''
+  detailkegiatan(kegiatanid) {
+    this.as.detailKegiatanPerizinan(kegiatanid).subscribe(
+      (data) => {
+        if (data['status']) {
+          this.namakegiatan = data['pesan'][0]['nama'];
+          this.tanggalkegiatan = data['pesan'][0]['tanggal'];
+        }
+        else {
+          console.log(data['pesan']);
         }
       }
     )

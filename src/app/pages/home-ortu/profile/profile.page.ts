@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private as: AuthService,
+    private router: Router,
   ) { }
   ortuid = this.as.ortuIdDb;
 
@@ -34,5 +36,6 @@ export class ProfilePage implements OnInit {
 
   logout() {
     this.as.signOut();
+    this.router.navigate(['/login']);
   }
 }

@@ -100,6 +100,10 @@ export class AuthService {
   getListKelas(): Observable<any> {
     return this.http.get("http://localhost/tasiuks/api/getlistkelas.php");
   }
+  listInformasiPetugas(): Observable<any> {
+    let body = new HttpParams();
+    return this.http.post("http://localhost/tasiuks/api/getinformasipetugas.php", body);
+  }
 
 
 
@@ -145,10 +149,10 @@ export class AuthService {
     return this.http.post("http://localhost/tasiuks/api/updateconfirmkejadian.php", body);
   }
 
-  listInformasi(ortuid: number): Observable<any> {
+  listInformasiOrtu(ortuid: number): Observable<any> {
     let body = new HttpParams();
     body = body.set('ortuid', ortuid);
-    return this.http.post("http://localhost/tasiuks/api/getinformasi.php", body);
+    return this.http.post("http://localhost/tasiuks/api/getinformasiortu.php", body);
   }
 
   listDetailOrtu(ortuid: number): Observable<any> {
@@ -176,6 +180,11 @@ export class AuthService {
     body = body.set('ortuid', ortuid);
     return this.http.post("http://localhost/tasiuks/api/getkegiatanperizinanortuall.php", body);
   }
+  detailKegiatanPerizinan(kegiatanid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('id', kegiatanid);
+    return this.http.post("http://localhost/tasiuks/api/getkegiatanperizinanortuall.php", body);
+  }
   updatePerizinanKegiatan(siswaid: number, kegiatanid: number, ortuid: number, kelasajaranid: number, periodeajaranid: number): Observable<any> {
     let body = new HttpParams();
     body = body.set('siswaid', siswaid);
@@ -183,7 +192,7 @@ export class AuthService {
     body = body.set('ortuid', ortuid);
     body = body.set('kelasajaranid', kelasajaranid);
     body = body.set('periodeajaranid', periodeajaranid);
-    return this.http.post("http://localhost/tasiuks/api/insertperizinankegiatan.php", body);
+    return this.http.post("http://localhost/tasiuks/api/updateperizinankegiatan.php", body);
   }
   getJumlahPemeriksaan(ortuid: number): Observable<any> {
     let body = new HttpParams();
@@ -246,6 +255,7 @@ export class AuthService {
         this.toast('Berhasil Keluar Aplikasi', 'success')
         loading.dismiss();
       })
+
   }//end signout
 
   async toast(msg, status) {
@@ -304,6 +314,20 @@ export class AuthService {
   getOrtuId() {
     return this.storage.get('ortuid');
   }
+  setPetugasId(petugasid: number) {
+    this.storage.ready().then(() => {
+      this.storage.set('petugasid', petugasid);
+      console.log('set petugas id ', petugasid);
+    });
+  }
+  petugasId(petugasid: number) {
+    this.petugasIdDb = petugasid;
+  }
+  getPetugasId() {
+    return this.storage.get('petugasid');
+  }
+
+
   mess = []
   index = 0
   getChatMessages() {

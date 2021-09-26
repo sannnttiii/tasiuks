@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
             this.as.setRole(data['role']);
             this.as.role(data['role']);
 
-            this.as.ortuId(data['data']);
-            this.as.setOrtuId(this.as.ortuIdDb);
+            // this.as.ortuId(data['data']);
+            // this.as.setOrtuId(this.as.ortuIdDb);
 
             this.storage.ready().then(() => {
               //signin firebase
@@ -44,13 +44,13 @@ export class LoginComponent implements OnInit {
             if (data['role'] == 'ortu') {
               this.as.ortuId(data['data']);
               this.as.setOrtuId(this.as.ortuIdDb);
-              // this.router.navigate(['/homeortu/dashboard/' + this.as.ortuIdDb]);
               this.router.navigate(['/homeortu/dashboard/']);
               // console.log("ortuid " + this.as.ortuIdDb);
 
             }
             else if (data['role'] == 'petugas') {
-              this.as.petugasIdDb = data['data']
+              this.as.petugasId(data['data'])
+              this.as.setPetugasId(this.as.petugasIdDb);
               this.router.navigate(['/homepetugas/dashboard']);
               // console.log(this.as.petugasIdDb + "petugas id");
             }
@@ -94,7 +94,11 @@ export class LoginComponent implements OnInit {
 
         }
         else if (result == 'petugas') {
-          this.router.navigate(['/homepetugas/dashboard']);
+          this.as.getPetugasId().then((result) => {
+            this.as.petugasIdDb = result;
+            this.router.navigate(['/homepetugas/dashboard']);
+
+          })
         }
       }, (error) => { });
     });
