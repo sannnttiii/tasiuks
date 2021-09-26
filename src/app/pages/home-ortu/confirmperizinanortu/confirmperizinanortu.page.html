@@ -5,19 +5,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-card >
+  <ion-card *ngFor="let k of kegiatans">
     <ion-card-header>
-      <ion-card-subtitle>Pelayanan Kesehatan</ion-card-subtitle>
-      <ion-card-title>Imunisasi</ion-card-title>
+      <ion-card-subtitle>{{k.jenis}}</ion-card-subtitle>
+      <ion-card-title>{{k.nama}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-     Tanggal : 13 Mei 2020<br>
-     Pelaksana : SDN Kendangsari IV & Puskesmas
-     <ion-grid>
-        <ion-row >
-          <ion-col class="ion-text-center"> 
+      Tanggal : {{k.tanggal | date:'dd MMMM yyyy'}}<br>
+      Pelaksana : {{k.pelaksana}}
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-text-center">
             <form>
-              <ion-button routerLink="/homeortu/formconfirm" fill="outline" shape="round" >
+              <ion-button routerLink="/homeortu/formconfirm/{{k.id}}" fill="outline" shape="round">
                 Konfirmasi
               </ion-button>
             </form>
@@ -27,19 +27,19 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card >
+  <ion-card *ngFor="let ka of kegiatanAll">
     <ion-card-header>
-      <ion-card-subtitle>Pelayanan Kesehatan</ion-card-subtitle>
-      <ion-card-title>Dokter Kecil</ion-card-title>
+      <ion-card-subtitle>{{ka.jenis}}</ion-card-subtitle>
+      <ion-card-title>{{ka.nama}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-     Tanggal : 15 Mei 2020<br>
-     Pelaksana : SDN Kendangsari IV 
-     <ion-grid>
-        <ion-row >
-          <ion-col class="ion-text-center"> 
+      Tanggal : {{ka.tanggal | date:'dd MMMM yyyy'}}<br>
+      Pelaksana : {{ka.pelaksana}}
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-text-center">
             <form>
-              <ion-button (click)="confirm()" fill="outline" shape="round" >
+              <ion-button routerLink="/homeortu/formconfirm/{{k.id}}" fill="outline" shape="round">
                 Konfirmasi
               </ion-button>
             </form>
@@ -48,4 +48,7 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
+  <!-- <div *ngIf="kegiatans.length ==0">
+    <p style="text-align: center; margin: 5px;">Tidak ada kegiatan yang memerlukan perizinan</p>
+  </div> -->
 </ion-content>

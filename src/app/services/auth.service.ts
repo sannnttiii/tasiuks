@@ -156,6 +156,45 @@ export class AuthService {
     body = body.set('ortuid', ortuid);
     return this.http.post("http://localhost/tasiuks/api/getdetailortu.php", body);
   }
+  getJumlahPerizinan(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://localhost/tasiuks/api/getjumlahperizinanortu.php", body);
+  }
+  getJumlahPerizinanAll(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://localhost/tasiuks/api/getjumlahperizinanortuall.php", body);
+  }
+  listKegiatanPerizinan(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://localhost/tasiuks/api/getkegiatanperizinanortu.php", body);
+  }
+  listKegiatanPerizinanAll(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://localhost/tasiuks/api/getkegiatanperizinanortuall.php", body);
+  }
+  updatePerizinanKegiatan(siswaid: number, kegiatanid: number, ortuid: number, kelasajaranid: number, periodeajaranid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('siswaid', siswaid);
+    body = body.set('kegiatanid', kegiatanid);
+    body = body.set('ortuid', ortuid);
+    body = body.set('kelasajaranid', kelasajaranid);
+    body = body.set('periodeajaranid', periodeajaranid);
+    return this.http.post("http://localhost/tasiuks/api/insertperizinankegiatan.php", body);
+  }
+  getJumlahPemeriksaan(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://localhost/tasiuks/api/getjumlahpemeriksaan.php", body);
+  }
+  getJumlahKejadian(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://localhost/tasiuks/api/getjumlahkejadian.php", body);
+  }
 
 
   async signIn(email, password) {

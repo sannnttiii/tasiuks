@@ -56,7 +56,12 @@
             <label style="font-size: 14px;">Catatan : {{r.catatan}}</label>
           </div>
         </ul>
+
+
       </section>
+      <div *ngIf="cbperiode!=0 && pemeriksaans.length ==0">
+        <p style="text-align: center;">Tidak ada laporan pemeriksaan</p>
+      </div>
 
       <ion-grid>
         <ion-row>
@@ -107,6 +112,10 @@
           </div>
         </ul>
       </section>
+      <div *ngIf="cbperiode!=0 && kejadians.length ==0">
+        <p style="text-align: center;">Tidak ada laporan kejadian</p>
+      </div>
+
 
     </ion-list>
 

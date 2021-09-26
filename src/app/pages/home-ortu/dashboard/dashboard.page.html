@@ -7,12 +7,12 @@
 <ion-content>
   <ion-grid>
     <div id='container'>
-      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'
-        routerLink="/homeortu/confirmperizinanortu">
+      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);' (click)="confirmPerizinan()">
         <ion-item-option color="transparancy" style="color: black;">
           <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Perizinan
         </ion-item-option>
-        <h5 style="color: black; text-align:center;"><b>1</b></h5>
+        <h5 style="color: black; text-align:center;"><b>{{totalJumPerizinan}}</b>
+        </h5>
         <p style="text-align: center;">Butuh Konfirmasi</p>
       </ion-card>
       <!-- #b8f4f8 -->
@@ -25,12 +25,11 @@
         <p style="text-align: center;">Akan datang</p>
       </ion-card> -->
 
-      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'
-        routerLink='/homeortu/rekammedis'>
+      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'>
         <ion-item-option color="transparancy" style="color: black;">
           <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Pemeriksaan
         </ion-item-option>
-        <h5 style="color: black; text-align:center;"><b>0</b></h5>
+        <h5 style="color: black; text-align:center;"><b>{{totalLaporan}}</b></h5>
         <p style="text-align: center;">Butuh Konfirmasi</p>
       </ion-card>
     </div>
@@ -44,7 +43,11 @@
     </ion-item>
 
     <ion-card-content>
-      Rekam medis atau laporan pemeriksaan dan kejadian siswa.
+      Rekam medis atau laporan pemeriksaan dan kejadian siswa.<br>
+      <!-- <ion-badge> 1 Butuh konfirmasi perizinan kegiatan </ion-badge>
+      <ion-badge color="warning"> 1 Butuh konfirmasi laporan </ion-badge> -->
+
     </ion-card-content>
+
   </ion-card>
 </ion-content>

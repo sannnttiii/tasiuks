@@ -14,7 +14,7 @@ export class RekammedisPage implements OnInit {
   constructor(public route: ActivatedRoute, private router: Router, private as: AuthService, private toastr: ToastController,) {
     this.tabActive = "pemeriksaan";
   }
-  cbperiode: number;
+  cbperiode = 0;
   siswaid = this.route.snapshot.params['idsiswa']
   ngOnInit() {
     this.listDetailSiswa(this.siswaid)
