@@ -66,6 +66,10 @@ const routes: Routes = [
     path: 'addinfo',
     loadChildren: () => import('./addinfo/addinfo.module').then(m => m.AddinfoPageModule)
   },
+  {
+    path: 'editinfo',
+    loadChildren: () => import('./editinfo/editinfo.module').then( m => m.EditinfoPageModule)
+  },
 
 
 ];

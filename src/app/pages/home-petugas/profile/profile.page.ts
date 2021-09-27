@@ -17,12 +17,26 @@ export class ProfilePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.listDetailPetugas(this.petugasid)
   }
-
+  petugasid = this.as.petugasIdDb;
+  petugas = []
+  listDetailPetugas(petugasid) {
+    this.as.listDetailPetugas(petugasid).subscribe(
+      (data) => {
+        if (data['status']) {
+          this.petugas = data['pesan']
+        }
+        else {
+          console.log(data['pesan'])
+        }
+      }
+    )
+  }
 
   logout() {
     this.as.signOut();
-
+    this.router.navigate(['/login']);
   }
 
   async toast(msg, status) {

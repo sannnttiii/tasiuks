@@ -104,6 +104,11 @@ export class AuthService {
     let body = new HttpParams();
     return this.http.post("http://localhost/tasiuks/api/getinformasipetugas.php", body);
   }
+  listDetailPetugas(petugasid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('petugasid', petugasid);
+    return this.http.post("http://localhost/tasiuks/api/getdetailpetugas.php", body);
+  }
 
 
 
