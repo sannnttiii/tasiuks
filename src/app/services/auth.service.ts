@@ -104,10 +104,20 @@ export class AuthService {
     let body = new HttpParams();
     return this.http.post("http://localhost/tasiuks/api/getinformasipetugas.php", body);
   }
+  listDetailInfo(infoid): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('infoid', infoid);
+    return this.http.post("http://localhost/tasiuks/api/getdetailinfo.php", body);
+  }
   listDetailPetugas(petugasid: number): Observable<any> {
     let body = new HttpParams();
     body = body.set('petugasid', petugasid);
     return this.http.post("http://localhost/tasiuks/api/getdetailpetugas.php", body);
+  }
+  deleteInfo(infoid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('infoid', infoid);
+    return this.http.post("http://localhost/tasiuks/api/deleteinformasi.php", body);
   }
 
 

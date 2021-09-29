@@ -86,7 +86,7 @@ export class AddinfoPage implements OnInit {
           console.log(this.file, this.judul, this.keterangan, this.petugasid, this.forall, this.finalChecked);
           if (data['status']) {
             this.toast(data['pesan'], 'success');
-            this.router.navigate(['/homepetugas/dashboard'])
+            this.router.navigate(['/homepetugas/information'])
           }
           else {
             this.toast(data['pesan'], 'danger');

@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="ion-padding" *ngFor="let i of infos">
+  <ion-card class="ion-padding" *ngFor="let i of infos" routerLink='/homepetugas/editinfo/{{i.id}}'>
     <img src="http://localhost/tasiuks/api/images/{{i.poster}}" />
 
     <ion-card-header>
