@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Kegiatan UKS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let k of kegiatans">
+    <ion-card-header>
+      <ion-card-subtitle>{{k.jenis}}</ion-card-subtitle>
+      <ion-card-title>{{k.nama}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Tanggal : {{k.tanggal | date:'dd MMMM yyyy'}}<br>
+      Pelaksana : {{k.pelaksana}}
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <form>
+              <ion-button routerLink="/homepetugas/detailkegiatan/{{k.id}}" fill="outline" shape="round">
+                Lihat
+              </ion-button>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab routerLink="/homepetugas/addkegiatan" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

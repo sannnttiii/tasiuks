@@ -70,6 +70,18 @@ const routes: Routes = [
     path: 'editinfo/:infoid',
     loadChildren: () => import('./editinfo/editinfo.module').then(m => m.EditinfoPageModule)
   },
+  {
+    path: 'kegiatanuks',
+    loadChildren: () => import('./kegiatanuks/kegiatanuks.module').then(m => m.KegiatanuksPageModule)
+  },
+  {
+    path: 'detailkegiatan/:kegiatanid',
+    loadChildren: () => import('./detailkegiatan/detailkegiatan.module').then(m => m.DetailkegiatanPageModule)
+  },
+  {
+    path: 'addkegiatan',
+    loadChildren: () => import('./addkegiatan/addkegiatan.module').then( m => m.AddkegiatanPageModule)
+  },
 
 
 ];

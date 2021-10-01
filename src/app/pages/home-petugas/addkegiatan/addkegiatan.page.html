@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Tambah Kegiatan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header style="padding-bottom: 0px;">
+      <ion-card-title style="color: black;">Kegiatan UKS Baru</ion-card-title>
+      <ion-card-subtitle style="color: black;">Harap mengisi data dengan sebenar-benarnya. </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <form>
+        <ion-item>
+          <ion-label position="stacked">Jenis Kegiatan</ion-label>
+          <ion-select placeholder="Pilih jenis kegiatan" [(ngModel)]="jk" name="jk" (ionChange)="onChange($event)">
+            <ion-select-option *ngFor="let j of jenis" value="{{j.id}}">{{j.nama}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Nama Kegiatan</ion-label>
+          <ion-input type="text" [(ngModel)]="nama" name="nama"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Tanggal Acara</ion-label>
+          <ion-datetime displayFormat="DD MMM YY" [(ngModel)]="tanggal" name="tanggal"
+            (ionChange)="onChangeDate($event)">
+          </ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Pelaksana</ion-label>
+          <ion-input type="text" [(ngModel)]="pelaksana" name="pelaksana"></ion-input>
+        </ion-item>
+        <ion-list>
+          <ion-label>Perlu perizinan</ion-label>
+          <ion-radio-group value="0">
+            <ion-item>
+              <ion-radio value="0" (click)='viewPerizinanFalse()'></ion-radio> &nbsp;
+              <ion-label style="font-size: 14px;">Tidak</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-radio value="1" (click)='viewPerizinanTrue()'></ion-radio>&nbsp;
+              <ion-label style="font-size: 14px;">Ya</ion-label>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <ion-list [hidden]="!view">
+          <ion-label>Untuk siswa</ion-label>
+          <ion-radio-group value="1">
+            <ion-item>
+              <ion-radio value="1" (click)='viewKelasFalse()'></ion-radio> &nbsp;
+              <ion-label style="font-size: 14px;">Semua</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-radio value="0" (click)='viewKelasTrue()'></ion-radio>&nbsp;
+              <ion-label style="font-size: 14px;">Tertentu</ion-label>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <ion-card [hidden]="semua" style="background-color: whitesmoke;">
+          <ion-card-header>
+            <ion-card-subtitle style="color: black; text-align: center;">Kelas
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-list *ngFor="let item of kelas;">
+            <ion-checkbox checked="false" (ionChange)="addArray(item.id)"></ion-checkbox>
+            <ion-label> {{item.kelas}}</ion-label>
+          </ion-list>
+        </ion-card>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button expand="block" fill="outline" routerLink="/homepetugas/information"
+                class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit" shape="round">
+                Batal
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="block" (click)="save()" class="ion-margin-start ion-margin-end ion-margin-bottom"
+                type="submit" shape="round">
+                Simpan
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

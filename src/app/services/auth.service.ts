@@ -119,6 +119,14 @@ export class AuthService {
     body = body.set('infoid', infoid);
     return this.http.post("http://localhost/tasiuks/api/deleteinformasi.php", body);
   }
+  listKegiatan(): Observable<any> {
+    let body = new HttpParams();
+    return this.http.post("http://localhost/tasiuks/api/getkegiatanuks.php", body);
+  }
+  listJenis(): Observable<any> {
+    let body = new HttpParams();
+    return this.http.post("http://localhost/tasiuks/api/getjeniskegiatan.php", body);
+  }
 
 
 
