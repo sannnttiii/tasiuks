@@ -141,6 +141,18 @@ export class AuthService {
     let body = new HttpParams();
     return this.http.post("http://localhost/tasiuks/api/getaccpemeriksaan.php", body);
   }
+  listSiswaNotYetAccPemeriksaan(): Observable<any> {
+    let body = new HttpParams();
+    return this.http.post("http://localhost/tasiuks/api/getaccyetpemeriksaan.php", body);
+  }
+  getJumlahBelumAccPemeriksaan(): Observable<any> {
+    let body = new HttpParams();
+    return this.http.post("http://localhost/tasiuks/api/getjumlahaccyetpemeriksaan.php", body);
+  }
+  getJumlahBelumAccKejadian(): Observable<any> {
+    let body = new HttpParams();
+    return this.http.post("http://localhost/tasiuks/api/getjumlahaccyetkejadian.php", body);
+  }
 
 
 
