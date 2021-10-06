@@ -16,36 +16,20 @@
   </ion-segment>
 
   <ng-container *ngIf="tabActive === 'terima'">
-    <div *ngIf="items==''">
-      <ion-list>
-        <ion-item-group *ngFor="let k of kelas">
-          <ion-item-divider>
-            <ion-label>{{k.kelas}}</ion-label>
-          </ion-item-divider>
-          <div *ngFor="let s of siswaacc;">
-            <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
-              <ion-label>{{s.nama}}</ion-label>
-            </ion-item>
-          </div>
+    <ion-list>
+      <ion-item-group *ngFor="let k of kelas">
+        <ion-item-divider>
+          <ion-label>{{k.kelas}}</ion-label>
+        </ion-item-divider>
+        <div *ngFor="let s of siswaacc;">
+          <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
+            <ion-label>{{s.nama}}</ion-label>
+          </ion-item>
+        </div>
 
-        </ion-item-group>
-      </ion-list>
-    </div>
-    <div *ngIf="items!=''">
-      <ion-list>
-        <ion-item-group *ngFor="let k of kelas">
-          <ion-item-divider>
-            <ion-label>{{k.kelas}}</ion-label>
-          </ion-item-divider>
-          <div *ngFor="let s of siswaacc;">
-            <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
-              <ion-label>{{s.nama}}</ion-label>
-            </ion-item>
-          </div>
+      </ion-item-group>
+    </ion-list>
 
-        </ion-item-group>
-      </ion-list>
-    </div>
   </ng-container>
 
   <ng-container *ngIf="tabActive === 'belum'">
@@ -54,43 +38,27 @@
       <ion-row>
         <ion-col class="ion-text-center">
           <form>
-            <ion-button (click)="confirmkejadian()" fill="outline" shape="round">
+            <ion-button (click)="remindrm()" fill="outline" shape="round">
               Kirim Pengingat
             </ion-button>
           </form>
         </ion-col>
       </ion-row>
     </ion-grid>
-    <div *ngIf="items==''">
-      <ion-list>
-        <ion-item-group *ngFor="let k of kelas">
-          <ion-item-divider>
-            <ion-label>{{k.kelas}}</ion-label>
-          </ion-item-divider>
-          <div *ngFor="let s of siswaaccyet;">
-            <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
-              <ion-label>{{s.nama}}</ion-label>
-            </ion-item>
-          </div>
+    <ion-list>
+      <ion-item-group *ngFor="let k of kelas">
+        <ion-item-divider>
+          <ion-label>{{k.kelas}}</ion-label>
+        </ion-item-divider>
+        <div *ngFor="let s of siswaaccyet;">
+          <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
+            <ion-label>{{s.nama}}</ion-label>
+          </ion-item>
+        </div>
 
-        </ion-item-group>
-      </ion-list>
-    </div>
-    <div *ngIf="items!=''">
-      <ion-list>
-        <ion-item-group *ngFor="let k of kelas">
-          <ion-item-divider>
-            <ion-label>{{k.kelas}}</ion-label>
-          </ion-item-divider>
-          <div *ngFor="let s of siswaaccyet;">
-            <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
-              <ion-label>{{s.nama}}</ion-label>
-            </ion-item>
-          </div>
+      </ion-item-group>
+    </ion-list>
 
-        </ion-item-group>
-      </ion-list>
-    </div>
   </ng-container>
 
 
