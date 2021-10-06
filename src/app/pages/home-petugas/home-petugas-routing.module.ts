@@ -75,12 +75,12 @@ const routes: Routes = [
     loadChildren: () => import('./kegiatanuks/kegiatanuks.module').then(m => m.KegiatanuksPageModule)
   },
   {
-    path: 'detailkegiatan/:kegiatanid',
-    loadChildren: () => import('./detailkegiatan/detailkegiatan.module').then(m => m.DetailkegiatanPageModule)
+    path: 'addkegiatan',
+    loadChildren: () => import('./addkegiatan/addkegiatan.module').then(m => m.AddkegiatanPageModule)
   },
   {
-    path: 'addkegiatan',
-    loadChildren: () => import('./addkegiatan/addkegiatan.module').then( m => m.AddkegiatanPageModule)
+    path: 'editkegiatan/:kegiatanid',
+    loadChildren: () => import('./editkegiatan/editkegiatan.module').then(m => m.EditkegiatanPageModule)
   },
 
 

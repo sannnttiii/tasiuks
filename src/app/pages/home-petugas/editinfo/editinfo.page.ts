@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class EditinfoPage implements OnInit {
 
-  constructor(private as: AuthService, private route: ActivatedRoute, private toastr: ToastController, private http: HttpClient, private router: Router) {
+  constructor(public alertController: AlertController, private as: AuthService, private route: ActivatedRoute, private toastr: ToastController, private http: HttpClient, private router: Router) {
 
   }
 
@@ -65,20 +65,35 @@ export class EditinfoPage implements OnInit {
       this.toast('Harap isi form dengan lengkap', 'warning');
     }
   }
-  delete() {
-    this.as.deleteInfo(this.infoid).subscribe(
-      (data) => {
-        if (data['status']) {
-          this.toast(data['pesan'], 'success')
-          this.router.navigate(['/homepetugas/information'])
 
+  async delete() {
+    const alert = await this.alertController.create({
+      header: 'Konfirmasi!',
+      message: 'Apakah anda yakin ingin menghapus Informasi ini ?',
+      buttons: [{
+        text: "Batal",
+        role: "cancel"
+      }, {
+        text: 'Yakin',
+        handler: () => {
+          this.as.deleteInfo(this.infoid).subscribe(
+            (data) => {
+              if (data['status']) {
+                this.toast(data['pesan'], 'success')
+                this.router.navigate(['/homepetugas/information'])
+
+              }
+              else {
+                this.toast(data['pesan'], 'danger')
+              }
+            }
+          )
         }
-        else {
-          this.toast(data['pesan'], 'danger')
-        }
-      }
-    )
+      }]
+    });
+    await alert.present();
   }
+
   async toast(msg, status) {
     const toast = await this.toastr.create({
       message: msg,

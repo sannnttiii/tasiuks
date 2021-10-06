@@ -127,6 +127,20 @@ export class AuthService {
     let body = new HttpParams();
     return this.http.post("http://localhost/tasiuks/api/getjeniskegiatan.php", body);
   }
+  listDetailKegiatan(kegiatanid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('id', kegiatanid);
+    return this.http.post("http://localhost/tasiuks/api/getdetailkegiatan.php", body);
+  }
+  deleteKegiatan(kegiatanid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('kegiatanid', kegiatanid);
+    return this.http.post("http://localhost/tasiuks/api/deletekegiatan.php", body);
+  }
+  listSiswaAccPemeriksaan(): Observable<any> {
+    let body = new HttpParams();
+    return this.http.post("http://localhost/tasiuks/api/getaccpemeriksaan.php", body);
+  }
 
 
 
