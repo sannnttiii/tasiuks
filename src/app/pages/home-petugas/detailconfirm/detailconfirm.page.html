@@ -8,8 +8,16 @@
   <ion-list lines="none">
     <ion-item lines="none" style="--background: inherit;">
       <ion-label>
-        <h1 style="font-weight: bold;">Imunisasi</h1>
-        <h5>Kelas : 1A, 1B, 2A, 2B / Gasal 2020-2021</h5>
+        <h1 style="font-weight: bold;">{{namakegiatan}}</h1>
+        <span *ngIf="forall == 0">
+          Kelas: <span *ngFor="let k of untuk; let i = index"> {{k.kelas}} {{i === kelas.length -1 ?
+            ' ' : ','
+            }}</span>
+        </span>
+        <span *ngIf="forall == 1">
+          Untuk semua siswa
+        </span>
+        <br>Periode : {{periode}}
       </ion-label>
     </ion-item>
   </ion-list>
@@ -28,82 +36,59 @@
 
   <ng-container *ngIf="tabActive === 'terima'">
     <ion-list>
-      <ion-item-group>
+      <ion-item-group *ngFor="let k of kelas">
         <ion-item-divider>
-          <ion-label>1A</ion-label>
+          <ion-label>{{k.kelas}}</ion-label>
         </ion-item-divider>
+        <div *ngFor="let s of siswaacc;">
+          <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
+            <ion-label>{{s.nama}}</ion-label>
+          </ion-item>
+        </div>
 
-        <ion-item routerLink="/homepetugas/detailchat">
-          <ion-label>Adam 1A - Hendra Bella</ion-label>
-        </ion-item>
-
-        <ion-item lines="none">
-          <ion-label>Alan 1A - Aldo Finna</ion-label>
-        </ion-item>
-
-        <ion-item-divider>
-          <ion-label>1B</ion-label>
-        </ion-item-divider>
-
-        <ion-item lines="none">
-          <ion-label>Brianna 1B - Brian Anna</ion-label>
-        </ion-item>
-
-        <ion-item-divider>
-          <ion-label>2A</ion-label>
-        </ion-item-divider>
-
-        <ion-item lines="none">
-          <ion-label>Carla 2A - Carlos Angel</ion-label>
-        </ion-item>
       </ion-item-group>
     </ion-list>
   </ng-container>
 
   <ng-container *ngIf="tabActive === 'tolak'">
     <ion-list>
-      <ion-item-group>
+      <ion-item-group *ngFor="let k of kelas">
         <ion-item-divider>
-          <ion-label>1A</ion-label>
+          <ion-label>{{k.kelas}}</ion-label>
         </ion-item-divider>
+        <div *ngFor="let s of siswadeny;">
+          <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
+            <ion-label>{{s.nama}}</ion-label>
+          </ion-item>
+        </div>
 
-        <ion-item routerLink="/homepetugas/detailchat">
-          <ion-label>Alisa 1A - Andre Lisa</ion-label>
-        </ion-item>
       </ion-item-group>
     </ion-list>
   </ng-container>
 
   <ng-container *ngIf="tabActive === 'belum'">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <form>
+            <ion-button (click)="remindkejadian()" fill="outline" shape="round">
+              Kirim Pengingat
+            </ion-button>
+          </form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-list>
-      <ion-grid>
-        <ion-row>
-          <ion-col class="ion-text-center">
-            <form>
-              <ion-button (click)="confirmkejadian()" fill="outline" shape="round">
-                Kirim Pengingat
-              </ion-button>
-            </form>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-item-group>
+      <ion-item-group *ngFor="let k of kelas">
         <ion-item-divider>
-          <ion-label>1B</ion-label>
+          <ion-label>{{k.kelas}}</ion-label>
         </ion-item-divider>
+        <div *ngFor="let s of siswabelum;">
+          <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
+            <ion-label>{{s.nama}}</ion-label>
+          </ion-item>
+        </div>
 
-        <ion-item routerLink="/homepetugas/detailchat">
-          <ion-label>Aldi 1B - Anton Linda</ion-label>
-        </ion-item>
-      </ion-item-group>
-      <ion-item-group>
-        <ion-item-divider>
-          <ion-label>2A</ion-label>
-        </ion-item-divider>
-
-        <ion-item routerLink="/homepetugas/detailchat">
-          <ion-label>Sofi 2A - Sofyan Fifi</ion-label>
-        </ion-item>
       </ion-item-group>
     </ion-list>
   </ng-container>

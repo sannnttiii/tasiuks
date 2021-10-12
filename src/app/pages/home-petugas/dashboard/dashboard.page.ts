@@ -14,23 +14,23 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
     this.jumlahBelumAccPemeriksaan();
-    this.jumlahAll = this.jumlahpemeriksaan + this.jumlahkejadian;
+    this.jumlahBelumAccPerizinan();
   }
-  jumlahAll = 0;
   jumlahpemeriksaan = 0;
+  jumlahkejadian = 0;
   jumlahBelumAccPemeriksaan() {
     this.as.getJumlahBelumAccPemeriksaan().subscribe(
       (data) => {
-        this.jumlahpemeriksaan = data['pesan'][0]['jumlah'];
+        this.jumlahpemeriksaan = data['pesan'];
       }
     )
   }
 
-  jumlahkejadian = 0;
-  jumlahBelumAccKejadian() {
-    this.as.getJumlahBelumAccKejadian().subscribe(
+  jumlahperizinan = 0;
+  jumlahBelumAccPerizinan() {
+    this.as.getJumlahBelumAccPerizinan().subscribe(
       (data) => {
-        this.jumlahkejadian = data['pesan'][0]['jumlah'];
+        this.jumlahperizinan = data['pesan'][0]['jumlah'];
       }
     )
   }

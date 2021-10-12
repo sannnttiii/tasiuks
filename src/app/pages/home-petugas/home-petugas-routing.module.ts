@@ -47,7 +47,7 @@ const routes: Routes = [
     loadChildren: () => import('./confirmperizinanpetugas/confirmperizinanpetugas.module').then(m => m.ConfirmperizinanpetugasPageModule)
   },
   {
-    path: 'detailconfirm',
+    path: 'detailconfirm/:kegiatanid',
     loadChildren: () => import('./detailconfirm/detailconfirm.module').then(m => m.DetailconfirmPageModule)
   },
   {
