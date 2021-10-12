@@ -24,9 +24,9 @@ export class DetailchatPage implements OnInit {
     this.ortuToken = this.route.snapshot.params['ortutokendb'];
     console.log(this.as.ortuIdDb + this.as.petugasIdDb)
 
-    setTimeout(() => {
-      this.content.scrollToBottom(200);
-    })
+
+    this.content.scrollToBottom();
+
   }
 
   sendMessage() {

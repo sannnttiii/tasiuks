@@ -1,14 +1,17 @@
-<ion-header>
+<ion-content>
   <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/homepetugas/dashboard">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Panggilan Darurat</ion-title>
   </ion-toolbar>
-</ion-header>
 
-<ion-content>
   <ion-content>
     <ion-grid>
       <div id='container'>
-        <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '>
+        <ion-card (click)="callcenter()" full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '>
           <div style="padding-top: 5px;" class="ion-text-center">
             <ion-icon class="icon" name="call"></ion-icon>
           </div>
@@ -18,7 +21,7 @@
         </ion-card>
 
 
-        <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '>
+        <ion-card (click)="damkar()" full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '>
           <div style="padding-top: 5px;" class="ion-text-center">
             <ion-icon class="icon" name="flame"></ion-icon>
           </div>
@@ -27,7 +30,7 @@
           </ion-card-content>
         </ion-card>
 
-        <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '>
+        <ion-card (click)="ambulans()" full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '>
           <div style="padding-top: 5px;" class="ion-text-center">
             <ion-icon class="icon" name="medkit"></ion-icon>
           </div>
@@ -36,7 +39,7 @@
           </ion-card-content>
         </ion-card>
 
-        <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '>
+        <ion-card (click)="polisi()" full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '>
           <div style="padding-top: 5px;" class="ion-text-center">
             <ion-icon class="icon" name="car"></ion-icon>
           </div>

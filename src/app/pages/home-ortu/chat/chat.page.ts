@@ -20,9 +20,7 @@ export class ChatPage implements OnInit {
   ngOnInit() {
     this.messages = this.as.getChatMessages();
     this.getIdPetugasAktif()
-    setTimeout(() => {
-      this.content.scrollToBottom(200);
-    })
+    this.content.scrollToBottom();
 
   }
 

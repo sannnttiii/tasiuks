@@ -1,10 +1,20 @@
-<ion-header>
+<ion-content>
   <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/homepetugas/dashboard">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
     <ion-title>Kegiatan UKS</ion-title>
   </ion-toolbar>
-</ion-header>
 
-<ion-content>
+  <ion-fab routerLink="/homepetugas/addkegiatan" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-card *ngFor="let k of kegiatans">
     <ion-card-header>
       <ion-card-subtitle>{{k.jenis}}</ion-card-subtitle>
@@ -26,9 +36,6 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
-  <ion-fab routerLink="/homepetugas/addkegiatan" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <ion-item>
+  </ion-item>
 </ion-content>

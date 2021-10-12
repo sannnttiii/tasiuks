@@ -1,10 +1,13 @@
-<ion-header>
+<ion-content>
   <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/homeortu/dashboard">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Perizinan</ion-title>
   </ion-toolbar>
-</ion-header>
 
-<ion-content>
   <ion-card *ngFor="let k of kegiatans">
     <ion-card-header>
       <ion-card-subtitle>{{k.jenis}}</ion-card-subtitle>

@@ -15,16 +15,19 @@ export class RekammedisPage implements OnInit {
     this.tabActive = "pemeriksaan";
   }
   cbperiode = 0;
+  cbperiode2 = 0;
   siswaid = this.route.snapshot.params['idsiswa']
   ngOnInit() {
     this.listDetailSiswa(this.siswaid)
     this.listPeriode(this.siswaid);
+    this.listPeriode2(this.siswaid);
 
   }
 
   pemeriksaans = []
   siswa = []
   periodes = []
+  periodes2 = []
   kejadians = []
   listDetailSiswa(siswaid) {
     this.as.listDetailSiswa(siswaid).subscribe(
@@ -42,6 +45,13 @@ export class RekammedisPage implements OnInit {
     this.as.listPeriodeSiswa(siswaid).subscribe(
       (data) => {
         this.periodes = data;
+      }
+    )
+  }
+  listPeriode2(siswaid) {
+    this.as.listPeriodeSiswa(siswaid).subscribe(
+      (data) => {
+        this.periodes2 = data;
       }
     )
   }
@@ -75,7 +85,7 @@ export class RekammedisPage implements OnInit {
   }
 
   cbChanged2() {
-    this.listKejadian(this.siswaid, this.cbperiode);
+    this.listKejadian(this.siswaid, this.cbperiode2);
   }
 
   confirmpemeriksaan(id) {

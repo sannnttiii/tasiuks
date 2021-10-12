@@ -1,10 +1,8 @@
-<ion-header>
+<ion-content>
   <ion-toolbar color="primary">
     <ion-title>Pesan</ion-title>
   </ion-toolbar>
-</ion-header>
 
-<ion-content>
   <ion-list *ngFor="let c of chats" class="ion-no-padding">
     <ion-item routerLink="/homepetugas/detailchat/{{c.usertoken}}/{{c.ortuid}}">
       <ion-icon name='person' slot="start" style="width: 30px; height: 30px;">

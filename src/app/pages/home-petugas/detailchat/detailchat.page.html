@@ -1,5 +1,10 @@
-<ion-header>
+<ion-content>
   <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/homepetugas/chat">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Pesan</ion-title>
     <ion-buttons slot="end">
       <ion-button>
@@ -7,9 +12,7 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
 
-<ion-content>
   <ion-grid class="message">
     <ion-row style="padding-bottom: 5px;" *ngFor="let m of messages | async">
       <ion-col size='9' [offset]="m.myMsg ? 3 : 0" [ngClass]="{ 'my-msg' : !m.toOrtu }" *ngIf="m.to == ortuToken">

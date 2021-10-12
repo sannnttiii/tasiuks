@@ -1,10 +1,14 @@
-<ion-header>
+<ion-content>
+
   <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/homepetugas/chat">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Kontak</ion-title>
   </ion-toolbar>
-</ion-header>
 
-<ion-content>
   <ion-searchbar type="text" debounce="500" (ionChange)="getItems($event)" placeholder="Cari nama siswa">
   </ion-searchbar>
   <div *ngIf="items==''">

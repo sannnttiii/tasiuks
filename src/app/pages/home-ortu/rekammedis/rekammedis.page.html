@@ -1,10 +1,14 @@
-<ion-header>
+<ion-content>
+
   <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/homeortu/dashboard">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Rekam Medis</ion-title>
   </ion-toolbar>
-</ion-header>
 
-<ion-content>
   <ion-list lines="none" *ngFor="let s of siswa">
     <ion-item lines="none" style="--background: inherit;">
       <ion-icon name='person' slot="start" style="width: 50px; height: 50px;">
@@ -81,8 +85,8 @@
     <ion-list>
       <ion-item>
         <ion-label>Periode Ajaran</ion-label>
-        <ion-select [(ngModel)]="cbperiode" (ionChange)="cbChanged2()" placeholder="Pilih periode">
-          <ion-select-option *ngFor="let p of periodes" value="{{p.id}}">{{p.periode}}</ion-select-option>
+        <ion-select [(ngModel)]="cbperiode2" (ionChange)="cbChanged2()" placeholder="Pilih periode">
+          <ion-select-option *ngFor="let p of periodes2" value="{{p.id}}">{{p.periode}}</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -112,7 +116,7 @@
           </div>
         </ul>
       </section>
-      <div *ngIf="cbperiode!=0 && kejadians.length ==0">
+      <div *ngIf="cbperiode2!=0 && kejadians.length ==0">
         <p style="text-align: center;">Tidak ada laporan kejadian</p>
       </div>
 

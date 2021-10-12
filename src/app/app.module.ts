@@ -22,7 +22,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 
 import { HttpClientModule } from '@angular/common/http';
-
+import { CallNumber } from '@ionic-native/call-number/ngx';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
 ];
@@ -39,12 +39,11 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule, AngularFireStorageModule,
-
   ],
   providers: [
     AuthService,
     AuthGuard,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CallNumber,],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
