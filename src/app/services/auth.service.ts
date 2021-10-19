@@ -33,6 +33,8 @@ export class AuthService {
   user$: Observable<User>;
   user: User = null;
   roleUser: string;
+  emailUser: string;
+  passUser: string;
   tokenUser: string;
   tokendevice: string;
   ortuIdDb: number;
@@ -395,6 +397,30 @@ export class AuthService {
   }
   getRole() {
     return this.storage.get('role');
+  }
+  setEmail(email: string) {
+    this.storage.ready().then(() => {
+      this.storage.set('email', email);
+      console.log('set Email', email);
+    });
+  }
+  email(email: string) {
+    this.emailUser = email;
+  }
+  getEmail() {
+    return this.storage.get('email');
+  }
+  setPassword(pass: string) {
+    this.storage.ready().then(() => {
+      this.storage.set('password', pass);
+      console.log('set Password', pass);
+    });
+  }
+  password(pass: string) {
+    this.passUser = pass;
+  }
+  getPassword() {
+    return this.storage.get('password');
   }
   setOrtuId(ortuid: number) {
     this.storage.ready().then(() => {

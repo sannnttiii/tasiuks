@@ -34,7 +34,10 @@ export class LoginComponent implements OnInit {
           if (data['result'] == 'OK') {
             this.as.setRole(data['role']);
             this.as.role(data['role']);
-
+            this.as.setEmail(data['email']);
+            this.as.email(data['email']);
+            this.as.setPassword(data['pass']);
+            this.as.password(data['pass']);
             // this.as.ortuId(data['data']);
             // this.as.setOrtuId(this.as.ortuIdDb);
 
@@ -147,17 +150,39 @@ export class LoginComponent implements OnInit {
         if (result == 'ortu') {
           this.as.getOrtuId().then((result) => {
             this.as.ortuIdDb = result;
-            // this.router.navigate(['/homeortu/dashboard/' + result]);
-            this.router.navigate(['/homeortu/dashboard/']);
 
+            this.as.getEmail().then((res) => {
+              this.as.emailUser = res
+
+              this.as.getPassword().then(async (resultt) => {
+                this.as.passUser = await resultt
+
+                this.as.signIn(this.as.emailUser, this.as.passUser);
+
+                this.router.navigate(['/homeortu/dashboard/']);
+
+              })
+            })
           })
 
         }
         else if (result == 'petugas') {
+
           this.as.getPetugasId().then((result) => {
             this.as.petugasIdDb = result;
-            this.router.navigate(['/homepetugas/dashboard']);
 
+            this.as.getEmail().then((res) => {
+              this.as.emailUser = res
+
+              this.as.getPassword().then(async (resultt) => {
+                this.as.passUser = await resultt
+
+                this.as.signIn(this.as.emailUser, this.as.passUser);
+
+                this.router.navigate(['/homepetugas/dashboard']);
+
+              })
+            })
           })
         }
       }, (error) => { });

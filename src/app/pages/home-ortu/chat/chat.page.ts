@@ -72,7 +72,7 @@ export class ChatPage implements OnInit {
       },
       'body': JSON.stringify({
         'notification': notification,
-        'registration_ids': to
+        'to': to
       })
     }).then(function (response) {
       console.log(response);
