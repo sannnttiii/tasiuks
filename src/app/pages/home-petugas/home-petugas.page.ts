@@ -9,12 +9,12 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HomePetugasPage implements OnInit {
 
   constructor(
-    
+
   ) { }
 
- 
+
 
   ngOnInit() {
   }
-  
+
 }

@@ -15,6 +15,7 @@ export class DashboardPage implements OnInit {
 
   // ortuid = this.route.snapshot.params['idortu']
   ortuid = this.as.ortuIdDb
+  tokendevice = this.as.tokendevice;
 
   ngOnInit() {
 
@@ -25,9 +26,11 @@ export class DashboardPage implements OnInit {
     this.jumlahPerizinanAll(this.ortuid);
     this.jumlahKejadian(this.ortuid);
     this.jumlahPemeriksaan(this.ortuid);
-
+    this.updateTokenDevice();
   }
-
+  updateTokenDevice() {
+    this.as.updateTokenDeviceOrtu(this.tokendevice, this.ortuid);
+  }
   jumPerizinan: number = 0
   jumPerizinanAll: number = 0
   totalJumPerizinan: number = 0

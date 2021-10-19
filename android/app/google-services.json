@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "449867854661",
+    "firebase_url": "https://tasiuks-f97d7-default-rtdb.firebaseio.com",
+    "project_id": "tasiuks-f97d7",
+    "storage_bucket": "tasiuks-f97d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449867854661:android:3e1fb741b42045f726442c",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449867854661-av2bvosgmspm1pkq5bp4ftg6adrh7vrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXIF2G4GoXZhv3JYrqpy99CZTbdFzCCWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449867854661-av2bvosgmspm1pkq5bp4ftg6adrh7vrb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

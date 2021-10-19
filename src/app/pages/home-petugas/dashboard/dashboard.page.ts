@@ -11,11 +11,23 @@ export class DashboardPage implements OnInit {
   constructor(private as: AuthService) {
 
   }
-
+  tokendevice = this.as.tokendevice;
+  petugasid = this.as.petugasIdDb;
   ngOnInit() {
     this.jumlahBelumAccPemeriksaan();
     this.jumlahBelumAccPerizinan();
+
+    this.updateTokenDevice();
   }
+
+  updateTokenDevice() {
+    this.as.updateTokenDevicePetugas(this.tokendevice, this.petugasid).subscribe(
+      (data) => {
+        console.log(data['pesan'])
+      }
+    )
+  }
+
   jumlahpemeriksaan = 0;
   jumlahkejadian = 0;
   jumlahBelumAccPemeriksaan() {

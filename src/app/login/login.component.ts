@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { Storage } from '@ionic/storage';
-
+import {
+  ActionPerformed,
+  PushNotificationSchema,
+  PushNotifications,
+  Token,
+} from '@capacitor/push-notifications';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,6 +23,7 @@ export class LoginComponent implements OnInit {
     private toastr: ToastController,
     private storage: Storage,
     private router: Router,
+    public alertController: AlertController
   ) { }
 
   array = []
@@ -79,8 +85,62 @@ export class LoginComponent implements OnInit {
     toast.present();
   }
 
-
+  tokendevice: string;
   ngOnInit() {
+    PushNotifications.addListener('registration', (token: Token) => {
+      // alert('Push registration success, token: ' + token.value);
+      this.tokendevice = token.value;
+      this.as.tokendevice = this.tokendevice;
+    });
+
+    PushNotifications.addListener('registrationError', (error: any) => {
+      alert('Error on registration: ' + JSON.stringify(error));
+    });
+
+    //kalau lagi buka app nya
+    PushNotifications.addListener(
+      'pushNotificationReceived',
+      async (notification: PushNotificationSchema) => {
+        alert('Push received: ' + JSON.stringify(notification.title));
+        if (JSON.stringify(notification.title) === '"Konfirmasi Perizinan"') {
+          const alert = this.alertController.create({
+            header: 'Konfirmasi Perizinan!',
+            message: 'Anda memiliki perizinan kegiatan UKS yang harus dikonfirmasi.',
+            buttons: ['OK']
+          });
+
+          (await alert).present();
+        }
+        else if (JSON.stringify(notification.title) === '"Konfirmasi Rekam Medis"') {
+          const alert = this.alertController.create({
+            header: 'Konfirmasi Rekam Medis!',
+            message: 'Anda memiliki laporan kejadian atau hasil pemeriksaan yang harus dikonfirmasi.',
+            buttons: ['OK']
+          });
+
+          (await alert).present();
+        }
+        else if (JSON.stringify(notification.title) === '"Pesan Baru Diterima"') {
+          const alert = this.alertController.create({
+            header: 'Pesan Baru Diterima!',
+            message: 'Anda mendapatkan pesan baru.',
+            buttons: ['OK']
+          });
+
+          (await alert).present();
+        }
+      },
+    );
+
+    //kalau dibuka (tap)
+    PushNotifications.addListener(
+      'pushNotificationActionPerformed',
+      async (notification: ActionPerformed) => {
+        // alert('Push action performed: ' + JSON.stringify(notification.notification));
+      },
+    );
+
+
     //untuk redirect jika user sudah login
     this.storage.ready().then(() => {
       this.as.getRole().then((result) => {

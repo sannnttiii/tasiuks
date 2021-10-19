@@ -31,7 +31,7 @@ const routes: Routes = [
     loadChildren: () => import('./editprofile/editprofile.module').then(m => m.EditprofilePageModule)
   },
   {
-    path: 'detailchat/:ortutokendb/:ortuid',
+    path: 'detailchat/:ortutokendb/:ortuid/:ortutokendevice',
     loadChildren: () => import('./detailchat/detailchat.module').then(m => m.DetailchatPageModule)
   },
   {
