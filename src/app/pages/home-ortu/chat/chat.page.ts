@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonContent } from '@ionic/angular';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { AlertController, IonContent } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { AuthService, Message } from 'src/app/services/auth.service';
 
@@ -15,7 +16,7 @@ export class ChatPage implements OnInit {
 
   messages: Observable<Message[]>
   newMsg = '';
-  constructor(private as: AuthService, private router: Router) { }
+  constructor(private as: AuthService, private router: Router, private callNumber: CallNumber, private alertController: AlertController) { }
 
   ngOnInit() {
     this.messages = this.as.getChatMessages();
@@ -42,11 +43,18 @@ export class ChatPage implements OnInit {
         this.as.petugasIdDb = data[0]['id'];
         this.petugasToken = data[0]['usertoken'];
         this.petugasDevice = data[0]['tokendevice'];
+        this.telp = data[0]['telp'];
         console.log('petugas aktif' + this.petugasToken);
       }
     )
   }
-
+  telp = '';
+  async call() {
+    this.callNumber.callNumber(this.telp, true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    console.log('Confirm call petugas.');
+  }
   sendMessage() {
     this.as.addChatMessage(this.newMsg, this.petugasToken).then(() => {
       this.newMsg = '';

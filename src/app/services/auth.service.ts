@@ -299,6 +299,11 @@ export class AuthService {
     body = body.set('ortuid', ortuid);
     return this.http.post("http://192.168.1.7/tasiuks/api/getjumlahkejadian.php", body);
   }
+  getKegiatanOrtu(siswaid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('siswaid', siswaid);
+    return this.http.post("http://192.168.1.7/tasiuks/api/getkegiatanortu.php", body);
+  }
 
 
   async signIn(email, password) {

@@ -1,0 +1,32 @@
+<ion-content>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/homeortu/dashboard">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Kegiatan UKS</ion-title>
+  </ion-toolbar>
+
+  <ion-card *ngFor="let k of kegiatans">
+    <ion-card-header>
+      <ion-card-subtitle>{{k.jenis}}</ion-card-subtitle>
+      <ion-card-title>{{k.nama}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Tanggal : {{k.tanggal | date:'dd MMMM yyyy'}}<br>
+      Pelaksana : {{k.pelaksana}}
+      <ion-grid>
+        <!-- <ion-row>
+          <ion-col class="ion-text-center">
+            <form>
+              <ion-button routerLink="/homeortu/formconfirm/{{k.id}}" fill="outline" shape="round">
+                Konfirmasi
+              </ion-button>
+            </form>
+          </ion-col>
+        </ion-row> -->
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

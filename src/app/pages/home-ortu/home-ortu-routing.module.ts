@@ -48,6 +48,10 @@ const routes: Routes = [
     path: 'editprofile',
     loadChildren: () => import('./editprofile/editprofile.module').then(m => m.EditprofilePageModule)
   },
+  {
+    path: 'kegiatanuks/:idsiswa',
+    loadChildren: () => import('./kegiatanuks/kegiatanuks.module').then(m => m.KegiatanuksPageModule)
+  },
 
 
 ];

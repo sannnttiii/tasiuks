@@ -110,6 +110,7 @@ export class DashboardPage implements OnInit {
       (data) => {
         if (data['status']) {
           this.siswas = data['pesan'];
+          this.siswaid = data['pesan']['0']['idsiswa'];
         }
         else {
           console.log(data['pesan'])

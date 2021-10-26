@@ -16,14 +16,6 @@
       </ion-card>
       <!-- #b8f4f8 -->
 
-      <!-- <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 255, 232);'>
-        <ion-item-option color="transparancy" style="color: black;">
-          <ion-icon name="calendar" width="100%"></ion-icon> &nbsp;Kegiatan UKS
-        </ion-item-option>
-        <h5 style="color: black; text-align:center;"><b>3</b></h5>
-        <p style="text-align: center;">Akan datang</p>
-      </ion-card> -->
-
       <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'>
         <ion-item-option color="transparancy" style="color: black;">
           <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Pemeriksaan
@@ -33,7 +25,13 @@
       </ion-card>
     </div>
   </ion-grid>
-
+  <ion-card>
+    <ion-item>
+      <ion-icon name="calendar" slot="start"></ion-icon>
+      <ion-label>Kegiatan UKS</ion-label>
+      <ion-icon name="arrow-forward" slot="end" routerLink="/homeortu/kegiatanuks/{{siswaid}}"></ion-icon>
+    </ion-item>
+  </ion-card>
   <ion-card *ngFor="let s of siswas">
     <ion-item>
       <ion-icon name="person" slot="start"></ion-icon>
