@@ -9,12 +9,19 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HomePetugasPage implements OnInit {
 
   constructor(
-
+    private as: AuthService
   ) { }
 
-
-
   ngOnInit() {
+    this.jumlahPesan();
+  }
+  jumlah: number;
+  jumlahPesan() {
+    this.as.getJumlahPesanPetugas(this.as.petugasIdDb).subscribe(
+      (data) => {
+        this.jumlah = data['pesan']['0']['jumlah'];
+      }
+    )
   }
 
 }

@@ -29,6 +29,7 @@ export class DetailchatPage implements OnInit {
     // console.log(this.as.ortuIdDb + this.as.petugasIdDb)
     // this.content.scrollToBottom();
 
+    this.updateRead();
   }
   noIbu = '';
   noAyah = '';
@@ -125,5 +126,12 @@ export class DetailchatPage implements OnInit {
     )
   }
 
+  updateRead() {
+    this.as.updatePesanTerbacaPetugas(this.as.petugasIdDb, this.as.ortuIdDb).subscribe(
+      (data) => {
+        console.log(data['pesan']);
+      }
+    )
+  }
 
 }

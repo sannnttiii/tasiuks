@@ -22,7 +22,7 @@ export class ChatPage implements OnInit {
     this.messages = this.as.getChatMessages();
     this.getIdPetugasAktif()
     this.scrollToBottomSetTimeOut();
-
+    this.updateReadMessage();
   }
   scrollToBottomSetTimeOut() {
 
@@ -102,4 +102,10 @@ export class ChatPage implements OnInit {
     )
   }
 
+  updateReadMessage() {
+    this.as.updatePesanTerbacaOrtu(this.ortuIdDb).subscribe(
+      (data) => {
+        console.log(data['pesan'])
+      })
+  }
 }

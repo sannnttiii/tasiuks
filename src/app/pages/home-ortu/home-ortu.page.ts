@@ -13,7 +13,14 @@ export class HomeOrtuPage implements OnInit {
     private router: Router,) { }
 
   ngOnInit() {
-
+    this.jumlahPesan();
   }
-
+  jumlah: number;
+  jumlahPesan() {
+    this.as.getJumlahPesanOrtu(this.as.ortuIdDb).subscribe(
+      (data) => {
+        this.jumlah = data['pesan']['0']['jumlah'];
+      }
+    )
+  }
 }

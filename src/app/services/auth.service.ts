@@ -194,7 +194,17 @@ export class AuthService {
     body = body.set('kegiatanid', kegiatanid);
     return this.http.post("http://192.168.1.7/tasiuks/api/getaccyetperizinan.php", body);
   }
-
+  getJumlahPesanPetugas(petugasid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('petugasid', petugasid);
+    return this.http.post("http://192.168.1.7/tasiuks/api/getjumlahpesanpetugas.php", body);
+  }
+  updatePesanTerbacaPetugas(petugasid: number, ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('petugasid', petugasid);
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://192.168.1.7/tasiuks/api/updatereadpesanpetugas.php", body);
+  }
 
   //ORTU SERVICE
   updateTokenDeviceOrtu(token, id): Observable<any> {
@@ -303,6 +313,16 @@ export class AuthService {
     let body = new HttpParams();
     body = body.set('siswaid', siswaid);
     return this.http.post("http://192.168.1.7/tasiuks/api/getkegiatanortu.php", body);
+  }
+  getJumlahPesanOrtu(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://192.168.1.7/tasiuks/api/getjumlahpesanortu.php", body);
+  }
+  updatePesanTerbacaOrtu(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://192.168.1.7/tasiuks/api/updatereadpesanortu.php", body);
   }
 
 

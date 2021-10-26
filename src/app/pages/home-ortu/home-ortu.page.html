@@ -3,12 +3,12 @@
     <ion-tab-button tab="dashboard">
       <ion-icon name="trending-up"></ion-icon>
       <ion-label>Beranda</ion-label>
-      <!-- <ion-badge>6</ion-badge> -->
     </ion-tab-button>
 
     <ion-tab-button tab="chat">
       <ion-icon name="chatbubble"></ion-icon>
       <ion-label>Pesan</ion-label>
+      <ion-badge *ngIf="jumlah!=0">{{jumlah}}</ion-badge>
     </ion-tab-button>
 
     <ion-tab-button tab="information">
