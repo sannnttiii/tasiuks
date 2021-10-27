@@ -40,7 +40,7 @@ export class AuthService {
   ortuIdDb: number;
   petugasIdDb: number;
   // ambil token per ortu buat chat petugas uks
-  tokenOrtuDb: string;
+  // tokenOrtuDb: string;
   constructor(
     private afs: AngularFirestore,
     private afauth: AngularFireAuth,
@@ -490,8 +490,8 @@ export class AuthService {
             m.fromName = this.getUserForMsg(m.from, users);
             m.myMsg = this.tokenUser === m.from;
             m.msgForMe = this.tokenUser === m.to;
-            m.toOrtu = m.to == this.tokenOrtuDb;
-            m.fromOrtu = m.from == this.tokenOrtuDb;
+            // m.toOrtu = m.to == this.tokenOrtuDb;
+            // m.fromOrtu = m.from == this.tokenOrtuDb;
             this.index = this.index + 1
             // this.mess = Array.from(messages)
             // m.muncul = true;
