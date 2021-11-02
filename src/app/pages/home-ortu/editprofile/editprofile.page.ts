@@ -36,7 +36,7 @@ export class EditprofilePage implements OnInit {
     formData.append('id', this.ortuid.toString());
 
 
-    this.http.post("http://192.168.1.7/tasiuks/api/updateprofileortu.php", formData).subscribe((response: any) => {
+    this.http.post("http://192.168.1.3/tasiuks/api/updateprofileortu.php", formData).subscribe((response: any) => {
       if (response['status']) {
         this.toast(response['pesan'], 'success');
         this.router.navigate(['/homeortu/profile'])

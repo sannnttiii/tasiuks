@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { AlertController, IonContent } from '@ionic/angular';
@@ -12,8 +12,7 @@ import { AuthService, Message } from 'src/app/services/auth.service';
 })
 export class ChatPage implements OnInit {
 
-  @ViewChild(IonContent) content: IonContent;
-
+  @ViewChild(IonContent, { static: true }) content: IonContent;
   messages: Observable<Message[]>
   newMsg = '';
   constructor(private as: AuthService, private router: Router, private callNumber: CallNumber, private alertController: AlertController) { }
@@ -21,14 +20,13 @@ export class ChatPage implements OnInit {
   ngOnInit() {
     this.messages = this.as.getChatMessages();
     this.getIdPetugasAktif()
-    this.scrollToBottomSetTimeOut();
     this.updateReadMessage();
+    this.scrollBottom();
   }
-  scrollToBottomSetTimeOut() {
 
-    setTimeout(() => {
-      this.content.scrollToBottom(30);
-    }, 30);
+  scrollBottom() {
+    this.content.scrollToBottom();
+    // console.log(this.content + 'terpanggil');
   }
 
   userToken = this.as.tokenUser;

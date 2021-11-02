@@ -29,7 +29,9 @@ export class DashboardPage implements OnInit {
     this.updateTokenDevice();
   }
   updateTokenDevice() {
-    this.as.updateTokenDeviceOrtu(this.tokendevice, this.ortuid);
+    this.as.updateTokenDeviceOrtu(this.tokendevice, this.ortuid).subscribe((data) => {
+      console.log(data);
+    });
   }
   jumPerizinan: number = 0
   jumPerizinanAll: number = 0

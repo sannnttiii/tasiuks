@@ -90,10 +90,19 @@ export class LoginComponent implements OnInit {
 
   tokendevice: string;
   ngOnInit() {
+    PushNotifications.requestPermissions().then(result => {
+      if (result.receive === 'granted') {
+        // Register with Apple / Google to receive push via APNS/FCM
+        PushNotifications.register();
+      } else {
+        // Show some error
+      }
+    });
+
     PushNotifications.addListener('registration', (token: Token) => {
       // alert('Push registration success, token: ' + token.value);
       this.tokendevice = token.value;
-      this.as.tokendevice = this.tokendevice;
+      this.as.tokendevice = token.value;
     });
 
     PushNotifications.addListener('registrationError', (error: any) => {

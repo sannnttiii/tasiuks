@@ -7,6 +7,8 @@ ion-content {
     border-radius: 10px !important;
     margin-bottom: 4px !important;
     white-space: pre-wrap !important;
+    padding-bottom: 50px !important;
+    padding-top:60px !important;
 }
 
 .other-msg{
@@ -43,4 +45,24 @@ ion-content {
     resize: none;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.foot{
+    position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+//   background-color: red;
+//   color: white;
+  text-align: center;
+}
+
+.top{
+    position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+//   background-color: red;
+//   color: white;
+//   text-align: center;
 }

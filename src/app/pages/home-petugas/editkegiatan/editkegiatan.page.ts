@@ -79,7 +79,7 @@ export class EditkegiatanPage implements OnInit {
       formData.append('petugasid', this.petugasid.toString());
       formData.append('kegiatanid', this.kegiatanid)
 
-      this.http.post("http://192.168.1.7/tasiuks/api/updatekegiatan.php", formData).subscribe(
+      this.http.post("http://192.168.1.3/tasiuks/api/updatekegiatan.php", formData).subscribe(
         (data) => {
           if (data['status']) {
             this.toast(data['pesan'], 'success');

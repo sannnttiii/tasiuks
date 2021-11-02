@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,24 +9,22 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class DashboardPage implements OnInit {
 
-  constructor(private as: AuthService) {
+  constructor(private as: AuthService, private toastr: ToastController) {
 
   }
   tokendevice = this.as.tokendevice;
   petugasid = this.as.petugasIdDb;
   ngOnInit() {
+    this.updateTokenDevice();
     this.jumlahBelumAccPemeriksaan();
     this.jumlahBelumAccPerizinan();
-
-    this.updateTokenDevice();
   }
 
   updateTokenDevice() {
-    this.as.updateTokenDevicePetugas(this.tokendevice, this.petugasid).subscribe(
-      (data) => {
-        console.log(data['pesan'])
-      }
-    )
+    this.as.updateTokenDevicePetugas(this.tokendevice, this.petugasid).subscribe((data) => {
+      console.log(data);
+    });
+    console.log(this.tokendevice);
   }
 
   jumlahpemeriksaan = 0;
@@ -45,5 +44,14 @@ export class DashboardPage implements OnInit {
         this.jumlahperizinan = data['pesan'][0]['jumlah'];
       }
     )
+  }
+  async toast(msg, status) {
+    const toast = await this.toastr.create({
+      message: msg,
+      color: status,
+      position: 'bottom',
+      duration: 2000
+    })
+    toast.present();
   }
 }

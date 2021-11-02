@@ -1,5 +1,5 @@
-<ion-content>
-  <ion-toolbar color="primary">
+<ion-content [scrollEvents]="true">
+  <ion-toolbar color="primary" class="top">
     <ion-buttons slot="start" routerLink="/homepetugas/chat">
       <ion-button>
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
@@ -32,10 +32,15 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
 
-<ion-footer>
-  <ion-toolbar color="light">
+  <ion-fab (click)="scrollBottom()" vertical="center" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" color="light">
+      <ion-icon name="arrow-down" color="dark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+  <ion-toolbar color="light" class="foot">
     <ion-row class="ion-align-items-center ion-no-padding">
       <ion-col size="9">
         <textarea [(ngModel)]="newMsg" class="msg-input">
@@ -50,4 +55,4 @@
       </ion-col>
     </ion-row>
   </ion-toolbar>
-</ion-footer>
+</ion-content>

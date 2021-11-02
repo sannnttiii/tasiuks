@@ -1,19 +1,18 @@
-<ion-header>
-  <ion-toolbar color="primary">
+<ion-content [scrollEvents]="true">
+  <ion-toolbar color="primary" class="top">
     <ion-buttons slot="start" routerLink="/homeortu/dashboard">
       <ion-button>
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>Pesan</ion-title>
-    <ion-buttons slot="end" (click)="call()">
-      <ion-button>
+    <ion-buttons slot="end">
+      <ion-button (click)="call()">
         <ion-icon slot="icon-only" name="call"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
-<ion-content>
+
   <ion-grid class="message">
     <ion-row style="padding-bottom: 5px;" *ngFor="let m of messages | async">
       <ion-col size='9' [offset]="m.myMsg ? 3 : 0" [ngClass]="{ 'my-msg' : m.myMsg }" *ngIf="m.from == userToken">
@@ -34,11 +33,14 @@
     </ion-row>
   </ion-grid>
 
+  <ion-fab (click)="scrollBottom()" vertical="center" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" color="light">
+      <ion-icon name="arrow-down" color="dark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-</ion-content>
-<ion-footer>
-  <ion-toolbar color="light">
-    <ion-row class="ion-align-items-center ion-no-padding">
+  <ion-toolbar color="light" class="foot">
+    <ion-row class="ion-align-items-center ion-no-padding foot">
       <ion-col size="9">
         <textarea [(ngModel)]="newMsg" class="msg-input">
         </textarea>
@@ -52,4 +54,4 @@
       </ion-col>
     </ion-row>
   </ion-toolbar>
-</ion-footer>
+</ion-content>

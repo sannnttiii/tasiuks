@@ -26,11 +26,15 @@ export class DetailchatPage implements OnInit {
     this.ortuToken = this.route.snapshot.params['ortutokendb'];
     this.ortuDevice = this.route.snapshot.params['ortutokendevice'];
     this.detailOrtu();
-    // console.log(this.as.ortuIdDb + this.as.petugasIdDb)
-    // this.content.scrollToBottom();
-
     this.updateRead();
+    // console.log(this.as.ortuIdDb + this.as.petugasIdDb)
+    this.scrollBottom();
   }
+  scrollBottom() {
+    this.content.scrollToBottom();
+    // console.log(this.content + 'terpanggil');
+  }
+
   noIbu = '';
   noAyah = '';
   detailOrtu() {
