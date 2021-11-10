@@ -29,6 +29,8 @@ export class RekammedisPage implements OnInit {
   periodes = []
   periodes2 = []
   kejadians = []
+  done = 0
+  done2 = 0
   listDetailSiswa(siswaid) {
     this.as.listDetailSiswa(siswaid).subscribe(
       (data) => {
@@ -60,9 +62,11 @@ export class RekammedisPage implements OnInit {
       (data) => {
         if (data['status']) {
           this.pemeriksaans = data['pesan'];
+          this.done = 1
         }
         else {
           console.log(data['pesan']);
+          this.done = 2
         }
       }
     )
@@ -72,9 +76,11 @@ export class RekammedisPage implements OnInit {
       (data) => {
         if (data['status']) {
           this.kejadians = data['pesan'];
+          this.done2 = 1
         }
         else {
           console.log(data['pesan']);
+          this.done2 = 2
         }
       }
     )

@@ -1,0 +1,67 @@
+<ion-content>
+
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/homepetugas/confirmpemeriksaan">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Pemeriksaan</ion-title>
+  </ion-toolbar>
+
+  <ion-list lines="none" *ngFor="let s of siswa">
+    <ion-item lines="none" style="--background: inherit;">
+      <ion-icon name='person' slot="start" style="width: 50px; height: 50px;">
+      </ion-icon>
+      <ion-label>
+        <h3 style="font-weight: bold;">{{s.nama}}</h3>
+        <h5>Kelas {{s.kelas}} / {{s.periode}}</h5>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Periode Ajaran</ion-label>
+      <ion-select [(ngModel)]="cbperiode" (ionChange)="cbChanged()" placeholder="Pilih periode">
+        <ion-select-option *ngFor="let p of periodes" value="{{p.id}}">{{p.periode}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <section>
+      <ul *ngFor="let r of pemeriksaans">
+        <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right"
+          *ngIf="(r.tinggi !=null && r.berat !=null)">
+          {{r.tanggal | date:'dd/MM/yyyy'}}
+        </div>
+        <div *ngIf="(r.tinggi !=null && r.berat !=null)">
+          <li style="font-weight: bold;">Pemeriksaan Umum </li>
+          <p style="font-size: 14px;">Tinggi Badan : {{r.tinggi}}</p>
+          <p style="font-size: 14px;">Berat Badan : {{r.berat}}</p>
+        </div>
+
+
+        <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right" *ngIf="(r.hasil !=null)">
+          {{r.tanggal | date:'dd/MM/yyyy'}}
+        </div>
+        <div *ngIf="(r.hasil !=null)">
+          <li style="font-weight: bold;">Pemeriksaan Screening</li>
+          <p style="font-size: 14px;">{{r.hasil}} </p>
+          <label style="font-size: 14px;">Catatan : {{r.catatan}}</label>
+        </div>
+      </ul>
+
+
+    </section>
+    <div *ngIf="cbperiode!=0 && done===2 && pemeriksaans.length ==0">
+      <p style="text-align: center;">Tidak ada laporan pemeriksaan</p>
+    </div>
+
+  </ion-list>
+
+  <ion-fab routerLink="/homepetugas/addpemeriksaan/{{siswaid}}" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

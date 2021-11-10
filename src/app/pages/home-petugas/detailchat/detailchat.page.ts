@@ -46,40 +46,10 @@ export class DetailchatPage implements OnInit {
     )
   }
   async call() {
-    const alert = await this.alertController.create({
-      header: 'Hubungi orangtua!',
-      message: 'Pilih nomor orang tua yang akan dihubungi',
-      buttons: [
-        {
-          text: 'Ibu',
-          handler: () => {
-            this.callNumber.callNumber(this.noIbu, true)
-              .then(res => console.log('Launched dialer!', res))
-              .catch(err => console.log('Error launching dialer', err));
-            console.log('Confirm ibu.');
-          }
-        },
-        {
-          text: 'Ayah',
-          handler: () => {
-            this.callNumber.callNumber(this.noAyah, true)
-              .then(res => console.log('Launched dialer!', res))
-              .catch(err => console.log('Error launching dialer', err));
-            console.log('Confirm ayah.');
-          }
-        },
-        {
-          text: 'Batal',
-          role: 'cancel',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        },
-      ]
-    });
-
-    await alert.present();
-
+    this.callNumber.callNumber(this.noIbu, true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    console.log('Confirm call ortu.');
   }
 
   sendMessage() {

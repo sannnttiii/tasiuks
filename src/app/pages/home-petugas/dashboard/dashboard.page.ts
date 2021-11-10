@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 import { ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class DashboardPage implements OnInit {
 
-  constructor(private as: AuthService, private toastr: ToastController) {
+  constructor(private as: AuthService, private callNumber: CallNumber, private toastr: ToastController) {
 
   }
   tokendevice = this.as.tokendevice;
@@ -26,7 +27,17 @@ export class DashboardPage implements OnInit {
     });
     console.log(this.tokendevice);
   }
+  callcenter() {
+    this.callNumber.callNumber("112", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+  }
 
+  ambulans() {
+    this.callNumber.callNumber("119", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+  }
   jumlahpemeriksaan = 0;
   jumlahkejadian = 0;
   jumlahBelumAccPemeriksaan() {
@@ -36,6 +47,7 @@ export class DashboardPage implements OnInit {
       }
     )
   }
+
 
   jumlahperizinan = 0;
   jumlahBelumAccPerizinan() {

@@ -1,0 +1,60 @@
+<ion-content>
+
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/homepetugas/confirmpemeriksaan">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Siswa</ion-title>
+  </ion-toolbar>
+
+  <ion-searchbar type="text" debounce="500" (ionChange)="getItems($event)" placeholder="Cari nama siswa">
+  </ion-searchbar>
+  <div *ngIf="items==''">
+    <ion-list>
+      <ion-item-group *ngFor="let k of kelaskontak">
+        <ion-item-divider>
+          <ion-label>{{k.kelas}}</ion-label>
+        </ion-item-divider>
+        <div *ngIf="ket=='pemeriksaan'">
+          <div *ngFor="let c of contact;">
+            <ion-item *ngIf="(c.kelas==k.kelas)" routerLink="/homepetugas/detailpemeriksaan/{{c.idsiswa}}">
+              <ion-label>{{c.namasiswa}}</ion-label>
+            </ion-item>
+          </div>
+        </div>
+        <div *ngIf="ket=='kejadian'">
+          <div *ngFor="let c of contact;">
+            <ion-item *ngIf="(c.kelas==k.kelas)" routerLink="/homepetugas/detailkejadian/{{c.idsiswa}}">
+              <ion-label>{{c.namasiswa}}</ion-label>
+            </ion-item>
+          </div>
+        </div>
+      </ion-item-group>
+    </ion-list>
+  </div>
+  <div *ngIf="items!=''">
+    <ion-list>
+      <ion-item-group *ngFor="let k of kelaskontak">
+        <ion-item-divider>
+          <ion-label>{{k.kelas}}</ion-label>
+        </ion-item-divider>
+        <div *ngIf="ket=='pemeriksaan'">
+          <div *ngFor="let i of items;">
+            <ion-item *ngIf="(i.kelas==k.kelas)" routerLink="/homepetugas/detailpemeriksaan/{{i.idsiswa}}">
+              <ion-label>{{i.namasiswa}}</ion-label>
+            </ion-item>
+          </div>
+        </div>
+        <div *ngIf="ket=='kejadian'">
+          <div *ngFor="let i of items;">
+            <ion-item *ngIf="(i.kelas==k.kelas)" routerLink="/homepetugas/detailkejadian/{{i.idsiswa}}">
+              <ion-label>{{i.namasiswa}}</ion-label>
+            </ion-item>
+          </div>
+        </div>
+      </ion-item-group>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-content>
+
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/homepetugas/daftarsiswa/kejadian">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Detail Kejadian</ion-title>
+  </ion-toolbar>
+
+  <ion-list>
+    <section>
+      <ul *ngFor="let d of details">
+        <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
+          {{d.jam | date:'dd/MM/yyyy'}}
+        </div>
+        <div *ngIf="(d.kejadian !=null)">
+          <!-- <li style="font-weight: bold;">{{d.kejadian}} </li> -->
+          <li>
+            Jam : {{d.jam | date:'H:mm'}}</li>
+          <p>Jenis Penanganan : {{d.penanganan}}</p>
+          <p>Ditangani oleh : {{d.ditangani}}</p>
+          <p>Catatan : {{d.catatan}}</p>
+          <div *ngIf="(d.gambar !='' && d.gambar!='undefined')"><img
+              src="http://192.168.1.12/tasiuks/api/images/{{d.gambar}}" /></div>
+        </div>
+      </ul>
+    </section>
+    <div *ngIf=" done===2 &&details.length ==0">
+      <p style="text-align: center;">Tidak ada Detail kejadian</p>
+    </div>
+  </ion-list>
+
+  <ion-fab routerLink="/homepetugas/addberita/{{kejadianid}}" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

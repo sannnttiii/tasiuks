@@ -52,6 +52,10 @@ const routes: Routes = [
     path: 'kegiatanuks/:idsiswa',
     loadChildren: () => import('./kegiatanuks/kegiatanuks.module').then(m => m.KegiatanuksPageModule)
   },
+  {
+    path: 'detailberita/:idkejadian/:idsiswa',
+    loadChildren: () => import('./detailberita/detailberita.module').then(m => m.DetailberitaPageModule)
+  },
 
 
 ];

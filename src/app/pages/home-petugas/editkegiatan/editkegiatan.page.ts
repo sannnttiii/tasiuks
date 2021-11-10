@@ -24,6 +24,7 @@ export class EditkegiatanPage implements OnInit {
   pelaksana = ''
   tanggal;
   jk;
+  selesai;
   jenisid = 0;
 
   jenis = []
@@ -42,6 +43,7 @@ export class EditkegiatanPage implements OnInit {
           this.tanggal = data['pesan'][0]['tanggal'];
           this.pelaksana = data['pesan'][0]['pelaksana'];
           this.jk = data['pesan'][0]['jenisid']
+          this.selesai = data['pesan'][0]['selesai']
         }
         else {
           console.log(data['pesan'])
@@ -79,11 +81,11 @@ export class EditkegiatanPage implements OnInit {
       formData.append('petugasid', this.petugasid.toString());
       formData.append('kegiatanid', this.kegiatanid)
 
-      this.http.post("http://192.168.1.3/tasiuks/api/updatekegiatan.php", formData).subscribe(
+      this.http.post("http://192.168.1.12/tasiuks/api/updatekegiatan.php", formData).subscribe(
         (data) => {
           if (data['status']) {
             this.toast(data['pesan'], 'success');
-            this.router.navigate(['/homepetugas/kegiatanuks'])
+            this.router.navigate(['/homepetugas/confirmperizinanpetugas'])
           }
           else {
             this.toast(data['pesan'], 'danger');
@@ -110,7 +112,7 @@ export class EditkegiatanPage implements OnInit {
             async (data) => {
               if (data['status']) {
                 this.toast(data['pesan'], 'success')
-                this.router.navigate(['/homepetugas/kegiatanuks'])
+                this.router.navigate(['/homepetugas/confirmperizinanpetugas'])
 
               }
               else {

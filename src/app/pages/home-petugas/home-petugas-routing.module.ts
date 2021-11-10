@@ -82,7 +82,34 @@ const routes: Routes = [
     path: 'editkegiatan/:kegiatanid',
     loadChildren: () => import('./editkegiatan/editkegiatan.module').then(m => m.EditkegiatanPageModule)
   },
-
+  {
+    path: 'addpemeriksaan/:idsiswa',
+    loadChildren: () => import('./addpemeriksaan/addpemeriksaan.module').then(m => m.AddpemeriksaanPageModule)
+  },
+  {
+    path: 'addkejadian/:idsiswa',
+    loadChildren: () => import('./addkejadian/addkejadian.module').then(m => m.AddkejadianPageModule)
+  },
+  {
+    path: 'daftarsiswa/:ket',
+    loadChildren: () => import('./daftarsiswa/daftarsiswa.module').then(m => m.DaftarsiswaPageModule)
+  },
+  {
+    path: 'detailpemeriksaan/:idsiswa',
+    loadChildren: () => import('./detailpemeriksaan/detailpemeriksaan.module').then(m => m.DetailpemeriksaanPageModule)
+  },
+  {
+    path: 'detailkejadian/:idsiswa',
+    loadChildren: () => import('./detailkejadian/detailkejadian.module').then(m => m.DetailkejadianPageModule)
+  },
+  {
+    path: 'detailberita/:idkejadian',
+    loadChildren: () => import('./detailberita/detailberita.module').then(m => m.DetailberitaPageModule)
+  },
+  {
+    path: 'addberita/:idkejadian',
+    loadChildren: () => import('./addberita/addberita.module').then(m => m.AddberitaPageModule)
+  },
 
 ];
 

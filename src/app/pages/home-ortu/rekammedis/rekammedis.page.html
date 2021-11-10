@@ -63,7 +63,7 @@
 
 
       </section>
-      <div *ngIf="cbperiode!=0 && pemeriksaans.length ==0">
+      <div *ngIf="cbperiode!=0 && done===2 && pemeriksaans.length ==0">
         <p style="text-align: center;">Tidak ada laporan pemeriksaan</p>
       </div>
 
@@ -71,7 +71,7 @@
         <ion-row>
           <ion-col class="ion-text-center">
             <form *ngFor="let r of pemeriksaans">
-              <ion-button *ngIf="(r.confirm == 0)" (click)="confirmpemeriksaan(r.id)" fill="outline" shape="round">
+              <ion-button *ngIf="(r.confirm == 0)" (click)="confirmpemeriksaan(r.id)" shape="round">
                 Konfirmasi
               </ion-button>
             </form>
@@ -90,23 +90,31 @@
         </ion-select>
       </ion-item>
 
-      <section>
-        <ul *ngFor="let k of kejadians">
+      <section *ngFor="let k of kejadians">
+        <ul>
           <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
             {{k.tanggal | date:'dd/MM/yyyy'}}
           </div>
           <div *ngIf="(k.kejadian !=null)">
             <li style="font-weight: bold;">{{k.kejadian}} </li>
-            <p style="font-size: 14px;">Penanganan : {{k.penanganan}} </p>
-            <p style="font-size: 14px;">Jam Penanganan : {{k.jam | date:'H:mm'}}</p>
-            <p style="font-size: 14px;">Ditangani oleh : {{k.ditangani}}</p>
-            <p style="font-size: 14px;">Catatan : {{k.catatan}}</p>
-
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6" class="ion-text-center">
+                  Waktu : {{k.tanggal | date:'H:mm'}}
+                </ion-col>
+                <ion-col size="6" class="ion-text-end">
+                  <ion-button routerLink="/homeortu/detailberita/{{k.id}}/{{siswaid}}" fill="outline" shape="round"
+                    size="small">
+                    Detail
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
             <ion-grid>
               <ion-row>
                 <ion-col class="ion-text-center">
-                  <form *ngFor="let k of kejadians">
-                    <ion-button *ngIf="(k.confirm == 0)" (click)="confirmkejadian(k.id)" fill="outline" shape="round">
+                  <form>
+                    <ion-button *ngIf="(k.confirm == 0)" (click)="confirmkejadian(k.id)" shape="round">
                       Konfirmasi
                     </ion-button>
                   </form>
@@ -116,7 +124,7 @@
           </div>
         </ul>
       </section>
-      <div *ngIf="cbperiode2!=0 && kejadians.length ==0">
+      <div *ngIf="cbperiode2!=0 && done2===2 &&kejadians.length ==0">
         <p style="text-align: center;">Tidak ada laporan kejadian</p>
       </div>
 

@@ -1,0 +1,63 @@
+<ion-content>
+
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/homepetugas/detailpemeriksaan/{{siswaid}}">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Tambah Pemeriksaan</ion-title>
+  </ion-toolbar>
+
+  <ion-card>
+    <ion-card-header style="padding-bottom: 0px;">
+      <ion-card-title style="color: black;">Pemeriksaan Baru</ion-card-title>
+      <ion-card-subtitle style="color: black;">Harap mengisi data dengan sebenar-benarnya. </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <form>
+        <ion-item>
+          <ion-label position="stacked">Kegiatan UKS</ion-label>
+          <ion-select placeholder="Pilih Kegiatan" [(ngModel)]="kg" name="kg" (ionChange)="onChange($event)">
+            <ion-select-option *ngFor="let k of kegiatan" value="{{k.id}}">{{k.tanggal | date:'dd/MM/yyyy'}} -
+              {{k.nama}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Tinggi Badan</ion-label>
+          <ion-input type="text" [(ngModel)]="tinggi" name="tinggi"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Berat Badan</ion-label>
+          <ion-input type="text" [(ngModel)]="berat" name="berat"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Hasil</ion-label>
+          <ion-input type="text" [(ngModel)]="hasil" name="hasil"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Catatan</ion-label>
+          <ion-input type="text" [(ngModel)]="catatan" name="catatan"></ion-input>
+        </ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button expand="block" fill="outline" routerLink="/homepetugas/detailpemeriksaan/{{siswaid}}"
+                class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit" shape="round">
+                Batal
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="block" (click)="save()" class="ion-margin-start ion-margin-end ion-margin-bottom"
+                type="submit" shape="round">
+                Simpan
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

@@ -11,43 +11,47 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>Hasil Konfirmasi</ion-card-subtitle>
+      <ion-card-subtitle>Hasil Konfirmasi Rekam Medis</ion-card-subtitle>
       <ion-card-title>Pemeriksaan</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      Rekam Medis
+    <form>
       <ion-grid>
         <ion-row>
           <ion-col class="ion-text-center">
-            <form>
-              <ion-button routerLink="/homepetugas/detailconfirmrm" fill="outline" shape="round">
-                Lihat
-              </ion-button>
-            </form>
+            <ion-button routerLink="/homepetugas/detailconfirmrm"
+              class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit" shape="round">
+              Cek Konfirmasi
+            </ion-button>
+            <ion-button routerLink="/homepetugas/daftarsiswa/pemeriksaan" fill="outline"
+              class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit" shape="round">
+              Lihat Pemeriksaan
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-card-content>
+    </form>
   </ion-card>
 
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>Hasil Konfirmasi</ion-card-subtitle>
+      <ion-card-subtitle>Hasil Konfirmasi Rekam Medis</ion-card-subtitle>
       <ion-card-title>Kejadian</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      Rekam Medis
+    <form>
       <ion-grid>
         <ion-row>
           <ion-col class="ion-text-center">
-            <form>
-              <ion-button routerLink="/homepetugas/detailconfirmkej" fill="outline" shape="round">
-                Lihat
-              </ion-button>
-            </form>
+            <ion-button routerLink="/homepetugas/detailconfirmkej"
+              class="ion-margin-start ion-margin-end ion-margin-bottom ion-text-center" type="submit" shape="round">
+              Cek Konfirmasi
+            </ion-button>
+            <ion-button fill="outline" routerLink="/homepetugas/daftarsiswa/kejadian"
+              class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit" shape="round">
+              Lihat Kejadian
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-card-content>
+    </form>
   </ion-card>
 </ion-content>
