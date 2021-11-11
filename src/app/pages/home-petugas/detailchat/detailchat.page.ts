@@ -1,3 +1,5 @@
+import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CallNumber } from '@ionic-native/call-number/ngx';
@@ -18,7 +20,7 @@ export class DetailchatPage implements OnInit {
   newMsg = '';
   ortuToken = '';
   ortuDevice = '';
-  constructor(private alertController: AlertController, private callNumber: CallNumber, private as: AuthService, private router: Router, public route: ActivatedRoute,) { }
+  constructor(private alertController: AlertController, private datePipe: DatePipe, private http: HttpClient, private callNumber: CallNumber, private as: AuthService, private router: Router, public route: ActivatedRoute,) { }
   petugasUid = this.as.tokenUser;
   ngOnInit() {
     this.messages = this.as.getChatMessages();
@@ -45,11 +47,35 @@ export class DetailchatPage implements OnInit {
       }
     )
   }
+  today;
+  formatted;
+  tglakhirkejadian;
+  kejadianid;
   async call() {
     this.callNumber.callNumber(this.noIbu, true)
       .then(res => console.log('Launched dialer!', res))
       .catch(err => console.log('Error launching dialer', err));
     console.log('Confirm call ortu.');
+
+    this.today = Date.now();
+    this.formatted = this.datePipe.transform(this.today, 'yyyy-MM-dd')
+    this.as.getLastKejadianSiswa(this.as.ortuIdDb).subscribe((data) => {
+      if (data['status']) {
+        this.tglakhirkejadian = this.datePipe.transform(data['pesan']['0']['tanggal'], 'yyyy-MM-dd');
+        this.kejadianid = data['pesan']['0']['id']
+        if (this.tglakhirkejadian == this.formatted) {
+          const formData = new FormData();
+          formData.append('catatan', 'Petugas UKS melakukan panggilan ke orang tua');
+          formData.append('kejadianid', this.kejadianid);
+
+          this.http.post("http://192.168.1.12/tasiuks/api/insertdetailkejadian.php", formData).subscribe(
+            (data) => {
+              console.log(data['pesan'])
+            });
+        }
+      }
+
+    })
   }
 
   sendMessage() {

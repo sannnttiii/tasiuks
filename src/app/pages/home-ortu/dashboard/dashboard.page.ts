@@ -27,6 +27,7 @@ export class DashboardPage implements OnInit {
     this.jumlahKejadian(this.ortuid);
     this.jumlahPemeriksaan(this.ortuid);
     this.updateTokenDevice();
+    this.listKegiatan();
   }
   updateTokenDevice() {
     this.as.updateTokenDeviceOrtu(this.tokendevice, this.ortuid).subscribe((data) => {
@@ -123,11 +124,27 @@ export class DashboardPage implements OnInit {
 
   confirmPerizinan() {
     if (this.totalJumPerizinan == 0) {
-      this.toast('Tidak ada kegiatan yang perlu dikonfirmasi', 'danger')
+      this.toast('Tidak ada kegiatan yang perlu dikonfirmasi', 'warning')
     }
     else {
       this.router.navigate(['/homeortu/confirmperizinanortu'])
     }
+  }
+
+  kegiatans = []
+  ada = 0;
+  listKegiatan() {
+    this.as.getKegiatanTerdekat().subscribe(
+      (data) => {
+        if (data['status']) {
+          this.kegiatans = data['pesan'];
+          this.ada = 1;
+        }
+        else {
+          this.ada = 2;
+        }
+      }
+    )
   }
 
   async toast(msg, status) {

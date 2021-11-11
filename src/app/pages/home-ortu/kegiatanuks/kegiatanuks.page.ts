@@ -14,17 +14,60 @@ export class KegiatanuksPage implements OnInit {
 
   ngOnInit() {
     this.listKegiatan();
+    this.listKegiatan2();
+    this.listKegiatan3();
+    this.listKegiatan4();
   }
-  kegiatans = []
-  siswaid = this.route.snapshot.params['idsiswa']
+  allnot = []
+  allacc = []
+  kelasnot = []
+  kelasacc = []
+  // siswaid = this.route.snapshot.params['idsiswa']
+  ket = '';
   listKegiatan() {
-    this.as.getKegiatanOrtu(this.siswaid).subscribe(
+    this.as.getKegiatanOrtuAllAcc(this.as.ortuIdDb).subscribe(
       (data) => {
         if (data['status']) {
-          this.kegiatans = data['pesan'];
+          this.allacc = data['pesan'];
         }
         else {
-          this.toast(data['pesan'], 'warning');
+          console.log(data['pesan']);
+        }
+      }
+    )
+  }
+  listKegiatan2() {
+    this.as.getKegiatanOrtuAllNot(this.as.ortuIdDb).subscribe(
+      (data) => {
+        if (data['status']) {
+          this.allnot = data['pesan'];
+        }
+        else {
+          console.log(data['pesan']);
+        }
+      }
+    )
+  }
+  listKegiatan3() {
+    this.as.getKegiatanOrtuKelasAcc(this.as.ortuIdDb).subscribe(
+      (data) => {
+        if (data['status']) {
+          this.kelasacc = data['pesan'];
+        }
+        else {
+          console.log(data['pesan']);
+        }
+      }
+    )
+  }
+  listKegiatan4() {
+    this.as.getKegiatanOrtuKelasNot(this.as.ortuIdDb).subscribe(
+      (data) => {
+        if (data['status']) {
+          this.kelasnot = data['pesan'];
+        }
+        else {
+          console.log(data['pesan']);
         }
       }
     )

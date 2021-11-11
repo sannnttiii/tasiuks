@@ -19,6 +19,7 @@ export class DashboardPage implements OnInit {
     this.updateTokenDevice();
     this.jumlahBelumAccPemeriksaan();
     this.jumlahBelumAccPerizinan();
+    this.listKegiatan();
   }
 
   updateTokenDevice() {
@@ -54,6 +55,21 @@ export class DashboardPage implements OnInit {
     this.as.getJumlahBelumAccPerizinan().subscribe(
       (data) => {
         this.jumlahperizinan = data['pesan'][0]['jumlah'];
+      }
+    )
+  }
+  kegiatans = []
+  ada = 0;
+  listKegiatan() {
+    this.as.getKegiatanTerdekat().subscribe(
+      (data) => {
+        if (data['status']) {
+          this.kegiatans = data['pesan'];
+          this.ada = 1;
+        }
+        else {
+          this.ada = 2;
+        }
       }
     )
   }

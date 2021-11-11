@@ -62,5 +62,21 @@
     </div>
   </ion-grid>
 
+  <div *ngIf="(ada == 1)" class="ion-padding"> Kegiatan terdekat : </div>
+  <ion-card *ngFor="let k of kegiatans">
+    <ion-card-header>
+
+      <ion-badge color="primary" *ngIf="(k.jarak != 0)">{{k.jarak}} Hari lagi</ion-badge>
+      <ion-badge color="primary" *ngIf="(k.jarak == 0)">Hari ini</ion-badge>
+
+      <ion-card-subtitle style="color: primary;">{{k.jenis}}
+      </ion-card-subtitle>
+      <ion-card-title>{{k.nama}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Tanggal : {{k.tanggal | date:'dd MMMM yyyy'}}<br>
+      Pelaksana : {{k.pelaksana}}
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

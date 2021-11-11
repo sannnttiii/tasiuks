@@ -1,3 +1,5 @@
+import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { CallNumber } from '@ionic-native/call-number/ngx';
@@ -15,7 +17,7 @@ export class ChatPage implements OnInit {
   @ViewChild(IonContent, { static: true }) content: IonContent;
   messages: Observable<Message[]>
   newMsg = '';
-  constructor(private as: AuthService, private router: Router, private callNumber: CallNumber, private alertController: AlertController) { }
+  constructor(private as: AuthService, private datePipe: DatePipe, private http: HttpClient, private router: Router, private callNumber: CallNumber, private alertController: AlertController) { }
 
   ngOnInit() {
     this.messages = this.as.getChatMessages();
@@ -47,11 +49,35 @@ export class ChatPage implements OnInit {
     )
   }
   telp = '';
+  today;
+  formatted;
+  tglakhirkejadian;
+  kejadianid;
   async call() {
     this.callNumber.callNumber(this.telp, true)
       .then(res => console.log('Launched dialer!', res))
       .catch(err => console.log('Error launching dialer', err));
     console.log('Confirm call petugas.');
+
+    this.today = Date.now();
+    this.formatted = this.datePipe.transform(this.today, 'yyyy-MM-dd')
+    this.as.getLastKejadianSiswa(this.as.ortuIdDb).subscribe((data) => {
+      if (data['status']) {
+        this.tglakhirkejadian = this.datePipe.transform(data['pesan']['0']['tanggal'], 'yyyy-MM-dd');
+        this.kejadianid = data['pesan']['0']['id']
+        if (this.tglakhirkejadian == this.formatted) {
+          const formData = new FormData();
+          formData.append('catatan', 'Orang tua melakukan panggilan ke petugas UKS');
+          formData.append('kejadianid', this.kejadianid);
+
+          this.http.post("http://192.168.1.12/tasiuks/api/insertdetailkejadian.php", formData).subscribe(
+            (data) => {
+              console.log(data['pesan'])
+            });
+        }
+      }
+    })
+
   }
   sendMessage() {
     this.as.addChatMessage(this.newMsg, this.petugasToken).then(() => {

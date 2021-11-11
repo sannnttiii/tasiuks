@@ -210,6 +210,15 @@ export class AuthService {
     body = body.set('kejadianid', kejadianid);
     return this.http.post("http://192.168.1.12/tasiuks/api/getdetailkejadian.php", body);
   }
+  getLastKejadianSiswa(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://192.168.1.12/tasiuks/api/getlastkejadian.php", body);
+  }
+  getKegiatanTerdekat(): Observable<any> {
+    let body = new HttpParams();
+    return this.http.post("http://192.168.1.12/tasiuks/api/getkegiatanterdekat.php", body);
+  }
 
   //ORTU SERVICE
   updateTokenDeviceOrtu(token, id): Observable<any> {
@@ -314,10 +323,25 @@ export class AuthService {
     body = body.set('ortuid', ortuid);
     return this.http.post("http://192.168.1.12/tasiuks/api/getjumlahkejadian.php", body);
   }
-  getKegiatanOrtu(siswaid: number): Observable<any> {
+  getKegiatanOrtuAllAcc(ortuid: number): Observable<any> {
     let body = new HttpParams();
-    body = body.set('siswaid', siswaid);
-    return this.http.post("http://192.168.1.12/tasiuks/api/getkegiatanortu.php", body);
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://192.168.1.12/tasiuks/api/getkegiatanortuallacc.php", body);
+  }
+  getKegiatanOrtuAllNot(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://192.168.1.12/tasiuks/api/getkegiatanortuallnot.php", body);
+  }
+  getKegiatanOrtuKelasAcc(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://192.168.1.12/tasiuks/api/getkegiatanortukelasacc.php", body);
+  }
+  getKegiatanOrtuKelasNot(ortuid: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('ortuid', ortuid);
+    return this.http.post("http://192.168.1.12/tasiuks/api/getkegiatanortukelasnot.php", body);
   }
   getJumlahPesanOrtu(ortuid: number): Observable<any> {
     let body = new HttpParams();

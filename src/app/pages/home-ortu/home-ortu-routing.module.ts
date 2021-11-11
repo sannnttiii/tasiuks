@@ -49,7 +49,7 @@ const routes: Routes = [
     loadChildren: () => import('./editprofile/editprofile.module').then(m => m.EditprofilePageModule)
   },
   {
-    path: 'kegiatanuks/:idsiswa',
+    path: 'kegiatanuks',
     loadChildren: () => import('./kegiatanuks/kegiatanuks.module').then(m => m.KegiatanuksPageModule)
   },
   {

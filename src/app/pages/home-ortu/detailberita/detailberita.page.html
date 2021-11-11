@@ -19,8 +19,8 @@
           <!-- <li style="font-weight: bold;">{{d.kejadian}} </li> -->
           <li>
             Jam : {{d.jam | date:'H:mm'}}</li>
-          <p>Jenis Penanganan : {{d.penanganan}}</p>
-          <p>Ditangani oleh : {{d.ditangani}}</p>
+          <p *ngIf="(d.penanganan !='')">Jenis Penanganan : {{d.penanganan}}</p>
+          <p *ngIf="(d.ditangani !='')">Ditangani oleh : {{d.ditangani}}</p>
           <p>Catatan : {{d.catatan}}</p>
           <div *ngIf="(d.gambar !='' && d.gambar!='undefined')"><img
               src="http://192.168.1.12/tasiuks/api/images/{{d.gambar}}" /></div>
