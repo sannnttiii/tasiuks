@@ -25,7 +25,8 @@
           <ion-label>{{k.kelas}}</ion-label>
         </ion-item-divider>
         <div *ngFor="let s of siswaacc;">
-          <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
+          <ion-item *ngIf="(s.kelasid===k.id)"
+            routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}/{{s.tokendevice}}">
             <ion-label>{{s.nama}}</ion-label>
           </ion-item>
         </div>
@@ -54,7 +55,8 @@
           <ion-label>{{k.kelas}}</ion-label>
         </ion-item-divider>
         <div *ngFor="let s of siswaaccyet;">
-          <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
+          <ion-item *ngIf="(s.kelasid==k.id)"
+            routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}/{{s.tokendevice}}">
             <ion-label>{{s.nama}}</ion-label>
           </ion-item>
         </div>

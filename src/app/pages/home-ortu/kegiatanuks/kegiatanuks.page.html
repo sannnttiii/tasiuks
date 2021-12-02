@@ -5,7 +5,7 @@
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Kegiatan UKS</ion-title>
+    <ion-title>Jadwal Kegiatan UKS</ion-title>
   </ion-toolbar>
 
   <ion-card *ngFor="let k of allnot">
@@ -93,6 +93,17 @@
           </ion-col>
         </ion-row>
       </ion-grid> -->
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let n of nonperizinan">
+    <ion-card-header>
+      <ion-card-subtitle>{{n.jenis}}</ion-card-subtitle>
+      <ion-card-title>{{n.nama}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Tanggal : {{n.tanggal | date:'dd MMMM yyyy'}}<br>
+      Pelaksana : {{n.pelaksana}}
     </ion-card-content>
   </ion-card>
 </ion-content>

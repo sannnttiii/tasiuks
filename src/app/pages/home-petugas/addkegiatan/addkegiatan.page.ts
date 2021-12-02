@@ -109,8 +109,11 @@ export class AddkegiatanPage implements OnInit {
     }
     return datetime;
   }
+  arrdevice = []
+  tokendeviceortu = []
 
   save() {
+
     if (this.nama && this.tanggal && this.pelaksana && this.jenisid) {
       const formData = new FormData();
       formData.append('nama', this.nama);
@@ -122,11 +125,49 @@ export class AddkegiatanPage implements OnInit {
       formData.append('forall', this.forall.toString());
       formData.append('cbkelas', this.finalChecked.toString());
 
-      this.http.post("http://192.168.1.12/tasiuks/api/insertkegiatan.php", formData).subscribe(
+
+      this.http.post("http://192.168.18.221/tasiuks/api/insertkegiatan.php", formData).subscribe(
         (data) => {
           if (data['status']) {
+            if (this.perizinan == 1) {
+              this.as.listdevicekegiatan(this.forall, this.finalChecked).subscribe(
+                (data) => {
+                  if (data['status']) {
+                    this.tokendeviceortu = data['pesan'];
+                    this.arrdevice = this.tokendeviceortu.map(token => token.tokendevice);
+                    // console.log(this.arrdevice);
+
+                    var key = 'AAAAaL42s0U:APA91bEmjE6H-W95TsRvGw4s9L4iqtS6IFX3ZQ6_5uUeZofNeqS1oU2sHhaMAOyubZMUXBoQXPAsEq578zLNZ9EkKmJjLUT_0crb68EqrDON0mO7cZObrFc2JE3Ah8XyiJ2vfi5hgwZU';
+
+                    var notification = {
+                      'title': 'Konfirmasi Perizinan',
+                      'body': 'Anda memiliki perizinan kegiatan UKS yang harus dikonfirmasi.',
+                    };
+
+                    fetch('https://fcm.googleapis.com/fcm/send', {
+                      'method': 'POST',
+                      'headers': {
+                        'Authorization': 'key=' + key,
+                        'Content-Type': 'application/json'
+                      },
+                      'body': JSON.stringify({
+                        'notification': notification,
+                        'registration_ids': this.arrdevice
+                      })
+                    }).then(function (response) {
+                      console.log(response);
+                    }).catch(function (error) {
+                      console.error(error);
+                    })
+                  }
+                  else {
+                    this.toast(data['pesan'], 'danger');
+                  }
+                }
+              );
+            }
             this.toast(data['pesan'], 'success');
-            this.router.navigate(['/homepetugas/confirmperizinanpetugas'])
+            this.router.navigate(['/homepetugas/kegiatanuks'])
           }
           else {
             this.toast(data['pesan'], 'danger');

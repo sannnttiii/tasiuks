@@ -49,7 +49,7 @@ export class EditinfoPage implements OnInit {
       formData.append('keterangan', this.keterangan);
       formData.append('infoid', this.infoid);
 
-      this.http.post("http://192.168.1.12/tasiuks/api/updateinformasi.php", formData).subscribe(
+      this.http.post("http://192.168.18.221/tasiuks/api/updateinformasi.php", formData).subscribe(
         (data) => {
           console.log(this.file, this.judul, this.keterangan, this.infoid);
           if (data['status']) {
@@ -99,7 +99,7 @@ export class EditinfoPage implements OnInit {
       message: msg,
       color: status,
       position: 'bottom',
-      duration: 2000
+      duration: 5000
     })
     toast.present();
   }

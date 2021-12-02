@@ -17,11 +17,13 @@ export class KegiatanuksPage implements OnInit {
     this.listKegiatan2();
     this.listKegiatan3();
     this.listKegiatan4();
+    this.listKegiatan5();
   }
   allnot = []
   allacc = []
   kelasnot = []
   kelasacc = []
+  nonperizinan = []
   // siswaid = this.route.snapshot.params['idsiswa']
   ket = '';
   listKegiatan() {
@@ -65,6 +67,18 @@ export class KegiatanuksPage implements OnInit {
       (data) => {
         if (data['status']) {
           this.kelasnot = data['pesan'];
+        }
+        else {
+          console.log(data['pesan']);
+        }
+      }
+    )
+  }
+  listKegiatan5() {
+    this.as.getKegiatanOrtuNonPerizinan(this.as.ortuIdDb).subscribe(
+      (data) => {
+        if (data['status']) {
+          this.nonperizinan = data['pesan'];
         }
         else {
           console.log(data['pesan']);

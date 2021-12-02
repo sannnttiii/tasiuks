@@ -12,18 +12,19 @@
   <ion-list>
     <section>
       <ul *ngFor="let d of details">
-        <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
+        <div style="color:grey;padding-right: 10px;font-size: small;font-weight: bold;" class="ion-text-right">
           {{d.jam | date:'dd/MM/yyyy'}}
         </div>
         <div *ngIf="(d.kejadian !=null)">
           <!-- <li style="font-weight: bold;">{{d.kejadian}} </li> -->
           <li>
-            Jam : {{d.jam | date:'H:mm'}}</li>
+            <b>Jam : {{d.jam | date:'H:mm'}}</b>
+          </li>
           <p *ngIf="(d.penanganan !='')">Jenis Penanganan : {{d.penanganan}}</p>
           <p *ngIf="(d.ditangani !='')">Ditangani oleh : {{d.ditangani}}</p>
           <p>Catatan : {{d.catatan}}</p>
           <div *ngIf="(d.gambar !='' && d.gambar!='undefined')"><img
-              src="http://192.168.1.12/tasiuks/api/images/{{d.gambar}}" /></div>
+              src="http://192.168.18.221/tasiuks/api/images/{{d.gambar}}" /></div>
         </div>
       </ul>
     </section>

@@ -18,12 +18,13 @@
         <div *ngIf="(d.kejadian !=null)">
           <!-- <li style="font-weight: bold;">{{d.kejadian}} </li> -->
           <li>
-            Jam : {{d.jam | date:'H:mm'}}</li>
+            <b>Jam : {{d.jam | date:'H:mm'}}</b>
+          </li>
           <p *ngIf="(d.penanganan !='')">Jenis Penanganan : {{d.penanganan}}</p>
           <p *ngIf="(d.ditangani !='')">Ditangani oleh : {{d.ditangani}}</p>
           <p>Catatan : {{d.catatan}}</p>
           <div *ngIf="(d.gambar !='' && d.gambar!='undefined')"><img
-              src="http://192.168.1.12/tasiuks/api/images/{{d.gambar}}" /></div>
+              src="http://192.168.18.221/tasiuks/api/images/{{d.gambar}}" /></div>
         </div>
       </ul>
     </section>
@@ -32,7 +33,8 @@
     </div>
   </ion-list>
 
-  <ion-fab routerLink="/homepetugas/addberita/{{kejadianid}}" vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab routerLink="/homepetugas/addberita/{{kejadianid}}/{{ortudevice}}/{{siswaid}}" vertical="bottom"
+    horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

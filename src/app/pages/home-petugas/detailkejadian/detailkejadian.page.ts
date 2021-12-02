@@ -23,11 +23,14 @@ export class DetailkejadianPage implements OnInit {
   kejadians = []
   done2 = 0
   cbperiode2 = 0;
+  ortudevice;
   listDetailSiswa(siswaid) {
     this.as.listDetailSiswa(siswaid).subscribe(
       (data) => {
         if (data['status']) {
           this.siswa = data['pesan'];
+          this.ortudevice = data['pesan']['0']['tokendevice'];
+
         }
         else {
           console.log(data['pesan']);
@@ -42,7 +45,6 @@ export class DetailkejadianPage implements OnInit {
       }
     )
   }
-
   listKejadian(siswaid, periodeid) {
     this.as.listKejadian(siswaid, periodeid).subscribe(
       (data) => {

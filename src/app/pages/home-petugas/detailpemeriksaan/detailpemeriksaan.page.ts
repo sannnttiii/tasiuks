@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
-
 @Component({
   selector: 'app-detailpemeriksaan',
   templateUrl: './detailpemeriksaan.page.html',
@@ -25,11 +24,13 @@ export class DetailpemeriksaanPage implements OnInit {
   periodes = []
   kejadians = []
   done = 0
+  ortudevice;
   listDetailSiswa(siswaid) {
     this.as.listDetailSiswa(siswaid).subscribe(
       (data) => {
         if (data['status']) {
           this.siswa = data['pesan'];
+          this.ortudevice = data['pesan']['0']['tokendevice'];
         }
         else {
           console.log(data['pesan']);

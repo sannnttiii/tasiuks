@@ -1,7 +1,7 @@
 <ion-content>
 
   <ion-toolbar color="primary">
-    <ion-buttons slot="start" routerLink="/homepetugas/detailkejadian/{{siswaid}}">
+    <ion-buttons slot="start" routerLink="/homepetugas/detailberita/{{kejadianid}}/{{siswaid}}">
       <ion-button>
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
@@ -35,14 +35,15 @@
           <ion-input type="text" [(ngModel)]="catatan" name="catatan"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">Ambil Gambar</ion-label>
+          <ion-label position="stacked">Kirim Gambar</ion-label>
           <ion-input type="file" accept="image/*" [(ngModel)]="image" name="image" (change)="changeListener($event)">
           </ion-input>
         </ion-item>
         <ion-grid>
           <ion-row>
             <ion-col size="6">
-              <ion-button expand="block" fill="outline" routerLink="/homepetugas/detailkejadian/{{siswaid}}"
+              <ion-button expand="block" fill="outline"
+                routerLink="/homepetugas/detailberita/{{kejadianid}}/{{siswaid}}"
                 class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit" shape="round">
                 Batal
               </ion-button>

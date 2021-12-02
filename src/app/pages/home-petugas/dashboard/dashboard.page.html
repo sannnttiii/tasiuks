@@ -7,9 +7,9 @@
   <ion-grid>
     <div id='container'>
       <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'
-        routerLink="/homepetugas/confirmperizinanpetugas">
+        routerLink="/homepetugas/kegiatanuks">
         <ion-item-option color="transparancy" style="color: black;">
-          <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Perizinan
+          <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Kegiatan
         </ion-item-option>
         <h5 style="color: black; text-align:center;"><b>{{jumlahperizinan}}</b></h5>
         <p style="text-align: center;">Butuh Konfirmasi</p>
@@ -36,7 +36,7 @@
       <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'
         routerLink='/homepetugas/confirmpemeriksaan'>
         <ion-item-option color="transparancy" style="color: black;">
-          <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Pemeriksaan
+          <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Laporan
         </ion-item-option>
         <h5 style="color: black; text-align:center;"><b> {{jumlahpemeriksaan}} </b></h5>
         <p style="text-align: center;">Butuh Konfirmasi</p>
@@ -62,7 +62,7 @@
     </div>
   </ion-grid>
 
-  <div *ngIf="(ada == 1)" class="ion-padding"> Kegiatan terdekat : </div>
+  <span *ngIf="(ada == 1)" class="ion-padding"> Kegiatan terdekat : </span>
   <ion-card *ngFor="let k of kegiatans">
     <ion-card-header>
 

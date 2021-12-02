@@ -41,7 +41,8 @@
                 Waktu : {{k.tanggal | date:'H:mm'}}
               </ion-col>
               <ion-col size="6" class="ion-text-end">
-                <ion-button routerLink="/homepetugas/detailberita/{{k.id}}" fill="outline" shape="round" size="small">
+                <ion-button routerLink="/homepetugas/detailberita/{{k.id}}/{{siswaid}}" fill="outline" shape="round"
+                  size="small">
                   Detail
                 </ion-button>
               </ion-col>
@@ -58,7 +59,8 @@
 
   </ion-list>
 
-  <ion-fab routerLink="/homepetugas/addkejadian/{{siswaid}}" vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab routerLink="/homepetugas/addkejadian/{{siswaid}}/{{ortudevice}}" vertical="bottom" horizontal="end"
+    slot="fixed">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

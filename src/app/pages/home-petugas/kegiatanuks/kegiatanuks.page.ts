@@ -9,35 +9,20 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class KegiatanuksPage implements OnInit {
 
-  constructor(private as: AuthService, private toastr: ToastController,) {
-
-  }
+  constructor(private as: AuthService) { }
 
   ngOnInit() {
-    this.listKegiatan();
+    this.listKegiatan()
   }
 
   kegiatans = []
   listKegiatan() {
-    this.as.listKegiatan().subscribe(
+    this.as.listKegiatanPerizinanPetugas().subscribe(
       (data) => {
         if (data['status']) {
-          this.kegiatans = data['pesan'];
-        }
-        else {
-          this.toast(data['pesan'], 'warning');
+          this.kegiatans = data['pesan']
         }
       }
     )
-  }
-
-  async toast(msg, status) {
-    const toast = await this.toastr.create({
-      message: msg,
-      color: status,
-      position: 'bottom',
-      duration: 2000
-    })
-    toast.present();
   }
 }

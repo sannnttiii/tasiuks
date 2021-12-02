@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
               // console.log(this.as.petugasIdDb + "petugas id");
             }
 
+            this.toast('Login berhasil!', 'success')
 
           }
           else {
@@ -113,7 +114,7 @@ export class LoginComponent implements OnInit {
     PushNotifications.addListener(
       'pushNotificationReceived',
       async (notification: PushNotificationSchema) => {
-        alert('Push received: ' + JSON.stringify(notification.title));
+        // alert('Push received: ' + JSON.stringify(notification.title));
         if (JSON.stringify(notification.title) === '"Konfirmasi Perizinan"') {
           const alert = this.alertController.create({
             header: 'Konfirmasi Perizinan!',

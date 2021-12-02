@@ -68,7 +68,7 @@ export class DetailchatPage implements OnInit {
           formData.append('catatan', 'Petugas UKS melakukan panggilan ke orang tua');
           formData.append('kejadianid', this.kejadianid);
 
-          this.http.post("http://192.168.1.12/tasiuks/api/insertdetailkejadian.php", formData).subscribe(
+          this.http.post("http://192.168.18.221/tasiuks/api/insertdetailkejadian.php", formData).subscribe(
             (data) => {
               console.log(data['pesan'])
             });
@@ -90,7 +90,7 @@ export class DetailchatPage implements OnInit {
     var notification = {
       'title': 'Pesan Baru Diterima',
       'body': 'Anda mendapatkan pesan baru.',
-      'icon': 'https://rekreartive.com/wp-content/uploads/2019/04/Logo-UKS-Usaha-Kesehatan-Sekolah-Warna.png',
+      // 'icon': 'https://rekreartive.com/wp-content/uploads/2019/04/Logo-UKS-Usaha-Kesehatan-Sekolah-Warna.png',
       // 'click_action': 'FCM_PLUGIN_ACTIVITY'
     };
 

@@ -31,22 +31,22 @@
     <section>
       <ul *ngFor="let r of pemeriksaans">
         <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right"
-          *ngIf="(r.tinggi !=null && r.berat !=null)">
+          *ngIf="(r.tinggi !='' && r.berat !='')">
           {{r.tanggal | date:'dd/MM/yyyy'}}
         </div>
-        <div *ngIf="(r.tinggi !=null && r.berat !=null)">
+        <div *ngIf="(r.tinggi !='' && r.berat !='')">
           <li style="font-weight: bold;">Pemeriksaan Umum </li>
           <p style="font-size: 14px;">Tinggi Badan : {{r.tinggi}}</p>
           <p style="font-size: 14px;">Berat Badan : {{r.berat}}</p>
         </div>
 
 
-        <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right" *ngIf="(r.hasil !=null)">
+        <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right" *ngIf="(r.hasil !='')">
           {{r.tanggal | date:'dd/MM/yyyy'}}
         </div>
-        <div *ngIf="(r.hasil !=null)">
+        <div *ngIf="(r.hasil != '')">
           <li style="font-weight: bold;">Pemeriksaan Screening</li>
-          <p style="font-size: 14px;">{{r.hasil}} </p>
+          <p style="font-size: 14px;"> Hasil : {{r.hasil}} </p>
           <label style="font-size: 14px;">Catatan : {{r.catatan}}</label>
         </div>
       </ul>
@@ -59,7 +59,8 @@
 
   </ion-list>
 
-  <ion-fab routerLink="/homepetugas/addpemeriksaan/{{siswaid}}" vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab routerLink="/homepetugas/addpemeriksaan/{{siswaid}}/{{ortudevice}}" vertical="bottom" horizontal="end"
+    slot="fixed">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

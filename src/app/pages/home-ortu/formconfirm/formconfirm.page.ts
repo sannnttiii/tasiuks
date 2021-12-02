@@ -99,7 +99,7 @@ export class FormconfirmPage implements OnInit {
         (data) => {
           if (data['status']) {
             this.toast(data['pesan'], 'success');
-            this.router.navigate(['/homeortu/dashboard'])
+            this.router.navigate(['/homeortu/kegiatanuks'])
           }
           else {
             this.toast(data['pesan'], 'danger');
@@ -117,7 +117,7 @@ export class FormconfirmPage implements OnInit {
         formData.append('kelasajaranid', this.kelasid.toString());
         formData.append('periodeajaranid', this.periodid.toString());
 
-        this.http.post("http://192.168.1.12/tasiuks/api/updateperizinanortu.php", formData).subscribe(
+        this.http.post("http://192.168.18.221/tasiuks/api/updateperizinanortu.php", formData).subscribe(
           (data) => {
             console.log(this.alasan, this.file);
             if (data['status']) {
@@ -140,7 +140,7 @@ export class FormconfirmPage implements OnInit {
       message: msg,
       color: status,
       position: 'bottom',
-      duration: 2000
+      duration: 5000
     })
     toast.present();
   }

@@ -127,7 +127,7 @@ export class DashboardPage implements OnInit {
       this.toast('Tidak ada kegiatan yang perlu dikonfirmasi', 'warning')
     }
     else {
-      this.router.navigate(['/homeortu/confirmperizinanortu'])
+      this.router.navigate(['/homeortu/kegiatanuks'])
     }
   }
 

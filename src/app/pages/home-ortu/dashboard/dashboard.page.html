@@ -4,34 +4,28 @@
     <ion-title>Beranda</ion-title>
   </ion-toolbar>
 
-  <ion-grid>
+  <!-- <ion-grid>
     <div id='container'>
       <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);' (click)="confirmPerizinan()">
         <ion-item-option color="transparancy" style="color: black;">
-          <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Perizinan
+          <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Kegiatan
         </ion-item-option>
         <h5 style="color: black; text-align:center;"><b>{{totalJumPerizinan}}</b>
         </h5>
         <p style="text-align: center;">Butuh Konfirmasi</p>
       </ion-card>
-      <!-- #b8f4f8 -->
 
       <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'>
         <ion-item-option color="transparancy" style="color: black;">
-          <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Pemeriksaan
+          <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Laporan
         </ion-item-option>
         <h5 style="color: black; text-align:center;"><b>{{totalLaporan}}</b></h5>
         <p style="text-align: center;">Butuh Konfirmasi</p>
       </ion-card>
     </div>
-  </ion-grid>
-  <ion-card>
-    <ion-item>
-      <!-- <ion-icon name="calendar" slot="start"></ion-icon> -->
-      <ion-label>Jadwal Kegiatan UKS</ion-label>
-      <ion-icon name="arrow-forward" slot="end" routerLink="/homeortu/kegiatanuks"></ion-icon>
-    </ion-item>
-  </ion-card>
+  </ion-grid> -->
+
+  <!-- <div class="poster"> -->
   <ion-card *ngFor="let s of siswas">
     <ion-item>
       <ion-icon name="person" slot="start"></ion-icon>
@@ -41,12 +35,24 @@
 
     <ion-card-content>
       Rekam medis atau laporan pemeriksaan dan kejadian siswa.<br>
-      <!-- <ion-badge> 1 Butuh konfirmasi perizinan kegiatan </ion-badge>
-      <ion-badge color="warning"> 1 Butuh konfirmasi laporan </ion-badge> -->
+      <ion-badge color="warning" *ngIf="totalLaporan !=0" style="margin-top: 5px;"> {{totalLaporan}} Butuh konfirmasi
+        laporan </ion-badge>
     </ion-card-content>
   </ion-card>
 
-  <div *ngIf="(ada == 1)" class="ion-padding"> Kegiatan terdekat : </div>
+  <ion-card>
+    <ion-item>
+      <ion-icon name="calendar" slot="start"></ion-icon>
+      <ion-label>Jadwal Kegiatan UKS</ion-label>
+      <ion-icon name="arrow-forward" slot="end" routerLink="/homeortu/kegiatanuks"></ion-icon>
+    </ion-item>
+    <ion-card-content *ngIf="totalJumPerizinan !=0">
+      <ion-badge color="warning"> {{totalJumPerizinan}} Butuh konfirmasi perizinan
+      </ion-badge>
+    </ion-card-content>
+  </ion-card>
+
+  <span *ngIf="(ada == 1)" class="ion-padding"> Kegiatan terdekat : </span>
   <ion-card *ngFor="let k of kegiatans">
     <ion-card-header>
 
@@ -62,4 +68,7 @@
       Pelaksana : {{k.pelaksana}}
     </ion-card-content>
   </ion-card>
+
+  <!-- </div> -->
+
 </ion-content>

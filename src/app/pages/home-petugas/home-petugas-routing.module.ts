@@ -83,11 +83,11 @@ const routes: Routes = [
     loadChildren: () => import('./editkegiatan/editkegiatan.module').then(m => m.EditkegiatanPageModule)
   },
   {
-    path: 'addpemeriksaan/:idsiswa',
+    path: 'addpemeriksaan/:idsiswa/:ortutokendevice',
     loadChildren: () => import('./addpemeriksaan/addpemeriksaan.module').then(m => m.AddpemeriksaanPageModule)
   },
   {
-    path: 'addkejadian/:idsiswa',
+    path: 'addkejadian/:idsiswa/:ortutokendevice',
     loadChildren: () => import('./addkejadian/addkejadian.module').then(m => m.AddkejadianPageModule)
   },
   {
@@ -103,11 +103,11 @@ const routes: Routes = [
     loadChildren: () => import('./detailkejadian/detailkejadian.module').then(m => m.DetailkejadianPageModule)
   },
   {
-    path: 'detailberita/:idkejadian',
+    path: 'detailberita/:idkejadian/:idsiswa',
     loadChildren: () => import('./detailberita/detailberita.module').then(m => m.DetailberitaPageModule)
   },
   {
-    path: 'addberita/:idkejadian',
+    path: 'addberita/:idkejadian/:ortutokendevice/:idsiswa',
     loadChildren: () => import('./addberita/addberita.module').then(m => m.AddberitaPageModule)
   },
 

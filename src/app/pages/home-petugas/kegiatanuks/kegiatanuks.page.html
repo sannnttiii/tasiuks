@@ -5,15 +5,8 @@
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-
     <ion-title>Kegiatan UKS</ion-title>
   </ion-toolbar>
-
-  <ion-fab routerLink="/homepetugas/addkegiatan" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 
   <ion-card *ngFor="let k of kegiatans">
     <ion-card-header>
@@ -23,19 +16,35 @@
     <ion-card-content>
       Tanggal : {{k.tanggal | date:'dd MMMM yyyy'}}<br>
       Pelaksana : {{k.pelaksana}}
-      <ion-grid>
-        <ion-row>
-          <ion-col class="ion-text-center">
-            <form>
-              <ion-button routerLink="/homepetugas/editkegiatan/{{k.id}}" fill="outline" shape="round">
-                Ubah
+      <form *ngIf="(k.perizinan == 1)">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="ion-text-center">
+              <ion-button routerLink="/homepetugas/detailconfirm/{{k.id}}"
+                class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit" shape="round">
+                Cek Konfirmasi
               </ion-button>
-            </form>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+              <ion-button routerLink="/homepetugas/editkegiatan/{{k.id}}" fill="outline"
+                class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit" shape="round">
+                Ubah Kegiatan
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+      <form *ngIf="(k.perizinan == 0)">
+        <ion-button expand="block" fill="outline" routerLink="/homepetugas/editkegiatan/{{k.id}}"
+          class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit" shape="round">
+          Ubah Kegiatan
+        </ion-button>
+      </form>
     </ion-card-content>
   </ion-card>
+  <ion-fab routerLink="/homepetugas/addkegiatan" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <ion-item>
   </ion-item>
 </ion-content>

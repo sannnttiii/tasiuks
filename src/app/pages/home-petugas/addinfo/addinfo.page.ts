@@ -81,7 +81,7 @@ export class AddinfoPage implements OnInit {
       formData.append('forall', this.forall.toString());
       formData.append('cbkelas', this.finalChecked.toString());
 
-      this.http.post("http://192.168.1.12/tasiuks/api/insertinformasi.php", formData).subscribe(
+      this.http.post("http://192.168.18.221/tasiuks/api/insertinformasi.php", formData).subscribe(
         (data) => {
           console.log(this.file, this.judul, this.keterangan, this.petugasid, this.forall, this.finalChecked);
           if (data['status']) {
@@ -103,7 +103,7 @@ export class AddinfoPage implements OnInit {
       message: msg,
       color: status,
       position: 'bottom',
-      duration: 2000
+      duration: 3000
     })
     toast.present();
   }

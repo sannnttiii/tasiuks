@@ -1,7 +1,7 @@
 <ion-content>
 
   <ion-toolbar color="primary">
-    <ion-buttons slot="start" routerLink="/homepetugas/confirmperizinanpetugas">
+    <ion-buttons slot="start" routerLink="/homepetugas/kegiatanuks">
       <ion-button>
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
@@ -61,7 +61,8 @@
           <ion-label>{{k.kelas}}</ion-label>
         </ion-item-divider>
         <div *ngFor="let s of siswadeny;">
-          <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
+          <ion-item *ngIf="(s.kelasid==k.id)"
+            routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}/{{s.tokendevice}}">
             <ion-label>{{s.nama}}</ion-label>
           </ion-item>
         </div>
@@ -88,7 +89,8 @@
           <ion-label>{{k.kelas}}</ion-label>
         </ion-item-divider>
         <div *ngFor="let s of siswabelum;">
-          <ion-item *ngIf="(s.kelasid==k.id)" routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}">
+          <ion-item *ngIf="(s.kelasid==k.id)"
+            routerLink="/homepetugas/detailchat//{{s.ortutoken}}/{{s.ortuid}}/{{s.tokendevice}}">
             <ion-label>{{s.nama}}</ion-label>
           </ion-item>
         </div>

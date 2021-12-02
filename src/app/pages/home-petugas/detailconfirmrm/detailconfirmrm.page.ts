@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-detailconfirmrm',
@@ -31,6 +32,7 @@ export class DetailconfirmrmPage implements OnInit {
     this.as.listSiswaAccPemeriksaan().subscribe(
       (data) => {
         this.siswaacc = data['pesan'];
+
       }
     )
   }
@@ -43,6 +45,9 @@ export class DetailconfirmrmPage implements OnInit {
       (data) => {
         this.siswaaccyet = data['pesan'];
         this.tokendeviceortu = data['device'];
+        // this.tes();
+        // console.log(this.Obj3);
+
       }
     )
   }
@@ -76,5 +81,18 @@ export class DetailconfirmrmPage implements OnInit {
     })
   }
 
+  // Obj3;
+  // tes() {
+  //   this.Obj3 = _.differenceWith(this.siswaacc, this.siswaaccyet, function (o1, o2) {
+  //     return o1['id'] === o2['_id']
+  //   });
+  // }
+
+  // RemoveElementFromObjectArray(key: number) {
+  //   this.siswaacc.forEach((value, index) => {
+  //     if (value.nama == key) this.siswaacc.splice(index, 1);
+  //   });
+  // }
 
 }
+

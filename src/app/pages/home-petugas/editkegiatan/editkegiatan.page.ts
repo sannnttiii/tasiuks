@@ -72,6 +72,7 @@ export class EditkegiatanPage implements OnInit {
   }
 
   save() {
+
     if (this.nama && this.tanggal && this.pelaksana && this.jenisid) {
       const formData = new FormData();
       formData.append('nama', this.nama);
@@ -81,11 +82,11 @@ export class EditkegiatanPage implements OnInit {
       formData.append('petugasid', this.petugasid.toString());
       formData.append('kegiatanid', this.kegiatanid)
 
-      this.http.post("http://192.168.1.12/tasiuks/api/updatekegiatan.php", formData).subscribe(
+      this.http.post("http://192.168.18.221/tasiuks/api/updatekegiatan.php", formData).subscribe(
         (data) => {
           if (data['status']) {
             this.toast(data['pesan'], 'success');
-            this.router.navigate(['/homepetugas/confirmperizinanpetugas'])
+            this.router.navigate(['/homepetugas/kegiatanuks'])
           }
           else {
             this.toast(data['pesan'], 'danger');
@@ -112,7 +113,7 @@ export class EditkegiatanPage implements OnInit {
             async (data) => {
               if (data['status']) {
                 this.toast(data['pesan'], 'success')
-                this.router.navigate(['/homepetugas/confirmperizinanpetugas'])
+                this.router.navigate(['/homepetugas/kegiatanuks'])
 
               }
               else {
@@ -131,7 +132,7 @@ export class EditkegiatanPage implements OnInit {
       message: msg,
       color: status,
       position: 'bottom',
-      duration: 2000
+      duration: 5000
     })
     toast.present();
   }

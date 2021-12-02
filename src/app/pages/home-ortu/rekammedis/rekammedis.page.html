@@ -38,8 +38,8 @@
         </ion-select>
       </ion-item>
 
-      <section>
-        <ul *ngFor="let r of pemeriksaans">
+      <section *ngFor="let r of pemeriksaans">
+        <ul>
           <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right"
             *ngIf="(r.tinggi !=null && r.berat !=null)">
             {{r.tanggal | date:'dd/MM/yyyy'}}
@@ -49,35 +49,32 @@
             <p style="font-size: 14px;">Tinggi Badan : {{r.tinggi}}</p>
             <p style="font-size: 14px;">Berat Badan : {{r.berat}}</p>
           </div>
-
-
-          <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right" *ngIf="(r.hasil !=null)">
+          <div *ngIf="(r.hasil !='')" style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
             {{r.tanggal | date:'dd/MM/yyyy'}}
           </div>
-          <div *ngIf="(r.hasil !=null)">
+          <div *ngIf="(r.hasil !='')">
             <li style="font-weight: bold;">Pemeriksaan Screening</li>
             <p style="font-size: 14px;">{{r.hasil}} </p>
             <label style="font-size: 14px;">Catatan : {{r.catatan}}</label>
           </div>
+          <ion-grid>
+            <ion-row>
+              <ion-col class="ion-text-center">
+                <form>
+                  <ion-button *ngIf="(r.confirm == 0)" (click)="confirmpemeriksaan(r.id)" shape="round">
+                    Konfirmasi
+                  </ion-button>
+                </form>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ul>
-
-
       </section>
       <div *ngIf="cbperiode!=0 && done===2 && pemeriksaans.length ==0">
         <p style="text-align: center;">Tidak ada laporan pemeriksaan</p>
       </div>
 
-      <ion-grid>
-        <ion-row>
-          <ion-col class="ion-text-center">
-            <form *ngFor="let r of pemeriksaans">
-              <ion-button *ngIf="(r.confirm == 0)" (click)="confirmpemeriksaan(r.id)" shape="round">
-                Konfirmasi
-              </ion-button>
-            </form>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+
     </ion-list>
   </ng-container>
 
