@@ -29,8 +29,9 @@ export class EditprofilePage implements OnInit {
     formData.append('petugasid', this.petugasid.toString());
 
 
-    this.http.post("http://192.168.18.221/tasiuks/api/updateprofilepetugas.php", formData).subscribe((response: any) => {
+    this.http.post("http://192.168.1.6/tasiuks/api/updateprofilepetugas.php", formData).subscribe((response: any) => {
       if (response['status']) {
+        this.as.updateProfilFirebasePetugas(this.token, this.nama, this.telp);
         this.toast(response['pesan'], 'success');
         this.router.navigate(['/homepetugas/profile'])
       }
@@ -40,6 +41,7 @@ export class EditprofilePage implements OnInit {
     });
   }
 
+  token;
   petugas = []
   listDetailPetugas(petugasid) {
     this.as.listDetailPetugas(petugasid).subscribe(
@@ -49,6 +51,7 @@ export class EditprofilePage implements OnInit {
           this.nama = data['pesan'][0]['nama'];
           this.alamat = data['pesan'][0]['alamat'];
           this.telp = data['pesan'][0]['telp'];
+          this.token = data['pesan'][0]['token'];
         }
         else {
           console.log(data['pesan'])

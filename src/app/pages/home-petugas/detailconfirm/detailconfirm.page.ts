@@ -51,7 +51,7 @@ export class DetailconfirmPage implements OnInit {
 
   kelas = []
   listKelasAjaran() {
-    this.as.getListKelas().subscribe(
+    this.as.getListKelasPerizinan(this.kegiatanid).subscribe(
       (data) => {
         this.kelas = data;
       }

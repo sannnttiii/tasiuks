@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AddberitaPageRoutingModule } from './addberita-routing.module';
 
 import { AddberitaPage } from './addberita.page';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { AddberitaPage } from './addberita.page';
     IonicModule,
     AddberitaPageRoutingModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, Camera],
   declarations: [AddberitaPage]
 })
 export class AddberitaPageModule { }

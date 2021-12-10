@@ -35,9 +35,16 @@
           <ion-input type="text" [(ngModel)]="catatan" name="catatan"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">Kirim Gambar</ion-label>
+          <ion-label position="stacked">Upload gambar dari Galeri</ion-label>
           <ion-input type="file" accept="image/*" [(ngModel)]="image" name="image" (change)="changeListener($event)">
           </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Ambil gambar dari Kamera</ion-label>
+          <ion-img src="{{imgUrl}}">
+          </ion-img>
+          <ion-button (click)="ambilFoto()">
+            foto</ion-button>
         </ion-item>
         <ion-grid>
           <ion-row>

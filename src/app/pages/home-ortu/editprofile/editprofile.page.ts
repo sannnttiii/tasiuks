@@ -21,7 +21,7 @@ export class EditprofilePage implements OnInit {
   alamatIbu = ''
   telpAyah = ''
   telpIbu = ''
-
+  token = ''
   ngOnInit() {
     this.listDetailOrtu(this.ortuid)
   }
@@ -36,8 +36,9 @@ export class EditprofilePage implements OnInit {
     formData.append('id', this.ortuid.toString());
 
 
-    this.http.post("http://192.168.18.221/tasiuks/api/updateprofileortu.php", formData).subscribe((response: any) => {
+    this.http.post("http://192.168.1.6/tasiuks/api/updateprofileortu.php", formData).subscribe((response: any) => {
       if (response['status']) {
+        this.as.updateProfilFirebaseOrtu(this.token, this.telpIbu)
         this.toast(response['pesan'], 'success');
         this.router.navigate(['/homeortu/profile'])
       }
@@ -58,6 +59,7 @@ export class EditprofilePage implements OnInit {
           this.alamatIbu = data['pesan'][0]['alamatibu'];
           this.telpAyah = data['pesan'][0]['noayah'];
           this.telpIbu = data['pesan'][0]['noibu'];
+          this.token = data['pesan'][0]['token'];
         }
         else {
           console.log(data['pesan'])

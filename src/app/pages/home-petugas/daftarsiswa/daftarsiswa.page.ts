@@ -35,9 +35,18 @@ export class DaftarsiswaPage implements OnInit {
     // if the value is an empty string don't filter the items
     if (val && val.trim() !== '') {
       this.isItemAvailable = true;
-      this.items = this.items.filter((item) => {
-        return (item.namasiswa.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+      //cek karakter pertama
+      const pertama = val.charAt(0)
+      if (pertama <= '6' && pertama >= '1') {
+        this.items = this.items.filter((item) => {
+          return (item.kelas.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+      }
+      else {
+        this.items = this.items.filter((item) => {
+          return (item.namasiswa.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+      }
     } else {
       this.isItemAvailable = false;
     }

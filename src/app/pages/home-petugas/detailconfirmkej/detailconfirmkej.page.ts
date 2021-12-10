@@ -40,8 +40,14 @@ export class DetailconfirmkejPage implements OnInit {
   listSiswaAccYet() {
     this.as.listSiswaNotYetAccKejadian().subscribe(
       (data) => {
-        this.siswaaccyet = data['pesan'];
-        this.tokendeviceortu = data['device'];
+        if (data['status']) {
+
+          this.siswaaccyet = data['pesan'];
+          this.tokendeviceortu = data['device'];
+        }
+        else {
+          console.log(data['pesan'])
+        }
       }
     )
   }

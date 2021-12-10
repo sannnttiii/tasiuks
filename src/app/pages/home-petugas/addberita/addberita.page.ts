@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -12,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AddberitaPage implements OnInit {
 
-  constructor(public datepipe: DatePipe, private route: ActivatedRoute, private as: AuthService, private toastr: ToastController, private http: HttpClient, private router: Router) { }
+  constructor(public datepipe: DatePipe, private route: ActivatedRoute, public camera: Camera, private as: AuthService, private toastr: ToastController, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,9 +22,30 @@ export class AddberitaPage implements OnInit {
   siswaid = this.route.snapshot.params['idsiswa']
 
   file: File;
+  imgUrl;
   changeListener($event): void {
     this.file = $event.target.files[0];
   }
+  options: CameraOptions = {
+    quality: 10,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE,
+    sourceType: this.camera.PictureSourceType.CAMERA,
+    saveToPhotoAlbum: true
+  };
+  ambilFoto() {
+    this.camera.getPicture(this.options).then(
+      (imageData) => {
+        let base64Image = 'data:image/jpeg;base64,' + imageData;
+        this.imgUrl = base64Image;
+      }
+      , (err) => {
+        alert(err)
+      }
+    );
+  }
+
   onChangeDate(event) {
     // console.log(event.target.value)
     // console.log(this.transformDate(event.target.value))
@@ -49,8 +71,10 @@ export class AddberitaPage implements OnInit {
     formData.append('catatan', this.catatan);
     formData.append('tanggal', this.tanggal);
     formData.append('kejadianid', this.kejadianid);
+    formData.append('foto', this.imgUrl);
 
-    this.http.post("http://192.168.18.221/tasiuks/api/insertdetailkejadian.php", formData).subscribe(
+
+    this.http.post("http://192.168.1.6/tasiuks/api/insertdetailkejadian.php", formData).subscribe(
       (data) => {
         if (data['status']) {
           var key = 'AAAAaL42s0U:APA91bEmjE6H-W95TsRvGw4s9L4iqtS6IFX3ZQ6_5uUeZofNeqS1oU2sHhaMAOyubZMUXBoQXPAsEq578zLNZ9EkKmJjLUT_0crb68EqrDON0mO7cZObrFc2JE3Ah8XyiJ2vfi5hgwZU';

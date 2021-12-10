@@ -8,6 +8,14 @@
     <ion-title>Jadwal Kegiatan UKS</ion-title>
   </ion-toolbar>
 
+  <ion-item>
+    <ion-label>Filter : </ion-label>
+    <ion-select [(ngModel)]="cbket" (ionChange)="cbChanged()" placeholder="Semua">
+      <ion-select-option value="0">Semua</ion-select-option>
+      <ion-select-option value="1">Butuh Konfirmasi</ion-select-option>
+    </ion-select>
+  </ion-item>
+
   <ion-card *ngFor="let k of allnot">
     <ion-card-header>
       <ion-card-subtitle>{{k.jenis}}</ion-card-subtitle>

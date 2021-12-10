@@ -13,11 +13,8 @@ export class KegiatanuksPage implements OnInit {
   constructor(private as: AuthService, private toastr: ToastController, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.listKegiatan();
-    this.listKegiatan2();
-    this.listKegiatan3();
-    this.listKegiatan4();
-    this.listKegiatan5();
+    this.cbket = 0
+    this.cbChanged()
   }
   allnot = []
   allacc = []
@@ -37,6 +34,23 @@ export class KegiatanuksPage implements OnInit {
         }
       }
     )
+  }
+  cbket;
+  cbChanged() {
+    if (this.cbket == 0) {
+      this.listKegiatan();
+      this.listKegiatan2();
+      this.listKegiatan3();
+      this.listKegiatan4();
+      this.listKegiatan5();
+    }
+    if (this.cbket == 1) {
+      this.allacc = []
+      this.kelasacc = []
+      this.nonperizinan = []
+      this.listKegiatan2();
+      this.listKegiatan4();
+    }
   }
   listKegiatan2() {
     this.as.getKegiatanOrtuAllNot(this.as.ortuIdDb).subscribe(
