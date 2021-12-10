@@ -10,13 +10,12 @@
   </ion-toolbar>
 
   <ion-list>
-    <section>
+    <!-- <section>
       <ul *ngFor="let d of details">
         <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
           {{d.jam | date:'dd/MM/yyyy'}}
         </div>
         <div *ngIf="(d.kejadian !=null)">
-          <!-- <li style="font-weight: bold;">{{d.kejadian}} </li> -->
           <li>
             <b>Jam : {{d.jam | date:'H:mm'}}</b>
           </li>
@@ -27,7 +26,29 @@
               src="http://192.168.1.6/tasiuks/api/images/{{d.gambar}}" /></div>
         </div>
       </ul>
-    </section>
+    </section> -->
+    <ion-card *ngFor="let d of details">
+      <ion-item>
+        <ion-label style="font-weight: bold; color: black;">Jam : {{d.jam | date:'H:mm'}}
+        </ion-label>
+        <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
+          {{d.tanggal | date:'dd/MM/yyyy'}}
+        </div>
+
+      </ion-item>
+      <ion-card-content>
+        <div *ngIf="(d.kejadian !=null)">
+          <p style="font-size: 12px; color: black;" *ngIf="(d.penanganan !='')">Jenis Penanganan :
+            {{d.penanganan}}</p>
+          <p style="font-size: 12px; color: black;margin-top: 8px;" *ngIf="(d.ditangani !='')">Ditangani oleh :
+            {{d.ditangani}}</p>
+          <p style="font-size: 12px; color: black;margin-top: 8px;" *ngIf="(d.catatan !='')">Catatan : {{d.catatan}}</p>
+          <div *ngIf="(d.gambar !='' && d.gambar!='undefined')" style="margin-top: 8px;"><img
+              src="http://192.168.1.6/tasiuks/api/images/{{d.gambar}}" /></div>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
     <div *ngIf=" done===2 &&details.length ==0">
       <p style="text-align: center;">Tidak ada Detail kejadian</p>
     </div>

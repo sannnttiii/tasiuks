@@ -77,9 +77,9 @@ export class DashboardPage implements OnInit {
     this.as.getJumlahPemeriksaan(ortuid).subscribe(
       (data) => {
         if (data['status']) {
-          this.jumPemeriksaan = data['pesan'][0]['jumlah'];
+          this.jumPemeriksaan = Number(data['pesan'][0]['jumlah']);
           if (this.jumPemeriksaan != 0) {
-            this.totalLaporan = this.totalLaporan + 1;
+            this.totalLaporan = this.totalLaporan + this.jumPemeriksaan;
           }
 
         }
@@ -93,9 +93,9 @@ export class DashboardPage implements OnInit {
     this.as.getJumlahKejadian(ortuid).subscribe(
       (data) => {
         if (data['status']) {
-          this.jumKejadian = data['pesan'][0]['jumlah'];
+          this.jumKejadian = Number(data['pesan'][0]['jumlah']);
           if (this.jumKejadian != 0) {
-            this.totalLaporan = this.totalLaporan + 1;
+            this.totalLaporan = this.totalLaporan + this.jumKejadian;
           }
 
         }

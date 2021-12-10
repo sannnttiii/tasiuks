@@ -38,7 +38,7 @@
         </ion-select>
       </ion-item>
 
-      <section *ngFor="let r of pemeriksaans">
+      <!-- <section *ngFor="let r of pemeriksaans">
         <ul>
           <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right"
             *ngIf="(r.tinggi !=null && r.berat !=null)">
@@ -69,7 +69,40 @@
             </ion-row>
           </ion-grid>
         </ul>
-      </section>
+      </section> -->
+      <ion-card *ngFor="let r of pemeriksaans">
+        <ion-card-content>
+          <div *ngIf="(r.tinggi !='' && r.berat !='')">
+            <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right"
+              *ngIf="(r.tinggi !='' && r.berat !='')">
+              {{r.tanggal | date:'dd/MM/yyyy'}}
+            </div>
+            <ion-label style="font-weight: bold; color: black;" *ngIf="(r.tinggi !='' && r.berat !='')">Pemeriksaan Umum
+            </ion-label>
+
+            <p style="font-size: 12px; color: black; margin-top: 8px;">Tinggi Badan : {{r.tinggi}}</p>
+            <p style="font-size: 12px; color: black;margin-top: 8px;">Berat Badan : {{r.berat}}</p>
+          </div>
+          <br>
+          <div *ngIf="(r.hasil != '')">
+            <ion-label style="font-weight: bold; color: black;">Pemeriksaan Screening </ion-label>
+            <p style="font-size: 12px; color: black;margin-top: 8px;">Hasil : {{r.hasil}}</p>
+            <p style="font-size: 12px; color: black;margin-top: 8px;">Catatan : {{r.catatan}}</p>
+          </div>
+        </ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="ion-text-center">
+              <form>
+                <ion-button *ngIf="(r.confirm == 0)" (click)="confirmpemeriksaan(r.id)" shape="round">
+                  Konfirmasi
+                </ion-button>
+              </form>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
       <div *ngIf="cbperiode!=0 && done===2 && pemeriksaans.length ==0">
         <p style="text-align: center;">Tidak ada laporan pemeriksaan</p>
       </div>
@@ -87,7 +120,7 @@
         </ion-select>
       </ion-item>
 
-      <section *ngFor="let k of kejadians">
+      <!-- <section *ngFor="let k of kejadians">
         <ul>
           <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
             {{k.tanggal | date:'dd/MM/yyyy'}}
@@ -120,7 +153,29 @@
             </ion-grid>
           </div>
         </ul>
-      </section>
+      </section> -->
+      <ion-card *ngFor="let k of kejadians">
+        <ion-item>
+          <ion-label style="font-weight: bold;">{{k.kejadian}} </ion-label>
+          <ion-button fill="outline" slot="end" routerLink="/homeortu/detailberita/{{k.id}}/{{siswaid}}">Detail
+          </ion-button>
+        </ion-item>
+
+        <ion-card-content>
+          {{k.tanggal | date:'dd/MM/yyyy'}} - {{k.tanggal | date:'H:mm'}}
+        </ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="ion-text-center">
+              <form>
+                <ion-button *ngIf="(k.confirm == 0)" (click)="confirmkejadian(k.id)" shape="round">
+                  Konfirmasi
+                </ion-button>
+              </form>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
       <div *ngIf="cbperiode2!=0 && done2===2 &&kejadians.length ==0">
         <p style="text-align: center;">Tidak ada laporan kejadian</p>
       </div>

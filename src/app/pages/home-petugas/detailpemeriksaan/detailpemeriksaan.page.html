@@ -28,7 +28,7 @@
       </ion-select>
     </ion-item>
 
-    <section>
+    <!-- <section>
       <ul *ngFor="let r of pemeriksaans">
         <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right"
           *ngIf="(r.tinggi !='' && r.berat !='')">
@@ -52,7 +52,30 @@
       </ul>
 
 
-    </section>
+    </section> -->
+
+    <ion-card *ngFor="let r of pemeriksaans">
+      <ion-card-content>
+        <div *ngIf="(r.tinggi !='' && r.berat !='')">
+          <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right"
+            *ngIf="(r.tinggi !='' && r.berat !='')">
+            {{r.tanggal | date:'dd/MM/yyyy'}}
+          </div>
+          <ion-label style="font-weight: bold; color: black;" *ngIf="(r.tinggi !='' && r.berat !='')">Pemeriksaan Umum
+          </ion-label>
+
+          <p style="font-size: 12px; color: black; margin-top: 8px;">Tinggi Badan : {{r.tinggi}}</p>
+          <p style="font-size: 12px; color: black;margin-top: 8px;">Berat Badan : {{r.berat}}</p>
+        </div>
+        <br>
+        <div *ngIf="(r.hasil != '')">
+          <ion-label style="font-weight: bold; color: black;">Pemeriksaan Screening </ion-label>
+          <p style="font-size: 12px; color: black;margin-top: 8px;">Hasil : {{r.hasil}}</p>
+          <p style="font-size: 12px; color: black;margin-top: 8px;">Catatan : {{r.catatan}}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
     <div *ngIf="cbperiode!=0 && done===2 && pemeriksaans.length ==0">
       <p style="text-align: center;">Tidak ada laporan pemeriksaan</p>
     </div>

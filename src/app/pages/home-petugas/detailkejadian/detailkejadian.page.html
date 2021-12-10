@@ -28,7 +28,7 @@
       </ion-select>
     </ion-item>
 
-    <section>
+    <!-- <section>
       <ul *ngFor="let k of kejadians">
         <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right">
           {{k.tanggal | date:'dd/MM/yyyy'}}
@@ -51,7 +51,19 @@
 
         </div>
       </ul>
-    </section>
+    </section> -->
+    <ion-card *ngFor="let k of kejadians">
+      <ion-item>
+        <ion-label style="font-weight: bold;">{{k.kejadian}} </ion-label>
+        <ion-button fill="outline" slot="end" routerLink="/homepetugas/detailberita/{{k.id}}/{{siswaid}}">Detail
+        </ion-button>
+      </ion-item>
+
+      <ion-card-content>
+        {{k.tanggal | date:'dd/MM/yyyy'}} - {{k.tanggal | date:'H:mm'}}
+      </ion-card-content>
+    </ion-card>
+
     <div *ngIf="cbperiode2!=0 && done2===2 &&kejadians.length ==0">
       <p style="text-align: center;">Tidak ada laporan kejadian</p>
     </div>
