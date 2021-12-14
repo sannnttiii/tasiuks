@@ -11,12 +11,23 @@ import { AuthService } from 'src/app/services/auth.service';
 export class DetailkejadianPage implements OnInit {
 
   constructor(public route: ActivatedRoute, private router: Router, private as: AuthService, private toastr: ToastController) { }
-
+  periodeid = 0;
+  defaultPeriode: string;
   siswaid = this.route.snapshot.params['idsiswa']
   ngOnInit() {
     this.listDetailSiswa(this.siswaid)
     this.listPeriode2(this.siswaid);
-
+    this.DefaultPeriodeAktif();
+  }
+  DefaultPeriodeAktif() {
+    this.as.getPeriodeAktif().subscribe(
+      (data) => {
+        this.periodeid = data['pesan']['0']['id'];
+        this.defaultPeriode = data['pesan']['0']['periode'];
+        // console.log(this.periodeid);
+        this.listKejadian(this.siswaid, this.periodeid);
+      }
+    )
   }
   siswa = []
   periodes2 = []

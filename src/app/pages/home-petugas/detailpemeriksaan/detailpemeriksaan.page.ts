@@ -11,14 +11,26 @@ export class DetailpemeriksaanPage implements OnInit {
 
   constructor(public route: ActivatedRoute, private router: Router, private as: AuthService, private toastr: ToastController,) {
   }
+
   cbperiode = 0;
+  periodeid = 0;
+  defaultPeriode: string;
   siswaid = this.route.snapshot.params['idsiswa']
   ngOnInit() {
     this.listDetailSiswa(this.siswaid)
     this.listPeriode(this.siswaid);
-
+    this.DefaultPeriodeAktif();
   }
-
+  DefaultPeriodeAktif() {
+    this.as.getPeriodeAktif().subscribe(
+      (data) => {
+        this.periodeid = data['pesan']['0']['id'];
+        this.defaultPeriode = data['pesan']['0']['periode'];
+        // console.log(this.periodeid);
+        this.listPemeriksaan(this.siswaid, this.periodeid);
+      }
+    )
+  }
   pemeriksaans = []
   siswa = []
   periodes = []
@@ -39,6 +51,7 @@ export class DetailpemeriksaanPage implements OnInit {
       }
     )
   }
+
   listPeriode(siswaid) {
     this.as.listPeriodeSiswa(siswaid).subscribe(
       (data) => {

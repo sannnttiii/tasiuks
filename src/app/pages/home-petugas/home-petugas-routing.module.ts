@@ -110,6 +110,10 @@ const routes: Routes = [
     path: 'addberita/:idkejadian/:ortutokendevice/:idsiswa',
     loadChildren: () => import('./addberita/addberita.module').then(m => m.AddberitaPageModule)
   },
+  {
+    path: 'editpemeriksaan/:idpemeriksaan/:idsiswa',
+    loadChildren: () => import('./editpemeriksaan/editpemeriksaan.module').then(m => m.EditpemeriksaanPageModule)
+  },
 
 ];
 

@@ -19,6 +19,7 @@ export class AddkegiatanPage implements OnInit {
     this.listKelas();
     this.listJenis();
   }
+  myDate: String = new Date().toISOString();
   petugasid = this.as.petugasIdDb;
   nama = ''
   pelaksana = ''

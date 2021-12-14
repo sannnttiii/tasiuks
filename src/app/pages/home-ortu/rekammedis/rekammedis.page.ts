@@ -16,14 +16,26 @@ export class RekammedisPage implements OnInit {
   }
   cbperiode = 0;
   cbperiode2 = 0;
+  periodeid = 0;
+  defaultPeriode: string;
   siswaid = this.route.snapshot.params['idsiswa']
   ngOnInit() {
     this.listDetailSiswa(this.siswaid)
     this.listPeriode(this.siswaid);
     this.listPeriode2(this.siswaid);
-
+    this.DefaultPeriodeAktif();
   }
-
+  DefaultPeriodeAktif() {
+    this.as.getPeriodeAktif().subscribe(
+      (data) => {
+        this.periodeid = data['pesan']['0']['id'];
+        this.defaultPeriode = data['pesan']['0']['periode'];
+        // console.log(this.periodeid);
+        this.listKejadian(this.siswaid, this.periodeid);
+        this.listPemeriksaan(this.siswaid, this.periodeid);
+      }
+    )
+  }
   pemeriksaans = []
   siswa = []
   periodes = []

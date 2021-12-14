@@ -23,7 +23,7 @@
   <ion-list>
     <ion-item>
       <ion-label>Periode Ajaran</ion-label>
-      <ion-select [(ngModel)]="cbperiode2" (ionChange)="cbChanged2()" placeholder="Pilih periode">
+      <ion-select [(ngModel)]="cbperiode2" (ionChange)="cbChanged2()" placeholder="{{defaultPeriode}}">
         <ion-select-option *ngFor="let p of periodes2" value="{{p.id}}">{{p.periode}}</ion-select-option>
       </ion-select>
     </ion-item>

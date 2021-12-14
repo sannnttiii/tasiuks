@@ -97,7 +97,14 @@ export class AddinfoPage implements OnInit {
       this.toast('Harap isi form dengan lengkap', 'warning');
     }
   }
-
+  godrive(url) {
+    //jika ada http langsung kalau gaada yauda tambahin
+    if (url.substring(0, 7) == "http://" || url.substring(0, 8) == "https://") {
+      window.open(url, "_system", "location=yes");
+    } else {
+      window.open("http://" + url, "_system", "location=yes");
+    }
+  }
   async toast(msg, status) {
     const toast = await this.toastr.create({
       message: msg,

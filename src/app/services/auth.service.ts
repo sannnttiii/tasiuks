@@ -90,7 +90,10 @@ export class AuthService {
   getPetugasAktif(): Observable<any> {
     return this.http.get("http://192.168.1.6/tasiuks/api/getPetugasAktif.php");
   }
+  getPeriodeAktif(): Observable<any> {
+    return this.http.get("http://192.168.1.6/tasiuks/api/getPeriodeAktif.php");
 
+  }
   //PETUGAS SERVICE
   updateTokenDevicePetugas(token, id): Observable<any> {
     let body = new HttpParams();
@@ -122,6 +125,11 @@ export class AuthService {
     let body = new HttpParams();
     body = body.set('infoid', infoid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getdetailinfo.php", body);
+  }
+  listDetailPemeriksaan(id): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('id', id);
+    return this.http.post("http://192.168.1.6/tasiuks/api/getdetailpemeriksaan.php", body);
   }
   listDetailPetugas(petugasid: number): Observable<any> {
     let body = new HttpParams();

@@ -16,6 +16,8 @@ export class AddkejadianPage implements OnInit {
 
   ngOnInit() {
   }
+  myDate: String = new Date().toISOString();
+
   siswaid = this.route.snapshot.params['idsiswa'];
   tanggal;
   kejadian = ''

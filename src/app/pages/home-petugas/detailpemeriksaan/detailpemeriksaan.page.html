@@ -23,7 +23,7 @@
   <ion-list>
     <ion-item>
       <ion-label>Periode Ajaran</ion-label>
-      <ion-select [(ngModel)]="cbperiode" (ionChange)="cbChanged()" placeholder="Pilih periode">
+      <ion-select [(ngModel)]="cbperiode" (ionChange)="cbChanged()" placeholder="{{defaultPeriode}}">
         <ion-select-option *ngFor="let p of periodes" value="{{p.id}}">{{p.periode}}</ion-select-option>
       </ion-select>
     </ion-item>
@@ -57,9 +57,13 @@
     <ion-card *ngFor="let r of pemeriksaans">
       <ion-card-content>
         <div *ngIf="(r.tinggi !='' && r.berat !='')">
-          <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right"
-            *ngIf="(r.tinggi !='' && r.berat !='')">
-            {{r.tanggal | date:'dd/MM/yyyy'}}
+          <div>
+            <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right"
+              *ngIf="(r.tinggi !='' && r.berat !='')">
+              {{r.tanggal | date:'dd/MM/yyyy'}}
+            </div>
+
+
           </div>
           <ion-label style="font-weight: bold; color: black;" *ngIf="(r.tinggi !='' && r.berat !='')">Pemeriksaan Umum
           </ion-label>
@@ -73,6 +77,19 @@
           <p style="font-size: 12px; color: black;margin-top: 8px;">Hasil : {{r.hasil}}</p>
           <p style="font-size: 12px; color: black;margin-top: 8px;">Catatan : {{r.catatan}}</p>
         </div>
+        <form>
+          <ion-grid>
+            <ion-row>
+              <ion-col class="ion-text-center">
+                <ion-button routerLink="/homepetugas/editpemeriksaan/{{r.id}}/{{siswaid}}"
+                  class="ion-margin-start ion-margin-end ion-margin-bottom" fill="outline" size="small" type="submit"
+                  shape="round">
+                  Ubah
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </form>
       </ion-card-content>
     </ion-card>
 

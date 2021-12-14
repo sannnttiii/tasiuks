@@ -17,6 +17,7 @@ export class AddberitaPage implements OnInit {
 
   ngOnInit() {
   }
+  myDate: String = new Date().toISOString();
   kejadianid = this.route.snapshot.params['idkejadian']
   ortuDevice = this.route.snapshot.params['ortutokendevice'];
   siswaid = this.route.snapshot.params['idsiswa']
