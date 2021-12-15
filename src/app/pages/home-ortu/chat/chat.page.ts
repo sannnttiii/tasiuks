@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { AlertController, IonContent } from '@ionic/angular';
 import { Observable } from 'rxjs';
@@ -16,8 +16,9 @@ export class ChatPage implements OnInit {
 
   @ViewChild(IonContent, { static: true }) content: IonContent;
   messages: Observable<Message[]>
+  ket = this.route.snapshot.params['keterangan'] ? "#" + this.route.snapshot.params['keterangan'] + ": " : '';
   newMsg = '';
-  constructor(private as: AuthService, private datePipe: DatePipe, private http: HttpClient, private router: Router, private callNumber: CallNumber, private alertController: AlertController) { }
+  constructor(private as: AuthService, private datePipe: DatePipe, private http: HttpClient, private router: Router, private callNumber: CallNumber, private route: ActivatedRoute, private alertController: AlertController) { }
 
   ngOnInit() {
     this.messages = this.as.getChatMessages();
@@ -80,11 +81,14 @@ export class ChatPage implements OnInit {
 
   }
   sendMessage() {
+    this.newMsg = this.ket + this.newMsg
     this.as.addChatMessage(this.newMsg, this.petugasToken).then(() => {
       this.newMsg = '';
       this.content.scrollToBottom();
     })
     this.sendMessageDb(this.newMsg)
+
+    this.ket && this.router.navigate(['/homeortu/chat']);
 
     var key = 'AAAAaL42s0U:APA91bEmjE6H-W95TsRvGw4s9L4iqtS6IFX3ZQ6_5uUeZofNeqS1oU2sHhaMAOyubZMUXBoQXPAsEq578zLNZ9EkKmJjLUT_0crb68EqrDON0mO7cZObrFc2JE3Ah8XyiJ2vfi5hgwZU';
 
@@ -111,6 +115,7 @@ export class ChatPage implements OnInit {
     }).catch(function (error) {
       console.error(error);
     })
+
   }
 
   sendMessageDb(msg) {

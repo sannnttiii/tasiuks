@@ -41,7 +41,6 @@ export class DetailconfirmkejPage implements OnInit {
     this.as.listSiswaNotYetAccKejadian().subscribe(
       (data) => {
         if (data['status']) {
-
           this.siswaaccyet = data['pesan'];
           this.tokendeviceortu = data['device'];
         }

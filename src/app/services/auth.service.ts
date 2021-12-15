@@ -342,9 +342,9 @@ export class AuthService {
     body = body.set('siswaid', siswaid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getjumlahpemeriksaan.php", body);
   }
-  getJumlahKejadian(ortuid: number): Observable<any> {
+  getJumlahKejadian(siswaid: number): Observable<any> {
     let body = new HttpParams();
-    body = body.set('ortuid', ortuid);
+    body = body.set('siswaid', siswaid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getjumlahkejadian.php", body);
   }
   getKegiatanOrtuAllAcc(siswaid: number): Observable<any> {

@@ -31,6 +31,7 @@ export class DaftarsiswaPage implements OnInit {
 
     // set val to the value of the searchbar
     const val = ev.target.value;
+    // var searchText = this.items['namasiswa'] + " " + this.items['ibu']
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() !== '') {
@@ -42,9 +43,11 @@ export class DaftarsiswaPage implements OnInit {
           return (item.kelas.toLowerCase().indexOf(val.toLowerCase()) > -1);
         })
       }
+
       else {
         this.items = this.items.filter((item) => {
-          return (item.namasiswa.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          var searchTxt = item.namasiswa + item.ibu
+          return (searchTxt.toLowerCase().includes(val.toLowerCase()));
         })
       }
     } else {

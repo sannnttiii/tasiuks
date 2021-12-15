@@ -63,14 +63,15 @@
     <ion-card *ngFor="let r of pemeriksaans">
       <ion-card-content>
         <div *ngIf="(r.tinggi !='' && r.berat !='')">
-          <div>
-            <div style="color:grey;padding-right: 10px;font-size: small;" class="ion-text-right"
-              *ngIf="(r.tinggi !='' && r.berat !='')">
+          <ion-row style="font-size: 12px;">
+            <ion-col>
+              #L-ID{{r.id}}
+            </ion-col>
+            <ion-col class="ion-text-right">
               {{r.tanggal | date:'dd/MM/yyyy'}}
-            </div>
+            </ion-col>
 
-
-          </div>
+          </ion-row>
           <ion-label style="font-weight: bold; color: black;" *ngIf="(r.tinggi !='' && r.berat !='')">Pemeriksaan Umum
           </ion-label>
 

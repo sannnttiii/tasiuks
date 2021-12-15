@@ -33,6 +33,10 @@ const routes: Routes = [
     loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule)
   },
   {
+    path: 'chat/:keterangan',
+    loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule)
+  },
+  {
     path: 'rekammedis/:idsiswa',
     loadChildren: () => import('./rekammedis/rekammedis.module').then(m => m.RekammedisPageModule)
   },

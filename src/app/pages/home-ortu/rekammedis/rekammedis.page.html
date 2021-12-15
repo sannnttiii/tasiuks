@@ -102,7 +102,7 @@
               <ion-button *ngIf="(r.confirm == 0)" (click)="confirmpemeriksaan(r.id)" shape="round">
                 Konfirmasi
               </ion-button><br>
-              <ion-button size="small" routerLink="/homeortu/chat" fill="outline" shape="round">
+              <ion-button size="small" routerLink="/homeortu/chat/L-ID{{r.id}}" fill="outline" shape="round">
                 Tanya petugas
               </ion-button>
             </ion-col>
@@ -177,6 +177,9 @@
               <form>
                 <ion-button *ngIf="(k.confirm == 0)" (click)="confirmkejadian(k.id)" shape="round">
                   Konfirmasi
+                </ion-button><br>
+                <ion-button size="small" routerLink="/homeortu/chat/K-ID{{k.id}}" fill="outline" shape="round">
+                  Tanya petugas
                 </ion-button>
               </form>
             </ion-col>
