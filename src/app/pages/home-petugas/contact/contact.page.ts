@@ -42,7 +42,8 @@ export class ContactPage implements OnInit {
       }
       else {
         this.items = this.items.filter((item) => {
-          return (item.namasiswa.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          var searchTxt = item.namasiswa + item.ibu
+          return (searchTxt.toLowerCase().includes(val.toLowerCase()));
         })
       }
     }

@@ -107,7 +107,7 @@ export class FormconfirmPage implements OnInit {
         });
     }
     else if (this.acc = 'tidak') {
-      if (this.file && this.alasan) {
+      if (this.alasan) {
         const formData = new FormData();
         formData.append('image', this.file);
         formData.append('alasan', this.alasan);

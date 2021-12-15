@@ -9,7 +9,7 @@
     <ion-title>Kontak</ion-title>
   </ion-toolbar>
 
-  <ion-searchbar type="text" debounce="500" (ionChange)="getItems($event)" placeholder="Cari nama/kelas siswa">
+  <ion-searchbar type="text" debounce="500" (ionChange)="getItems($event)" placeholder="Cari nama/kelas/ortu siswa">
   </ion-searchbar>
   <div *ngIf="items==''">
     <ion-list>
@@ -20,7 +20,7 @@
         <div *ngFor="let c of contact;">
           <ion-item *ngIf="(c.kelas==k.kelas)"
             routerLink="/homepetugas/detailchat//{{c.ortutoken}}/{{c.ortuid}}/{{c.tokendevice}}">
-            <ion-label>{{c.namasiswa}} <span style="visibility: hidden">{{c.kelas}}</span>
+            <ion-label>{{c.namasiswa}} - Ibu {{c.ibu}} <span style="visibility: hidden">{{c.kelas}}</span>
             </ion-label>
           </ion-item>
         </div>
@@ -37,7 +37,7 @@
         <div *ngFor="let i of items;">
           <ion-item *ngIf="(i.kelas==k.kelas)"
             routerLink="/homepetugas/detailchat/{{i.ortutoken}}/{{i.ortuid}}/{{i.tokendevice}}">
-            <ion-label>{{i.namasiswa}} <span style="visibility: hidden">{{i.kelas}}</span></ion-label>
+            <ion-label>{{i.namasiswa}} - {{i.ibu}} <span style="visibility: hidden">{{i.kelas}}</span></ion-label>
           </ion-item>
         </div>
 
