@@ -61,7 +61,7 @@ export class DashboardPage implements OnInit {
   kegiatans = []
   ada = 0;
   listKegiatan() {
-    this.as.getKegiatanTerdekat().subscribe(
+    this.as.getKegiatanTerdekatPetugas().subscribe(
       (data) => {
         if (data['status']) {
           this.kegiatans = data['pesan'];

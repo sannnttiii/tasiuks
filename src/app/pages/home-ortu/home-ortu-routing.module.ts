@@ -49,12 +49,16 @@ const routes: Routes = [
     loadChildren: () => import('./editprofile/editprofile.module').then(m => m.EditprofilePageModule)
   },
   {
-    path: 'kegiatanuks',
+    path: 'kegiatanuks/:idsiswa',
     loadChildren: () => import('./kegiatanuks/kegiatanuks.module').then(m => m.KegiatanuksPageModule)
   },
   {
     path: 'detailberita/:idkejadian/:idsiswa',
     loadChildren: () => import('./detailberita/detailberita.module').then(m => m.DetailberitaPageModule)
+  },
+  {
+    path: 'persiswa/:idsiswa',
+    loadChildren: () => import('./persiswa/persiswa.module').then(m => m.PersiswaPageModule)
   },
 
 

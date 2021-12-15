@@ -5,10 +5,12 @@
 
   <ion-list *ngFor="let c of chats;" class="ion-no-padding">
     <ion-item routerLink="/homepetugas/detailchat/{{c.usertoken}}/{{c.ortuid}}/{{c.tokendevice}}">
-      <ion-icon name='person' slot="start" style="width: 30px; height: 30px;">
-      </ion-icon>
+      <!-- <ion-icon name='person' slot="start" style="width: 30px; height: 30px;">
+      </ion-icon> -->
+      <img src="./assets/logos/parents.png"
+        style="width: 60px; height: 60px; margin-right: 8px;margin-bottom: 8px; margin-top: 8px;">
       <ion-label>
-        <h2><b>{{c.namasiswa}}</b></h2>
+        <h2><b>{{c.ibu}}</b></h2>
         <span>{{c.pesan}}</span>
       </ion-label>
       <ion-badge>{{c.jumlah}}</ion-badge>

@@ -24,45 +24,54 @@
           <h5 style="text-align: center;">Kegiatan UKS</h5>
         </ion-card-content>
       </ion-card> -->
-      <ion-card (click)="callcenter()" full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '>
+      <!-- <ion-card (click)="callcenter()" full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '>
         <div style="padding-top: 5px;" class="ion-text-center">
           <ion-icon class="icon" name="call"></ion-icon>
         </div>
         <ion-card-content>
           <h5 style="text-align: center;"> Call Center 112 </h5>
         </ion-card-content>
+      </ion-card> -->
+      <ion-card (click)="callcenter()" full no-margin style='padding: 5%; background-color:rgb(208, 243, 255)'>
+        <div style="width:100%; display:flex;">
+          <img src="./assets/logos/callcenter.png" frameborder='0'
+            style="height:100px; border:none; margin-right:auto; margin-left:auto; padding: 0;" />
+        </div>
+
+        <ion-card-content style="font-size: 16px; text-align: middle;color: black">Call Center 112
+        </ion-card-content>
       </ion-card>
 
-      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'
+      <ion-card full no-margin style='padding: 5%;background-color:rgb(208, 243, 255)'
         routerLink='/homepetugas/confirmpemeriksaan'>
-        <ion-item-option color="transparancy" style="color: black;">
+        <ion-item-option color="transparancy" style="color: black; ">
           <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Laporan
         </ion-item-option>
         <h5 style="color: black; text-align:center;"><b> {{jumlahpemeriksaan}} </b></h5>
         <p style="text-align: center;">Butuh Konfirmasi</p>
       </ion-card>
 
-      <!-- <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '
-        routerLink='/homepetugas/emergencycall'>
-        <div style="padding-top: 5px;" class="ion-text-center">
-          <ion-icon class="icon" name="call"></ion-icon>
+      <ion-card (click)="ambulans()" full no-margin style='padding: 5%; background-color:rgb(208, 243, 255)'>
+        <div style="width:100%; display:flex;">
+          <img src="./assets/logos/ambulan.png" frameborder='0'
+            style="height:100px; border:none; margin-right:auto; margin-left:auto; padding: 0;" />
         </div>
-        <ion-card-content>
-          <h5 style="text-align: center;"> Panggilan Darurat</h5>
+        <ion-card-content style="font-size: 16px; text-align: middle; color: black;">Ambulan 119
         </ion-card-content>
-      </ion-card> -->
-      <ion-card (click)="ambulans()" full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '>
+      </ion-card>
+
+      <!-- <ion-card (click)="ambulans()" full no-margin style='padding: 5%; background-color:rgb(208, 243, 255) '>
         <div style="padding-top: 5px;" class="ion-text-center">
           <ion-icon class="icon" name="medkit"></ion-icon>
         </div>
         <ion-card-content>
           <h5 style="text-align: center;"> Ambulans 119</h5>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
     </div>
   </ion-grid>
 
-  <span *ngIf="(ada == 1)" class="ion-padding"> Kegiatan terdekat : </span>
+  <span *ngIf="(ada == 1)" class="ion-padding" style="margin-top: 8px;"> Kegiatan terdekat : </span>
   <ion-card *ngFor="let k of kegiatans">
     <ion-card-header>
 
@@ -75,7 +84,9 @@
     </ion-card-header>
     <ion-card-content>
       Tanggal : {{k.tanggal | date:'dd MMMM yyyy'}}<br>
-      Pelaksana : {{k.pelaksana}}
+      Pelaksana : {{k.pelaksana}}<br>
+      <span *ngIf="(k.kelas != '')"> Untuk : Kelas {{k.kelas}}</span>
+      <span *ngIf="(k.kelas == '')"> Untuk : Semua Siswa</span>
     </ion-card-content>
   </ion-card>
 

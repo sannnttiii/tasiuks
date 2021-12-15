@@ -230,7 +230,12 @@ export class AuthService {
   }
   getKegiatanTerdekat(): Observable<any> {
     let body = new HttpParams();
+    body = body.set('ortuid', this.ortuIdDb);
     return this.http.post("http://192.168.1.6/tasiuks/api/getkegiatanterdekat.php", body);
+  }
+  getKegiatanTerdekatPetugas(): Observable<any> {
+    let body = new HttpParams();
+    return this.http.post("http://192.168.1.6/tasiuks/api/getkegiatanterdekatpetugas.php", body);
   }
   listdevicekegiatan(forall: number, cb: any): Observable<any> {
     let body = new HttpParams();
@@ -298,14 +303,14 @@ export class AuthService {
     body = body.set('ortuid', ortuid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getdetailortu.php", body);
   }
-  getJumlahPerizinan(ortuid: number): Observable<any> {
+  getJumlahPerizinan(siswaid: number): Observable<any> {
     let body = new HttpParams();
-    body = body.set('ortuid', ortuid);
+    body = body.set('siswaid', siswaid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getjumlahperizinanortu.php", body);
   }
-  getJumlahPerizinanAll(ortuid: number): Observable<any> {
+  getJumlahPerizinanAll(siswaid: number): Observable<any> {
     let body = new HttpParams();
-    body = body.set('ortuid', ortuid);
+    body = body.set('siswaid', siswaid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getjumlahperizinanortuall.php", body);
   }
   listKegiatanPerizinan(ortuid: number): Observable<any> {
@@ -332,9 +337,9 @@ export class AuthService {
     body = body.set('periodeajaranid', periodeajaranid);
     return this.http.post("http://192.168.1.6/tasiuks/api/updateperizinankegiatan.php", body);
   }
-  getJumlahPemeriksaan(ortuid: number): Observable<any> {
+  getJumlahPemeriksaan(siswaid: number): Observable<any> {
     let body = new HttpParams();
-    body = body.set('ortuid', ortuid);
+    body = body.set('siswaid', siswaid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getjumlahpemeriksaan.php", body);
   }
   getJumlahKejadian(ortuid: number): Observable<any> {
@@ -342,29 +347,29 @@ export class AuthService {
     body = body.set('ortuid', ortuid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getjumlahkejadian.php", body);
   }
-  getKegiatanOrtuAllAcc(ortuid: number): Observable<any> {
+  getKegiatanOrtuAllAcc(siswaid: number): Observable<any> {
     let body = new HttpParams();
-    body = body.set('ortuid', ortuid);
+    body = body.set('siswaid', siswaid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getkegiatanortuallacc.php", body);
   }
-  getKegiatanOrtuAllNot(ortuid: number): Observable<any> {
+  getKegiatanOrtuAllNot(siswaid: number): Observable<any> {
     let body = new HttpParams();
-    body = body.set('ortuid', ortuid);
+    body = body.set('siswaid', siswaid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getkegiatanortuallnot.php", body);
   }
-  getKegiatanOrtuKelasAcc(ortuid: number): Observable<any> {
+  getKegiatanOrtuKelasAcc(siswaid: number): Observable<any> {
     let body = new HttpParams();
-    body = body.set('ortuid', ortuid);
+    body = body.set('siswaid', siswaid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getkegiatanortukelasacc.php", body);
   }
-  getKegiatanOrtuKelasNot(ortuid: number): Observable<any> {
+  getKegiatanOrtuKelasNot(siswaid: number): Observable<any> {
     let body = new HttpParams();
-    body = body.set('ortuid', ortuid);
+    body = body.set('siswaid', siswaid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getkegiatanortukelasnot.php", body);
   }
-  getKegiatanOrtuNonPerizinan(ortuid: number): Observable<any> {
+  getKegiatanOrtuNonPerizinan(siswaid: number): Observable<any> {
     let body = new HttpParams();
-    body = body.set('ortuid', ortuid);
+    body = body.set('siswaid', siswaid);
     return this.http.post("http://192.168.1.6/tasiuks/api/getkegiatanortunonperizinan.php", body);
   }
   getJumlahPesanOrtu(ortuid: number): Observable<any> {
@@ -457,8 +462,9 @@ export class AuthService {
       "userPhone": newphone
     })
   }
-  updateProfilFirebaseOrtu(token, newphone) {
+  updateProfilFirebaseOrtu(token, newusername, newphone) {
     return this.afs.collection('user').doc(token).update({
+      "userName": newusername,
       "userPhone": newphone
     })
   }

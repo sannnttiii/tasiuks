@@ -4,43 +4,33 @@
     <ion-title>Beranda</ion-title>
   </ion-toolbar>
 
-  <!-- <ion-grid>
-    <div id='container'>
-      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);' (click)="confirmPerizinan()">
-        <ion-item-option color="transparancy" style="color: black;">
-          <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Kegiatan
-        </ion-item-option>
-        <h5 style="color: black; text-align:center;"><b>{{totalJumPerizinan}}</b>
-        </h5>
-        <p style="text-align: center;">Butuh Konfirmasi</p>
-      </ion-card>
 
-      <ion-card full no-margin style='padding: 5%; background-color:rgb(208, 243, 255);'>
-        <ion-item-option color="transparancy" style="color: black;">
-          <ion-icon name="megaphone" width="100%"></ion-icon> &nbsp;Laporan
-        </ion-item-option>
-        <h5 style="color: black; text-align:center;"><b>{{totalLaporan}}</b></h5>
-        <p style="text-align: center;">Butuh Konfirmasi</p>
-      </ion-card>
-    </div>
-  </ion-grid> -->
-
-  <!-- <div class="poster"> -->
   <ion-card *ngFor="let s of siswas">
     <ion-item>
-      <ion-icon name="person" slot="start"></ion-icon>
+      <!-- <ion-icon name="person" slot="start"></ion-icon> -->
+      <img src="./assets/logos/girl.png"
+        style="width: 50px; height: 50px; margin-right: 8px;margin-bottom: 8px; margin-top: 8px;"
+        *ngIf="(s.jk == 'perempuan')">
+      <img src="./assets/logos/boy.png"
+        style="width: 50px; height: 50px; margin-right: 8px; margin-bottom: 8px; margin-top: 8px;"
+        *ngIf="(s.jk == 'laki-laki')">
       <ion-label>{{s.nama}} </ion-label>
-      <ion-button fill="outline" slot="end" routerLink="/homeortu/rekammedis/{{s.idsiswa}}">Lihat</ion-button>
     </ion-item>
 
     <ion-card-content>
-      Rekam medis atau laporan pemeriksaan dan kejadian siswa.<br>
-      <ion-badge color="warning" *ngIf="totalLaporan !=0" style="margin-top: 5px;"> {{totalLaporan}} Butuh konfirmasi
-        laporan </ion-badge>
+      <ion-row>
+        <ion-col size="9"> Lihat laporan rekam medis dan kegiatan UKS siswa<br></ion-col>
+        <ion-col size="3">
+          <ion-button fill="outline" size="small" routerLink="/homeortu/persiswa/{{s.idsiswa}}">Lihat</ion-button>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-badge color="warning" *ngIf="totalLaporan !=0" style="margin-top: 5px;"> {{totalLaporan}} Butuh konfirmasi
+        laporan </ion-badge> -->
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <!-- <ion-card>
     <ion-item>
       <ion-icon name="calendar" slot="start"></ion-icon>
       <ion-label>Jadwal Kegiatan UKS</ion-label>
@@ -50,7 +40,7 @@
       <ion-badge color="warning"> {{totalJumPerizinan}} Butuh konfirmasi perizinan
       </ion-badge>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 
   <span *ngIf="(ada == 1)" class="ion-padding"> Kegiatan terdekat : </span>
   <ion-card *ngFor="let k of kegiatans">
@@ -65,7 +55,10 @@
     </ion-card-header>
     <ion-card-content>
       Tanggal : {{k.tanggal | date:'dd MMMM yyyy'}}<br>
-      Pelaksana : {{k.pelaksana}}
+      Pelaksana : {{k.pelaksana}} <br>
+      <span *ngIf="(k.kelas != '')"> Untuk : Kelas {{k.kelas}}</span>
+      <span *ngIf="(k.kelas == '')"> Untuk : Semua Siswa</span>
+
     </ion-card-content>
   </ion-card>
 

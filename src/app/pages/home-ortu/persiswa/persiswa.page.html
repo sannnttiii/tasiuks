@@ -1,0 +1,55 @@
+<ion-content>
+
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" routerLink="/homeortu/dashboard">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Tinjau Siswa</ion-title>
+  </ion-toolbar>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>
+        <ion-badge color="warning" *ngIf="totalLaporan !=0" style="margin-top: 5px;"> {{totalLaporan}} Butuh konfirmasi
+          laporan </ion-badge>
+      </ion-card-subtitle>
+      <ion-card-title>Rekam Medis</ion-card-title>
+    </ion-card-header>
+    <form>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-button routerLink="/homeortu/rekammedis/{{siswaid}}"
+              class="ion-margin-start ion-margin-end ion-margin-bottom" fill="outline" type="submit" shape="round">
+              Lihat Rekam Medis
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>
+        <ion-badge color="warning" *ngIf="totalLaporan !=0" style="margin-top: 5px;"> {{totalJumPerizinan}} Butuh
+          konfirmasi perizinan</ion-badge>
+      </ion-card-subtitle>
+      <ion-card-title>Jadwal Kegiatan UKS</ion-card-title>
+    </ion-card-header>
+    <form>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-button routerLink="/homeortu/kegiatanuks/{{siswaid}}" fill="outline"
+              class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit" shape="round">
+              Lihat Jadwal Kegiatan
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-card>
+</ion-content>

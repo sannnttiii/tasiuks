@@ -11,8 +11,14 @@
 
   <ion-list lines="none" *ngFor="let s of siswa">
     <ion-item lines="none" style="--background: inherit;">
-      <ion-icon name='person' slot="start" style="width: 50px; height: 50px;">
-      </ion-icon>
+      <!-- <ion-icon name='person' slot="start" style="width: 50px; height: 50px;">
+      </ion-icon> -->
+      <img src="./assets/logos/girl.png"
+        style="width: 70px; height: 70px; margin-right: 8px;margin-bottom: 8px; margin-top: 8px;"
+        *ngIf="(s.jk == 'perempuan')">
+      <img src="./assets/logos/boy.png"
+        style="width: 70px; height: 70px; margin-right: 8px; margin-bottom: 8px; margin-top: 8px;"
+        *ngIf="(s.jk == 'laki-laki')">
       <ion-label>
         <h3 style="font-weight: bold;">{{s.nama}}</h3>
         <h5>Kelas {{s.kelas}} / {{s.periode}}</h5>
@@ -93,11 +99,12 @@
         <ion-grid>
           <ion-row>
             <ion-col class="ion-text-center">
-              <form>
-                <ion-button *ngIf="(r.confirm == 0)" (click)="confirmpemeriksaan(r.id)" shape="round">
-                  Konfirmasi
-                </ion-button>
-              </form>
+              <ion-button *ngIf="(r.confirm == 0)" (click)="confirmpemeriksaan(r.id)" shape="round">
+                Konfirmasi
+              </ion-button><br>
+              <ion-button size="small" routerLink="/homeortu/chat" fill="outline" shape="round">
+                Tanya petugas
+              </ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>

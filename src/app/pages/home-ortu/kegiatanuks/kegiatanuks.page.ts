@@ -21,10 +21,10 @@ export class KegiatanuksPage implements OnInit {
   kelasnot = []
   kelasacc = []
   nonperizinan = []
-  // siswaid = this.route.snapshot.params['idsiswa']
+  siswaid = this.route.snapshot.params['idsiswa']
   ket = '';
   listKegiatan() {
-    this.as.getKegiatanOrtuAllAcc(this.as.ortuIdDb).subscribe(
+    this.as.getKegiatanOrtuAllAcc(this.siswaid).subscribe(
       (data) => {
         if (data['status']) {
           this.allacc = data['pesan'];
@@ -53,7 +53,7 @@ export class KegiatanuksPage implements OnInit {
     }
   }
   listKegiatan2() {
-    this.as.getKegiatanOrtuAllNot(this.as.ortuIdDb).subscribe(
+    this.as.getKegiatanOrtuAllNot(this.siswaid).subscribe(
       (data) => {
         if (data['status']) {
           this.allnot = data['pesan'];
@@ -65,7 +65,7 @@ export class KegiatanuksPage implements OnInit {
     )
   }
   listKegiatan3() {
-    this.as.getKegiatanOrtuKelasAcc(this.as.ortuIdDb).subscribe(
+    this.as.getKegiatanOrtuKelasAcc(this.siswaid).subscribe(
       (data) => {
         if (data['status']) {
           this.kelasacc = data['pesan'];
@@ -77,7 +77,7 @@ export class KegiatanuksPage implements OnInit {
     )
   }
   listKegiatan4() {
-    this.as.getKegiatanOrtuKelasNot(this.as.ortuIdDb).subscribe(
+    this.as.getKegiatanOrtuKelasNot(this.siswaid).subscribe(
       (data) => {
         if (data['status']) {
           this.kelasnot = data['pesan'];
@@ -89,7 +89,7 @@ export class KegiatanuksPage implements OnInit {
     )
   }
   listKegiatan5() {
-    this.as.getKegiatanOrtuNonPerizinan(this.as.ortuIdDb).subscribe(
+    this.as.getKegiatanOrtuNonPerizinan(this.siswaid).subscribe(
       (data) => {
         if (data['status']) {
           this.nonperizinan = data['pesan'];
