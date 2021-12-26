@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
 
           }
           else {
-            this.toast('Gagal!Email dan password tidak sesuai.', 'danger')
+            this.toast(data['message'], 'danger')
           }
         }
       )

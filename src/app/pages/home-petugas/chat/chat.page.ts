@@ -22,7 +22,7 @@ export class ChatPage implements OnInit {
   }
   chats = []
   listChat() {
-    this.as.getListChat().subscribe(
+    this.as.getListChat(this.as.petugasIdDb).subscribe(
       (data) => {
         this.chats = data;
       }

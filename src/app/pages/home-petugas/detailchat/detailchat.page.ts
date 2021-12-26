@@ -68,7 +68,7 @@ export class DetailchatPage implements OnInit {
           formData.append('catatan', 'Petugas UKS melakukan panggilan ke orang tua');
           formData.append('kejadianid', this.kejadianid);
 
-          this.http.post("http://192.168.1.6/tasiuks/api/insertdetailkejadian.php", formData).subscribe(
+          this.http.post("http://192.168.1.2/tasiuks/api/insertdetailkejadian.php", formData).subscribe(
             (data) => {
               console.log(data['pesan'])
             });

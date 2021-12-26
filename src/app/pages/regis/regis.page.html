@@ -3,26 +3,67 @@
     <form>
       <ion-list>
         <ion-item>
-          <ion-label position="stacked">Full Name</ion-label>
+          <ion-label position="stacked">Nama Ayah</ion-label>
+          <ion-input required type="text" [(ngModel)]="ayah" name="ayah"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Nama Ibu</ion-label>
           <ion-input required type="text" [(ngModel)]="name" name="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Alamat</ion-label>
+          <ion-input required type="text" [(ngModel)]="alamat" name="alamat"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Email</ion-label>
           <ion-input required type="email" [(ngModel)]="email" name="email"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">Phone</ion-label>
-          <ion-input required type="tel" [(ngModel)]="phone" name="phone"></ion-input>
-        </ion-item>
-        <ion-item>
           <ion-label position="stacked">Password</ion-label>
           <ion-input required type="password" [(ngModel)]="password" name="password"></ion-input>
         </ion-item>
-        <ion-button  type="submit" (click)="register()" expand="block" shape="round">
-         Register
+        <ion-item>
+          <ion-label position="stacked">HP ibu</ion-label>
+          <ion-input required type="tel" [(ngModel)]="phone" name="phone"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">HP ayah</ion-label>
+          <ion-input required type="tel" [(ngModel)]="phonea" name="phonea"></ion-input>
+        </ion-item>
+        <ion-button type="submit" (click)="register()" expand="block" shape="round">
+          Register
         </ion-button>
       </ion-list>
     </form>
   </ion-card>
 
+  <ion-card>
+    <form>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Nama Petugas</ion-label>
+          <ion-input required type="text" [(ngModel)]="petugas" name="petugas"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Alamat</ion-label>
+          <ion-input required type="text" [(ngModel)]="alamat2" name="alamat2"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input required type="email" [(ngModel)]="email2" name="email2"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input required type="password" [(ngModel)]="password2" name="password2"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">No HP</ion-label>
+          <ion-input required type="tel" [(ngModel)]="phonep" name="phonep"></ion-input>
+        </ion-item>
+        <ion-button type="submit" (click)="register2()" expand="block" shape="round">
+          Register
+        </ion-button>
+      </ion-list>
+    </form>
+  </ion-card>
 </ion-content>

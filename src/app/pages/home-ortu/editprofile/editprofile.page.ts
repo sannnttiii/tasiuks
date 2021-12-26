@@ -18,7 +18,6 @@ export class EditprofilePage implements OnInit {
   namaAyah = ''
   namaIbu = ''
   alamatAyah = ''
-  alamatIbu = ''
   telpAyah = ''
   telpIbu = ''
   token = ''
@@ -30,13 +29,12 @@ export class EditprofilePage implements OnInit {
     formData.append('namaayah', this.namaAyah);
     formData.append('namaibu', this.namaIbu);
     formData.append('alamatayah', this.alamatAyah);
-    formData.append('alamatibu', this.alamatIbu);
     formData.append('nohpibu', this.telpIbu);
     formData.append('nohpayah', this.telpAyah);
     formData.append('id', this.ortuid.toString());
 
 
-    this.http.post("http://192.168.1.6/tasiuks/api/updateprofileortu.php", formData).subscribe((response: any) => {
+    this.http.post("http://192.168.1.2/tasiuks/api/updateprofileortu.php", formData).subscribe((response: any) => {
       if (response['status']) {
         this.as.updateProfilFirebaseOrtu(this.token, this.namaIbu, this.telpIbu)
         this.toast(response['pesan'], 'success');
@@ -55,8 +53,7 @@ export class EditprofilePage implements OnInit {
           this.ortu = data['pesan']
           this.namaAyah = data['pesan'][0]['namaayah'];
           this.namaIbu = data['pesan'][0]['namaibu'];
-          this.alamatAyah = data['pesan'][0]['alamatayah'];
-          this.alamatIbu = data['pesan'][0]['alamatibu'];
+          this.alamatAyah = data['pesan'][0]['alamat'];
           this.telpAyah = data['pesan'][0]['noayah'];
           this.telpIbu = data['pesan'][0]['noibu'];
           this.token = data['pesan'][0]['token'];

@@ -75,7 +75,7 @@ export class AddberitaPage implements OnInit {
     formData.append('foto', this.imgUrl);
 
 
-    this.http.post("http://192.168.1.6/tasiuks/api/insertdetailkejadian.php", formData).subscribe(
+    this.http.post("http://192.168.1.2/tasiuks/api/insertdetailkejadian.php", formData).subscribe(
       (data) => {
         if (data['status']) {
           var key = 'AAAAaL42s0U:APA91bEmjE6H-W95TsRvGw4s9L4iqtS6IFX3ZQ6_5uUeZofNeqS1oU2sHhaMAOyubZMUXBoQXPAsEq578zLNZ9EkKmJjLUT_0crb68EqrDON0mO7cZObrFc2JE3Ah8XyiJ2vfi5hgwZU';

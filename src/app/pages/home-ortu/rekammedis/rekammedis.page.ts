@@ -143,7 +143,7 @@ export class RekammedisPage implements OnInit {
       message: msg,
       color: status,
       position: 'bottom',
-      duration: 2000
+      duration: 3000
     })
     toast.present();
   }
