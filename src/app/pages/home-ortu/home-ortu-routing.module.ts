@@ -45,7 +45,7 @@ const routes: Routes = [
     loadChildren: () => import('./confirmperizinanortu/confirmperizinanortu.module').then(m => m.ConfirmperizinanortuPageModule)
   },
   {
-    path: 'formconfirm/:idkegiatan',
+    path: 'formconfirm/:idsiswa/:idkegiatan',
     loadChildren: () => import('./formconfirm/formconfirm.module').then(m => m.FormconfirmPageModule)
   },
   {

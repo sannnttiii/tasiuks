@@ -22,29 +22,14 @@ export class FormconfirmPage implements OnInit {
   }
 
   ngOnInit() {
-    this.listSiswa(this.ortuid);
+    this.detailSiswa(this.siswaid);
     this.detailkegiatan(this.kegiatanid);
   }
 
-  siswas = []
-  siswaid = 0;
+
   ortuid = this.as.ortuIdDb;
   kegiatanid = this.route.snapshot.params['idkegiatan'];
-  listSiswa(ortuid) {
-    this.as.listSiswa(ortuid).subscribe(
-      (data) => {
-        if (data['status']) {
-          this.siswas = data['pesan'];
-          this.siswaid = data['pesan'][0]['idsiswa'];
-          this.detailSiswa(this.siswaid);
-
-        }
-        else {
-          console.log(data['pesan'])
-        }
-      }
-    )
-  }
+  siswaid = this.route.snapshot.params['idsiswa'];
 
   kelasid = 0;
   periodid = 0;
@@ -57,7 +42,6 @@ export class FormconfirmPage implements OnInit {
           this.periodid = data['pesan'][0]['periodeid'];
           this.siswanama = data['pesan'][0]['nama'];
           console.log('id siswa' + this.siswaid + this.kelasid + this.periodid + this.kegiatanid + this.ortuid);
-
         }
         else {
           console.log(data['pesan'])
@@ -89,7 +73,7 @@ export class FormconfirmPage implements OnInit {
     this.diizinkan = false;
     this.acc = "ya"
   }
-  file: File;
+  file;
   changeListener($event): void {
     this.file = $event.target.files[0];
   }
@@ -99,7 +83,7 @@ export class FormconfirmPage implements OnInit {
         (data) => {
           if (data['status']) {
             this.toast(data['pesan'], 'success');
-            this.router.navigate(['/homeortu/kegiatanuks'])
+            this.router.navigate(['/homeortu/kegiatanuks/' + this.siswaid])
           }
           else {
             this.toast(data['pesan'], 'danger');
@@ -109,7 +93,9 @@ export class FormconfirmPage implements OnInit {
     else if (this.acc = 'tidak') {
       if (this.alasan) {
         const formData = new FormData();
-        formData.append('image', this.file);
+        if (this.file) {
+          formData.append('image', this.file);
+        }
         formData.append('alasan', this.alasan);
         formData.append('siswaid', this.siswaid.toString());
         formData.append('ortuid', this.ortuid.toString());
@@ -122,7 +108,7 @@ export class FormconfirmPage implements OnInit {
             console.log(this.alasan, this.file);
             if (data['status']) {
               this.toast(data['pesan'], 'success');
-              this.router.navigate(['/homeortu/dashboard'])
+              this.router.navigate(['/homeortu/kegiatanuks/' + this.siswaid])
             }
             else {
               this.toast(data['pesan'], 'danger');

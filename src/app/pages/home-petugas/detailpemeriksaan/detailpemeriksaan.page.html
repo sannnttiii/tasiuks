@@ -100,10 +100,12 @@
       </ion-card-content>
     </ion-card>
 
-    <div *ngIf="cbperiode!=0 && done===2 && pemeriksaans.length ==0">
+    <!-- <div *ngIf="cbperiode!=0 && done===2 && pemeriksaans.length ==0">
+      <p style="text-align: center;">Tidak ada laporan pemeriksaan</p>
+    </div> -->
+    <div *ngIf="done===2 && pemeriksaans.length ==0">
       <p style="text-align: center;">Tidak ada laporan pemeriksaan</p>
     </div>
-
   </ion-list>
 
   <ion-fab routerLink="/homepetugas/addpemeriksaan/{{siswaid}}/{{ortudevice}}" vertical="bottom" horizontal="end"

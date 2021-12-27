@@ -395,19 +395,19 @@ export class AuthService {
     loading.present();
     this.afauth.setPersistence(firebase.default.auth.Auth.Persistence.LOCAL).then(() => {
       this.afauth.signInWithEmailAndPassword(email, password).then(async (data) => {
-        if (data.user.emailVerified) {
-          //ini uid
-          this.tokenUser = await data.user.uid;
-          console.log('token : ' + this.tokenUser);
-          loading.dismiss();
-          //ini token 
-          // this.tokendevice = await data.user.getIdToken();
-          // console.log('lallal ' + this.tokendevice)
-        } else {
-          loading.dismiss();
-          // this.toast('Harap verifikasi email anda!', 'warning');
-          // this.afauth.signOut();
-        }
+        // if (data.user.emailVerified) {
+        //ini uid
+        this.tokenUser = await data.user.uid;
+        console.log('token : ' + this.tokenUser);
+        loading.dismiss();
+        //ini token 
+        // this.tokendevice = await data.user.getIdToken();
+        // console.log('lallal ' + this.tokendevice)
+        // } else {
+        // loading.dismiss();
+        // this.toast('Harap verifikasi email anda!', 'warning');
+        // this.afauth.signOut();
+        // }
       })
         .catch(error => {
           loading.dismiss();
@@ -564,15 +564,15 @@ export class AuthService {
           m.msgForMe = this.tokenUser === m.to;
           // m.toOrtu = m.to == this.tokenOrtuDb;
           // m.fromOrtu = m.from == this.tokenOrtuDb;
-          // this.index = this.index + 1
+          // this.index += 1
           // this.mess = Array.from(messages)
           // m.muncul = true;
-          // this.mess.push.apply('a', [m.from, m.to, m.msg, m.createdAt]);
+          // this.mess.push.apply('a', [m.from, m.to, m.msg, m.c?reatedAt]);
           // console.log('mess' + this.mess.toString());
           // }
           // else {
-          // messages.splice(this.index, 1);
-          // this.index = this.index + 1
+          //   messages.splice(this.index, 1);
+          //   this.index += 1
           // }
 
         }
