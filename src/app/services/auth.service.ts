@@ -387,19 +387,19 @@ export class AuthService {
 
 
   async signIn(email, password) {
-    const loading = await this.loadingCtrl.create({
-      message: 'Authenticating..',
-      spinner: 'crescent',
-      showBackdrop: true
-    });
-    loading.present();
+    // const loading = await this.loadingCtrl.create({
+    //   message: 'Authenticating..',
+    //   spinner: 'crescent',
+    //   showBackdrop: true
+    // });
+    // loading.present();
     this.afauth.setPersistence(firebase.default.auth.Auth.Persistence.LOCAL).then(() => {
       this.afauth.signInWithEmailAndPassword(email, password).then(async (data) => {
         // if (data.user.emailVerified) {
         //ini uid
         this.tokenUser = await data.user.uid;
         console.log('token : ' + this.tokenUser);
-        loading.dismiss();
+        // loading.dismiss();
         //ini token 
         // this.tokendevice = await data.user.getIdToken();
         // console.log('lallal ' + this.tokendevice)
@@ -410,12 +410,12 @@ export class AuthService {
         // }
       })
         .catch(error => {
-          loading.dismiss();
+          // loading.dismiss();
           this.toast(error.message, 'danger');
         })
     })
       .catch(error => {
-        loading.dismiss();
+        // loading.dismiss();
         this.toast(error.message, 'danger');
       });
   }//end sign in

@@ -13,9 +13,10 @@
     </ion-buttons>
   </ion-toolbar>
 
-  <ion-grid class="message">
-    <ion-row style="padding-bottom: 5px;" *ngFor="let m of messages | async">
-      <ion-col size='9' [offset]="m.myMsg ? 3 : 0" [ngClass]="{ 'my-msg' : m.myMsg }" *ngIf="m.from == userToken">
+  <ion-grid style="padding-top: 60px; padding-bottom: 60px;">
+    <ion-row *ngFor="let m of messages | async">
+      <ion-col size='9' class="message" [offset]="m.myMsg ? 3 : 0" [ngClass]="{ 'my-msg' : m.myMsg }"
+        *ngIf="m.from == userToken">
         <b>{{m.fromName}}</b><br>
         <span>{{m.msg}}</span>
         <div style="color:grey; font-size: small;" class="ion-text-right">
@@ -23,7 +24,8 @@
         </div>
       </ion-col>
 
-      <ion-col size='9' [offset]="m.myMsg ? 3 : 0" [ngClass]="{ 'other-msg' : m.msgForMe }" *ngIf="m.to == userToken">
+      <ion-col size='9' class="message" [offset]="m.myMsg ? 3 : 0" [ngClass]="{ 'other-msg' : m.msgForMe }"
+        *ngIf="m.to == userToken">
         <b>{{m.fromName}}</b><br>
         <span>{{m.msg}}</span>
         <div style="color:grey; font-size: small;" class="ion-text-right">
