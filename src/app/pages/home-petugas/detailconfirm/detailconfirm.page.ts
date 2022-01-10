@@ -36,6 +36,7 @@ export class DetailconfirmPage implements OnInit {
   namakegiatan = '';
   periode = ''
   forall;
+  selesai;
   listKelas() {
     this.as.listKelasKegiatanPerizinanPetugas(this.kegiatanid).subscribe(
       (data) => {
@@ -44,6 +45,7 @@ export class DetailconfirmPage implements OnInit {
           this.namakegiatan = data['pesan'][0]['nama']
           this.periode = data['pesan'][0]['periode']
           this.forall = data['pesan'][0]['forall']
+          this.selesai = data['pesan'][0]['selesai']
         }
       }
     )
@@ -76,6 +78,7 @@ export class DetailconfirmPage implements OnInit {
         if (data['status']) {
           this.siswadeny = data['pesan'];
         }
+
       }
     )
   }

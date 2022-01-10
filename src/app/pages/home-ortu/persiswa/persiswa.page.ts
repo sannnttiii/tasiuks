@@ -63,9 +63,9 @@ export class PersiswaPage implements OnInit {
     this.as.getJumlahPerizinan(siswaid).subscribe(
       (data) => {
         if (data['status']) {
-          this.jumPerizinan = data['pesan'][0]['jumlah'];
+          this.jumPerizinan = Number(data['pesan'][0]['jumlah']);
           if (this.jumPerizinan != 0) {
-            this.totalJumPerizinan = this.totalJumPerizinan + 1;
+            this.totalJumPerizinan = this.totalJumPerizinan + this.jumPerizinan;
           }
 
         }
@@ -80,9 +80,9 @@ export class PersiswaPage implements OnInit {
     this.as.getJumlahPerizinanAll(siswaid).subscribe(
       (data) => {
         if (data['status']) {
-          this.jumPerizinanAll = data['pesan'][0]['jumlah'];
+          this.jumPerizinanAll = Number(data['pesan'][0]['jumlah']);
           if (this.jumPerizinanAll != 0) {
-            this.totalJumPerizinan = this.totalJumPerizinan + 1;
+            this.totalJumPerizinan = this.totalJumPerizinan + this.jumPerizinanAll;
           }
         }
         else {

@@ -76,7 +76,7 @@
       <ion-row>
         <ion-col class="ion-text-center">
           <form>
-            <ion-button (click)="remind()" fill="outline" shape="round">
+            <ion-button *ngIf="selesai==0 && siswabelum.length>0" (click)="remind()" fill="outline" shape="round">
               Kirim Pengingat
             </ion-button>
           </form>

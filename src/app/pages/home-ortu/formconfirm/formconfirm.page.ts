@@ -103,7 +103,7 @@ export class FormconfirmPage implements OnInit {
         formData.append('kelasajaranid', this.kelasid.toString());
         formData.append('periodeajaranid', this.periodid.toString());
 
-        this.http.post("http://192.168.1.2/tasiuks/api/updateperizinanortu.php", formData).subscribe(
+        this.http.post("http://192.168.1.10/tasiuks/api/updateperizinanortu.php", formData).subscribe(
           (data) => {
             console.log(this.alasan, this.file);
             if (data['status']) {
