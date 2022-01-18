@@ -35,6 +35,9 @@ export class ProfilePage implements OnInit {
   }
 
   logout() {
+    this.as.logoutortu(this.ortuid).subscribe((data) => {
+      console.log(data['pesan']);
+    });
     this.as.signOut();
     this.router.navigate(['/login']);
   }

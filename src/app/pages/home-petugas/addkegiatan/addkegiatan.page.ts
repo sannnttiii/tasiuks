@@ -127,7 +127,7 @@ export class AddkegiatanPage implements OnInit {
       formData.append('cbkelas', this.finalChecked.toString());
 
 
-      this.http.post("http://192.168.1.10/tasiuks/api/insertkegiatan.php", formData).subscribe(
+      this.http.post("http://192.168.1.8/tasiuks/api/insertkegiatan.php", formData).subscribe(
         (data) => {
           if (data['status']) {
             if (this.perizinan == 1) {

@@ -75,7 +75,7 @@ export class RegisPage implements OnInit {
               formData.append('pass', this.password);
               formData.append('usertoken', this.usertoken);
 
-              this.http.post("http://192.168.1.10/tasiuks/api/regis.php", formData).subscribe((data) => {
+              this.http.post("http://192.168.1.8/tasiuks/api/regis.php", formData).subscribe((data) => {
                 if (data['status']) {
                   console.log('success')
 
@@ -135,7 +135,7 @@ export class RegisPage implements OnInit {
               formData.append('pass2', this.password2);
               formData.append('usertoken', this.usertoken);
 
-              this.http.post("http://192.168.1.10/tasiuks/api/regispetugas.php", formData).subscribe((data) => {
+              this.http.post("http://192.168.1.8/tasiuks/api/regispetugas.php", formData).subscribe((data) => {
                 if (data['status']) {
                   console.log('success')
 

@@ -69,7 +69,7 @@ export class EditpemeriksaanPage implements OnInit {
       if (this.hasil != '') {
         formData.append('hasil', this.hasil);
       }
-      this.http.post("http://192.168.1.10/tasiuks/api/updatepemeriksaan.php", formData).subscribe(
+      this.http.post("http://192.168.1.8/tasiuks/api/updatepemeriksaan.php", formData).subscribe(
         (data) => {
           if (data['status']) {
             this.toast(data['pesan'], 'success');

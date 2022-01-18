@@ -29,7 +29,7 @@ export class EditprofilePage implements OnInit {
     formData.append('petugasid', this.petugasid.toString());
 
 
-    this.http.post("http://192.168.1.10/tasiuks/api/updateprofilepetugas.php", formData).subscribe((response: any) => {
+    this.http.post("http://192.168.1.8/tasiuks/api/updateprofilepetugas.php", formData).subscribe((response: any) => {
       if (response['status']) {
         this.as.updateProfilFirebasePetugas(this.token, this.nama, this.telp);
         this.toast(response['pesan'], 'success');
